@@ -44,7 +44,17 @@ export default (state = DEFAULT_STATE, action) => {
                 errorMessesage: action.payload.errorMessesage
             }
 
-
+            case type.GET_LAST_ITEM_SUCSESS:
+                return {
+                    ...state,
+                    isFetching: false,
+                    dataFetched: true,
+                    error: false,
+                    type: "GET_LAST_ITEM_SUCSESS",
+                    errorMessesage: null,
+                    listItem: action.payload
+                }
+    
 
 
      

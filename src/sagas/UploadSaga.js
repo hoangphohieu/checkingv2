@@ -22,23 +22,22 @@ function* postItemExcel(param) {     // lấy total page
       }
 
 }
-// function* postItemExcel(param) {     // lấy total page
-//       try {
-//             let res1 = yield postItemExcel(param.payload); //gọi API
-//             yield put({
-//                   type: type.POST_ITEM_EXCEL_SUCSESS, // trigger valueToGetAPIReducer , tính lại total Page
-//                   payload: res1
-//             })
-//       } catch (error) {
-//             yield put({
-//                   type: type.POST_ITEM_EXCEL_RFAILURE, // trigger itemsReducer
-//                   payload: {
-//                         errorMessage: error
-//                   }
-//             })
-//       }
-// }
-
+function* getLastUser(param) {     // lấy total page
+      try {
+            let res1 = yield getListByCustomAPI(param.payload); //gọi API
+            yield put({
+                  type: type.GET_LAST_ITEM_SUCSESS, // trigger valueToGetAPIReducer , tính lại total Page
+                  payload: res1
+            })
+      } catch (error) {
+            yield put({
+                  type: type.GET_RFAILURE, // trigger itemsReducer
+                  payload: {
+                        errorMessage: error
+                  }
+            })
+      }
+}
 
 function* excelGetListById(param) {     // lấy total page
       try {
@@ -82,6 +81,7 @@ export const UploadSaga = [
       // takeEvery(type.PATCH_ITEM_EXCEL_FAIL_REQUEST, PutItemAPI),
       takeEvery(type.EXCEL_GET_LIST_BY_ID_REQUEST, excelGetListById),
       takeEvery(type.PUT_USER_REQUEST, putUser),
+      takeEvery(type.GET_LAST_ITEM_REQUEST, getLastUser),
 
 
 ];   

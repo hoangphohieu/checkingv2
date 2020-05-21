@@ -10,7 +10,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         postItem:(param)=>dispatch(actions.postItemAPI(param)),
-        // patchItemsExcelFail:(param)=>dispatch(actions.patchItemsExcelFailAPI(param)),
+        getLastitem:(param)=>dispatch(actions.getLastitem(param)),
         ExcelGetListPartner:(param)=>dispatch(actions.ExcelGetListPartner(param)),
         propsImportExcelToDefault:()=>dispatch(actions.stateImportExcelToDefault()),
         putUser:(param)=>dispatch(actions.putUser(param)),

@@ -8,6 +8,7 @@ import XLSX from 'xlsx';
 import _ from 'lodash';
 import Exceltable from './Exceltable';
 import CheckingFailProperties from './CheckingFailProperties';
+
 class InputExcel extends Component {
     constructor(props) {
         super(props);
@@ -16,7 +17,8 @@ class InputExcel extends Component {
             dataExcel: null,
             reRender: 0,
             user: [],
-            userChange: []
+
+            lastItem: 0
 
         }
     }
@@ -29,7 +31,7 @@ class InputExcel extends Component {
         }
         localStorage.setItem("numberSucsess", JSON.stringify(0));
 
-        this.props.ExcelGetListPartner("?datatype=user"); // lay sanh sach cac partner
+        this.props.getLastitem("?datatype=item&_limit=1&_sort=name&_order=desc"); // lay sanh sach cac partner
 
     }
     componentDidMount() {
@@ -42,25 +44,8 @@ class InputExcel extends Component {
     componentDidUpdate = () => {
         this.CDU_checkRequest(); // kiểm tra và thực hiện hành động khi có request trả về
         this.CDU_reRenderWhenItemsExcelZero(); // rerender khi post het list items from excel
-        if (this.props.itemExcelReload.type === "STATE_POST_TO_DEFAULT" || this.props.itemExcelReload.type === null) { this.CDU_putUser() };
-
-
     }
-    CDU_putUser = () => {
-        // console.log("CDU_putUser............................");
-        // console.log(localStorage.ItemsExcel, localStorage.ItemsExcelFail);
 
-        if (JSON.parse(localStorage.ItemsExcel).length === 0 && JSON.parse(localStorage.ItemsExcelFail).length === 0) {
-
-
-            let userChange = this.state.userChange;
-            // console.log(userChange);
-
-            if (userChange.length > 0) {
-                this.props.putUser(userChange[userChange.length - 1]);
-            }
-        }
-    }
 
 
     CDU_checkRequest() {
@@ -69,22 +54,14 @@ class InputExcel extends Component {
         else if (this.props.itemExcelReload.type === "POST_ITEM_EXCEL_RFAILURE") { this.doingWhenPostItemFail() }
         else if (this.props.itemExcelReload.type === "EXCEL_GET_LIST_BY_ID_SUCSESS") { this.getListByIdSucsess() }
         else if (this.props.itemExcelReload.type === "GET_RFAILURE") { this.getRfailure() }
-        else if (this.props.itemExcelReload.type === "PUT_USER_SUCSESS") { this.putUserSucsess() }
-        else if (this.props.itemExcelReload.type === "PUT_USER_RFAILURE") { this.putUserFail() }
         else if (this.props.itemExcelReload.type === "STATE_POST_TO_DEFAULT") { }
+        else if (this.props.itemExcelReload.type === "GET_LAST_ITEM_SUCSESS") { this.getLastitemSucsess() }
+
+
     }
-    putUserSucsess = () => {
-        let userChange = [...this.state.userChange];
-        if (userChange.length > 0) {
-            userChange.pop();
-            if (userChange.length > 0) {
-                this.props.putUser(userChange[userChange.length - 1]);
-            }
-            this.setState({ userChange: userChange })
-        }
-    }
-    putUserFail = () => {
-        alert("vui lòng kiểm tra đường truyền !");
+    getLastitemSucsess = () => {
+        this.setState({ lastItem: this.props.itemExcelReload.listItem[0].id });
+        this.props.propsImportExcelToDefault();
     }
 
 
@@ -104,8 +81,6 @@ class InputExcel extends Component {
         alert("GET fail")
     }
     CDU_reRenderWhenItemsExcelZero() {
-
-
         let payload = this.props.itemExcelReload;
         if ((payload.type === "POST_ITEM_EXCEL_SUCSESS" || payload.type === "POST_ITEM_EXCEL_RFAILURE") && (JSON.parse(localStorage.getItem("ItemsExcel")).length === 0)) {
             this.setState({ dataExcel: null });
@@ -169,7 +144,38 @@ class InputExcel extends Component {
         localStorage.setItem("ItemsExcelFail", JSON.stringify(ItemsExcelFail)); // luu itemFail vao storage
         this.setState({ reRender: Math.random() })
     }
+    convertData = (data) => {
+        data[0] = data[0].map(param => { param = param.trim().toLowerCase().split(" ").join(""); return param }) // data[0] bo space va chu hoa
+        // data = data.map(param => { // chuyuyển thuộc tính undefined thành null
+        //     for (let i = 1; i <= param.length - 1; i++) {
+        //         if (param[i] === undefined) param[i] = null;
+        //     }
+        //     return param
+        // })
 
+        let dataObj = data.map(param => { return _.zipObject(data[0], param) });  // [{},{}...{}]
+        dataObj.shift();
+        dataObj.map((param,key) => { // lọc date, country, và id
+            let dateConvert = ((param.date - 25569) * 24 * 60 * 60 * 1000);
+            dateConvert = Date.parse(new Date(new Date(dateConvert).toDateString()));   // parse date sang number cho chinh xac  
+            param.date = dateConvert; // lọc và định dạng lại ngày
+            if ((param.country
+                .trim().toLowerCase() !== "us") && (param.country
+                    .trim().toLowerCase().split(" ").join("") !== "unitedstates")) { param.country = "WW" }
+            else { param.country = "US" } // lọc và định dạnh lại shipping country
+            const uuidv1 = require('uuid/v1');
+            param["id"] = uuidv1();// tạo id
+            param["printStatus"] = "wait";
+            param["month"] = new Date(dateConvert).getMonth() + 1;
+            param["year"] = new Date(dateConvert).getFullYear();
+            param["datatype"] = "item";
+            param["barcode"] = Date.parse(new Date()) + key;
+            param.name = param.name.trim();
+
+            return param;
+        });
+        return dataObj;
+    }
     ProcessExcel = (param) => {
         //Read the Excel File data.
         var workbook = XLSX.read(param, {
@@ -178,57 +184,23 @@ class InputExcel extends Component {
         /* convert from workbook to array of arrays */
         var first_worksheet = workbook.Sheets[workbook.SheetNames[0]];
         var data = XLSX.utils.sheet_to_json(first_worksheet, { header: 1 }); // data= arr[[],[]...[]]
-        data[0] = data[0].map(param => { param = param.trim().toLowerCase().split(" ").join(""); return param }) // data[0] bo space va chu hoa
-        data = data.map(param => { // chuyuyển thuộc tính undefined thành null
-            for (let i = 1; i <= param.length - 1; i++) {
-                if (param[i] === undefined) param[i] = null;
-            }
-            return param
-        })
 
-        let dataObj = data.map(param => { return _.zipObject(data[0], param) });  // [{},{}...{}]
-        dataObj.shift();
-        dataObj.map(param => { // lọc day, shippingcountry , và id
-            let dateConvert = ((param.day - 25569) * 24 * 60 * 60 * 1000);
-            dateConvert = Date.parse(new Date(new Date(dateConvert).toDateString()));   // parse date sang number cho chinh xac  
-            param.day = dateConvert; // lọc và định dạng lại ngày
-            if ((param.shippingcountry.trim().toLowerCase() !== "us") && (param.shippingcountry.trim().toLowerCase().split(" ").join("") !== "unitedstates")) {
-                param.shippingcountry = "WW"
-            }
-            else { param.shippingcountry = "US" } // lọc và định dạnh lại shipping country
-            let id = _.kebabCase(param.name).split("-").join("") + _.kebabCase(param.lineitemname).split("-").join("") + _.kebabCase(param.lineitemsku).split("-").join("");
-            param["id"] = id;// tạo id
-            param["printStatus"] = false;
-            param["datatype"] = "item";
-            param["month"] = new Date(dateConvert).getMonth() + 1;
-            param["year"] = new Date(dateConvert).getFullYear();
-            param["datatype"] = "item";
-            param.name = param.name.trim();
-            param.product = param.product.trim().toLowerCase();
-            return param;
-        });
-        dataObj = this.checkDataFailImport([...dataObj]);
+        let dataObj =this.convertData(data);
+            dataObj = this.checkDataFailImport([...dataObj]);
         localStorage.setItem("ItemsExcel", JSON.stringify(dataObj));
         this.setState({ dataExcel: dataObj });
 
     };
     checkDataFailImport = (data) => {
-        let day = data.map(param => param.day);
-        let basecost = data.map(param => param.basecost);
-        let lineitemquantity = data.map(param => param.lineitemquantity);
+        let date = data.map(param => param.date);
+        let amount = data.map(param => param.amount
+        );
         let name = data.map(param => param.name);
-        let product = data.map(param => param.product);
-        let phonecasetype = data.map(param => param.phonecasetype);
-
-
-        day.forEach(param => {
-            if (isNaN(param) !== false) { this.alertError("Có 'day' không đúng, bạn vui lòng xem lại :("); }
+        date.forEach(param => {
+            if (isNaN(param) !== false) { this.alertError("Có 'date' không đúng, bạn vui lòng xem lại :("); }
             else if (param < 1262278800000 && param > 1893430800000) { this.alertError("Có ngày tháng không đúng, bạn vui lòng xem lại :("); }
         })
-        basecost.forEach(param => {
-            if (isNaN(param) !== false) { this.alertError("Có 'basecost' không đúng, bạn vui lòng xem lại :("); }
-        })
-        lineitemquantity.forEach(param => {
+        amount.forEach(param => {
             if (isNaN(param) !== false) { this.alertError("Có 'line item quantity' không đúng, bạn vui lòng xem lại :("); }
         })
         name.forEach(param => {
@@ -237,60 +209,7 @@ class InputExcel extends Component {
             }
         })
 
-        // if (_.uniq(product)[0] === "phonecase") {
-        //     phonecasetype.forEach(param => {
-        //         if (param !== "glass" && param !== "luminous") {
-        //             this.alertError("Có 'phonecasetype' không phải là glass hoặc không phải là luminous  , bạn vui lòng xem lại nhé :( ");
-        //         }
-        //     })
-        // }
 
-        let user = this.state.user;
-
-        user = user.filter(param => param.item_post.id !== "adminretc_000");
-        data.map(param => {
-            let userTrue = user.filter(user1 => {
-                // console.log(user1);
-
-                let userTrue2 = user1.item_post.code.filter(param2 => {
-                    return param.name.toLowerCase().startsWith(param2.toLowerCase());
-                })
-                if (userTrue2.length !== 0) { return true }
-                return false;
-            });
-            // console.log(userTrue);
-            if (userTrue.length !== 0) { param["partner"] = userTrue[0].item_post.name; }
-            else { param["partner"] = null }
-            return param;
-        })
-        let ItemsNotParner = data.filter(param => param.partner === null).map(param => param.name);
-        if (ItemsNotParner.length !== 0) {
-            this.alertError("Có order chưa thêm code nhận diện đối tác: " + ItemsNotParner.join(","));
-        }
-
-        // end check code 
-
-
-        // check product
-        let dataproduct = data.map(param => { return { partner: param.partner, product: param.product } });
-        dataproduct = _.uniqWith(dataproduct, _.isEqual);
-        dataproduct.map(param => {
-            let userTrue = user.filter(param2 => { return param2.item_post.name === param.partner });
-            let dff = _.difference([param.product], userTrue[0].item_post.product);
-            // console.log(dff);
-
-            if (dff.length !== 0) {
-                // console.log(userTrue);
-
-                userTrue = userTrue[0];
-                userTrue.item_post.product.push(param.product);
-                this.setState({ userChange: [...this.state.userChange, userTrue] });
-                // console.log(this.state.userChange);
-
-                alert(userTrue.item_post.name + " có product mới:" + dff);
-
-            }
-        })
         return data;
 
     }

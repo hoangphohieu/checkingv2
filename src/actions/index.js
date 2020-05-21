@@ -31,6 +31,10 @@ export function itemsPrintFalse(payload) {
 export function itemPostItem(payload) {
     return ({ type: type.ITEM_POST_ITEM_REQUEST, payload })
 }
+export function getLastitem(payload) {
+    return ({ type: type.GET_LAST_ITEM_REQUEST, payload })
+}
+
 
 export function getListById(payload) {
     return ({ type: type.GET_LIST_BY_ID_REQUEST, payload })

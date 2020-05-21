@@ -1,19 +1,192 @@
 {
-  "posts": [
+  "items": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "id": "adminretc_000",
+      "pass": "retc_000",
+      "router": "retc_000",
+      "partner": "all",
+      "datatype": "user",
+      "name": "useradmin",
+      "product": [],
+      "phone": "11111111"
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": "useratuan",
+      "router": "R",
+      "partner": "useratuan",
+      "phone": "000",
+      "name": "useratuan",
+      "note": "atuan",
+      "pass": "atuan",
+      "datatype": "user"
+    },
+    {
+      "name": "#MJ10039",
+      "country": "US",
+      "amount": "1",
+      "sku": "j04",
+      "case": " Galaxy S8+",
+      "date": "1589994000000",
+      "type": "glass",
+      "id": "f20b9903-9b40-11ea-84a3-8bee689a6667",
+      "printStatus": "wait",
+      "datatype": "item",
+      "month": "5",
+      "year": "2020"
+    },
+    {
+      "name": "#TMT11690",
+      "country": "US",
+      "amount": "1",
+      "sku": "j03",
+      "case": " Galaxy S8+",
+      "date": "1589994000000",
+      "type": "glass",
+      "id": "f20b9902-9b40-11ea-84a3-8bee689a6667",
+      "printStatus": "wait",
+      "datatype": "item",
+      "month": "5",
+      "year": "2020"
+    },
+    {
+      "name": "#TMT13396",
+      "country": "US",
+      "amount": "1",
+      "sku": "j02",
+      "case": " Galaxy S8+",
+      "date": "1589994000000",
+      "type": "glass",
+      "id": "f20b9901-9b40-11ea-84a3-8bee689a6667",
+      "printStatus": "wait",
+      "datatype": "item",
+      "month": "5",
+      "year": "2020"
+    },
+    {
+      "name": "#MJ10061",
+      "country": "US",
+      "amount": "1",
+      "sku": "j01",
+      "case": " Galaxy S8+",
+      "date": "1589994000000",
+      "type": "glass",
+      "id": "f20b9900-9b40-11ea-84a3-8bee689a6667",
+      "printStatus": "wait",
+      "datatype": "item",
+      "month": "5",
+      "year": "2020"
+    },
+    {
+      "name": "#MJ10039",
+      "country": "US",
+      "amount": "1",
+      "sku": "j04",
+      "case": " Galaxy S8+",
+      "date": "1589994000000",
+      "type": "glass",
+      "id": "7df3c2f3-9b44-11ea-9783-4f6bc6b458b3",
+      "printStatus": "wait",
+      "month": "5",
+      "year": "2020",
+      "datatype": "item"
+    },
+    {
+      "name": "#TMT11690",
+      "country": "US",
+      "amount": "1",
+      "sku": "j03",
+      "case": " Galaxy S8+",
+      "date": "1589994000000",
+      "type": "glass",
+      "id": "7df3c2f2-9b44-11ea-9783-4f6bc6b458b3",
+      "printStatus": "wait",
+      "month": "5",
+      "year": "2020",
+      "datatype": "item"
+    },
+    {
+      "name": "#TMT13396",
+      "country": "US",
+      "amount": "1",
+      "sku": "j02",
+      "case": " Galaxy S8+",
+      "date": "1589994000000",
+      "type": "glass",
+      "id": "7df3c2f1-9b44-11ea-9783-4f6bc6b458b3",
+      "printStatus": "wait",
+      "month": "5",
+      "year": "2020",
+      "datatype": "item"
+    },
+    {
+      "name": "#MJ10061",
+      "country": "US",
+      "amount": "1",
+      "sku": "j01",
+      "case": " Galaxy S8+",
+      "date": "1589994000000",
+      "type": "glass",
+      "id": "7df3c2f0-9b44-11ea-9783-4f6bc6b458b3",
+      "printStatus": "wait",
+      "month": "5",
+      "year": "2020",
+      "datatype": "item"
+    },
+    {
+      "name": "#MJ10039",
+      "country": "US",
+      "amount": "1",
+      "sku": "j04",
+      "case": " Galaxy S8+",
+      "date": "1589994000000",
+      "type": "glass",
+      "id": "6bcb9ce3-9b4b-11ea-b0f3-cd45d7e67853",
+      "printStatus": "wait",
+      "month": "5",
+      "year": "2020",
+      "datatype": "item"
+    },
+    {
+      "name": "#TMT11690",
+      "country": "US",
+      "amount": "1",
+      "sku": "j03",
+      "case": " Galaxy S8+",
+      "date": "1589994000000",
+      "type": "glass",
+      "id": "6bcb9ce2-9b4b-11ea-b0f3-cd45d7e67853",
+      "printStatus": "wait",
+      "month": "5",
+      "year": "2020",
+      "datatype": "item"
+    },
+    {
+      "name": "#TMT13396",
+      "country": "US",
+      "amount": "1",
+      "sku": "j02",
+      "case": " Galaxy S8+",
+      "date": "1589994000000",
+      "type": "glass",
+      "id": "6bcb9ce1-9b4b-11ea-b0f3-cd45d7e67853",
+      "printStatus": "wait",
+      "month": "5",
+      "year": "2020",
+      "datatype": "item"
+    },
+    {
+      "name": "#MJ10061",
+      "country": "US",
+      "amount": "1",
+      "sku": "j01",
+      "case": " Galaxy S8+",
+      "date": "1589994000000",
+      "type": "glass",
+      "id": "6bcb9ce0-9b4b-11ea-b0f3-cd45d7e67853",
+      "printStatus": "wait",
+      "month": "5",
+      "year": "2020",
+      "datatype": "item"
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
