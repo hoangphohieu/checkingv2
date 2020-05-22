@@ -954,3 +954,25 @@ input[type=text]:placeholder {
     height: 5em;
   }
 }
+
+.grid-container-item {
+  display: grid;
+  grid-template-columns:  1fr 2fr;
+}
+.grid-items-item2 {
+  display: grid;
+  height: 90vh;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+.items-con-items {
+  border: 1px solid black;
+}
+.ItemProperties:focus {
+  background: #007bff;
+  color: #fff;
+}
+.items-ItemProperties-card {
+  position: absolute;
+  left: 0;
+  top: 30vh;
+}

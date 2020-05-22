@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
-import CheckingProperties from './CheckingProperties';
-import CheckingImage from './CheckingImage';
 import CheckingInput from './CheckingInput';
 import UtilitiesChecking from './UtilitiesChecking';
+import Button from '@material-ui/core/Button';
+import _ from "lodash";
+import ShowItems from './showItems/ShowItems';
 class Item extends Component {
-
+      searchChecking = (param) => {
+            this.props.searchChecking(param);
+      }
       render() {
 
             let items = [...this.props.ItemPayload.listItem];
-            console.log(this.props.ItemPayload.listItem);
-
-            let newItems = items;
-
-            if (items.length > 0) {
-                  items.pop();
-                  items = items.map((param, id) => { return <CheckingProperties {...this.props} proppertiesitem={JSON.stringify(param)} key={id} /> })
-            }
+            console.log(items);
 
             return (
                   <React.Fragment>
@@ -28,16 +24,24 @@ class Item extends Component {
 
                         <div className="row">
                               <div className="col-12 checking-right mt-3">
-                                    <div className="row">
-                                          {items}
+                                    <div className="grid-container-item">
+                                          <div className="grid-items-item1">
+                                                <Button variant="contained" color="primary"
+                                                      style={{ width: "100%" }}
+                                                      onClick={() => this.searchChecking("?datatype=item&printStatus=wait")} >
+                                                      chưa in
+                                                </Button>
+                                          </div>
+                                         <ShowItems {...this.props}/>
+
                                     </div>
                               </div>
                         </div>
 
 
-                        <div className="row ">
-                              <UtilitiesChecking {...this.props} newItems={newItems} />
-                        </div>
+                        {/* <div className="row ">
+                              <UtilitiesChecking {...this.props} newItems={newItems} /> // download excel
+                        </div> */}
 
                   </React.Fragment>
             );

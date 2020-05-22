@@ -42,7 +42,7 @@ class InputExcel extends Component {
 
 
     componentDidUpdate = () => {
-        this.CDU_checkRequest(); // kiểm tra và thực hiện hành động khi có request trả về
+        this.CDU_checkRequest(); // kiểm tra và thực hiện hành động khi  request trả về
         this.CDU_reRenderWhenItemsExcelZero(); // rerender khi post het list items from excel
     }
 
@@ -155,14 +155,13 @@ class InputExcel extends Component {
 
         let dataObj = data.map(param => { return _.zipObject(data[0], param) });  // [{},{}...{}]
         dataObj.shift();
-        dataObj.map((param,key) => { // lọc date, country, và id
+        dataObj.map((param, key) => { // lọc date, country, và id
             let dateConvert = ((param.date - 25569) * 24 * 60 * 60 * 1000);
             dateConvert = Date.parse(new Date(new Date(dateConvert).toDateString()));   // parse date sang number cho chinh xac  
             param.date = dateConvert; // lọc và định dạng lại ngày
-            if ((param.country
-                .trim().toLowerCase() !== "us") && (param.country
-                    .trim().toLowerCase().split(" ").join("") !== "unitedstates")) { param.country = "WW" }
-            else { param.country = "US" } // lọc và định dạnh lại shipping country
+            if ((param.country.trim().toLowerCase() === "us") || (param.country.trim().toLowerCase().split(" ").join("") === "unitedstates")) { param.country = "US" }
+            else if ((param.country.trim().toLowerCase() === "vn") || (param.country.trim().toLowerCase().split(" ").join("") === "vietnam")) { param.country = "VN" } // lọc và định dạnh lại shipping country
+            else { param.country = "WW" }
             const uuidv1 = require('uuid/v1');
             param["id"] = uuidv1();// tạo id
             param["printStatus"] = "wait";
@@ -174,6 +173,23 @@ class InputExcel extends Component {
 
             return param;
         });
+
+        dataObj = _.orderBy(dataObj, ['name'], ['asc']);
+        for (let i = 1; i < dataObj.length; i++) {
+            if (dataObj[i].name === dataObj[i - 1].name) {
+                dataObj[i].barcode = dataObj[i - 1].barcode
+            }
+
+        }
+
+
+
+
+
+
+
+
+
         return dataObj;
     }
     ProcessExcel = (param) => {
@@ -185,29 +201,58 @@ class InputExcel extends Component {
         var first_worksheet = workbook.Sheets[workbook.SheetNames[0]];
         var data = XLSX.utils.sheet_to_json(first_worksheet, { header: 1 }); // data= arr[[],[]...[]]
 
-        let dataObj =this.convertData(data);
-            dataObj = this.checkDataFailImport([...dataObj]);
+        let dataObj = this.convertData(data);
+        console.log(dataObj);
+
+        dataObj = this.checkDataFailImport([...dataObj]);
         localStorage.setItem("ItemsExcel", JSON.stringify(dataObj));
         this.setState({ dataExcel: dataObj });
 
     };
     checkDataFailImport = (data) => {
         let date = data.map(param => param.date);
-        let amount = data.map(param => param.amount
-        );
+        let amount = data.map(param => param.amount);
         let name = data.map(param => param.name);
+        let type = data.map(param => param.type.trim().toLowerCase());
+
         date.forEach(param => {
-            if (isNaN(param) !== false) { this.alertError("Có 'date' không đúng, bạn vui lòng xem lại :("); }
-            else if (param < 1262278800000 && param > 1893430800000) { this.alertError("Có ngày tháng không đúng, bạn vui lòng xem lại :("); }
+            if (isNaN(param) !== false) { this.alertError(" 'date' không đúng,"); }
+            else if (param < 1262278800000 && param > 1893430800000) { this.alertError(" ngày tháng không đúng,"); }
+           
+
         })
         amount.forEach(param => {
-            if (isNaN(param) !== false) { this.alertError("Có 'line item quantity' không đúng, bạn vui lòng xem lại :("); }
+            if (isNaN(param) !== false) { this.alertError(" 'amount' không đúng,"); }
+            
+
         })
         name.forEach(param => {
             if (param.match(/[!@$%^&*(),.?":{}|<>]/g)) {
-                this.alertError("Có 'name' chứa ký tực đặc biệt   " + param.match(/[!@$%^&*(),.?":{}|<>]/g) + "     bạn vui lòng kiểm tra lại :(");
+                this.alertError(" 'name' chứa ký tực đặc biệt   " + param.match(/[!@$%^&*(),.?":{}|<>]/g));
+             
+
             }
         })
+        type.forEach(param => {
+            switch (param) {
+                case "glass":
+                    break;
+                case "luminous":
+                    break;
+                case "silicon":
+                    break;
+                case "led":
+                    break;
+
+                default:
+                    this.alertError(" 'type' chứa ký tực đặc biệt");
+                    window.location = "/Upload";
+                    break;
+            }
+
+        })
+
+
 
 
         return data;
@@ -254,7 +299,7 @@ class InputExcel extends Component {
 
     render() {
         // console.log(this.state.userChange);
-        console.log(localStorage.ItemsExcel);
+
         // console.log(this.props.itemExcelReload);
         if (this.props.itemExcelReload.type === "POST_ITEM_EXCEL_SUCSESS") {
             alert(JSON.parse(localStorage.numberSucsess) + 1);
@@ -285,7 +330,7 @@ class InputExcel extends Component {
                         <input type="file" id="fileinput" className="" onChange={this.readSingleFile} />
                         <button type="button" className="btn btn-success" onClick={() => this.clickPostToServer(this.state.dataExcel)}>Post to Server</button>
                     </> :
-                    <div className="alert alert-warning" role="alert">Có lỗi xảy ra !!!</div>
+                    <div className="alert alert-warning" role="alert"> lỗi xảy ra !!!</div>
                 }
                 <Exceltable dataExcelTable={ItemsExcel} />
                 {ItemsExcelFail}

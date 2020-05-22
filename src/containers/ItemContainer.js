@@ -12,22 +12,24 @@ function mapDispatchToProps(dispatch) {
       return {
             searchChecking: (param) => dispatch(actions.getCheckingAPI(param)),
             changePrintStatus: (param) => dispatch(actions.changePrintStatusAPI(param)),
-            patchItemCheckingProperties:(param)=>dispatch(actions.patchItemCheckingProperties(param)),
-            deleteItemChecking:(param)=>dispatch(actions.deleteItemChecking(param)),
-            itemsPrintFalse:()=>dispatch(actions.itemsPrintFalse()),
-            postItem:(param)=>dispatch(actions.itemPostItem(param)),
+            patchItemCheckingProperties: (param) => dispatch(actions.patchItemCheckingProperties(param)),
+            deleteItemChecking: (param) => dispatch(actions.deleteItemChecking(param)),
+            itemsPrintFalse: () => dispatch(actions.itemsPrintFalse()),
+            postItem: (param) => dispatch(actions.itemPostItem(param)),
+            propsItemsToDefault: () => dispatch(actions.propsItemsToDefault()),
 
-            
+
+
       };
 }
 
 class ItemContainer extends Component {
       render() {
-            
+
             return (
                   <React.Fragment>
-                        
-                        <Item {...this.props}/>
+
+                        <Item {...this.props} />
                   </React.Fragment>
             );
       }

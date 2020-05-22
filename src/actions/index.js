@@ -31,6 +31,9 @@ export function itemsPrintFalse(payload) {
 export function itemPostItem(payload) {
     return ({ type: type.ITEM_POST_ITEM_REQUEST, payload })
 }
+export function propsItemsToDefault(payload) {
+    return ({ type: type.PROPS_ITEMS_TO_DEFAULT, payload })
+}
 export function getLastitem(payload) {
     return ({ type: type.GET_LAST_ITEM_REQUEST, payload })
 }
