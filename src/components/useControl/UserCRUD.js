@@ -98,8 +98,8 @@ class UserCRUD extends Component {
 
         if (listUser.length > 1) {
             listUser.pop();
-            listUser = listUser.filter(param => param.item_post.id !== "adminretc_000");
-            let listPartner = _.chunk(listUser.map(param => param.item_post.partner.substr(4)), 6);
+            listUser = listUser.filter(param => param.id !== "adminretc_000");
+            let listPartner = _.chunk(listUser.map(param => param.partner.substr(4)), 6);
 
             this.setState({ listUser: listUser, listPartner: listPartner });
             this.props.setStateStoreToDefault();
@@ -141,8 +141,8 @@ class UserCRUD extends Component {
         let paid = 0;
         if (listUser.length > 0) {
             listUser.forEach(param => {
-                if (param.item_post.paid.length !== 0) {
-                    param.item_post.paid.forEach(param2 => {
+                if (param.paid.length !== 0) {
+                    param.paid.forEach(param2 => {
                         paid += parseInt(param2[1]);
                     })
                 }
@@ -151,7 +151,7 @@ class UserCRUD extends Component {
         // tính cái khác
         // tính tổng base cose
         let listGetBaseCost = this.state.listGetBaseCost.map((param, id) => {
-            let user = listUser.filter(param2 => param2.item_post.partner.substr(4) === param)[0];
+            let user = listUser.filter(param2 => param2.partner.substr(4) === param)[0];
             let basecost = _.toPairs(JSON.parse(localStorage.ListBaseCostProperties)[id]);
             let sumBaseCost = 0;
             if (basecost.length !== 0) {
@@ -161,7 +161,7 @@ class UserCRUD extends Component {
                     })
                 })
             }
-            user.item_post["sumBaseCost"] = sumBaseCost;
+            user["sumBaseCost"] = sumBaseCost;
             return user
         })
 

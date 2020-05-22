@@ -975,4 +975,5 @@ input[type=text]:placeholder {
   position: absolute;
   left: 0;
   top: 30vh;
+  width: 33.63333% !important;
 }

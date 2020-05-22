@@ -33,19 +33,13 @@ class ShowItems extends Component {
 
         return (
             <div className="grid-items-item2">
-                <ShowGLLM  type="glass" items={this.state.items}/>
-                <div className="items-con-items">
-                    <h2>Luminous</h2>
+                <ShowGLLM type="glass" items={this.state.items} />
 
-                </div>
-                <div className="items-con-items">
-                    <h2>Led</h2>
+                <ShowGLLM type="luminous" items={this.state.items} />
 
-                </div>
-                <div className="items-con-items">
-                    <h2>Silicon</h2>
+                <ShowGLLM type="led" items={this.state.items} />
 
-                </div>
+                <ShowGLLM type="silicon" items={this.state.items} />
             </div>
         );
     }
