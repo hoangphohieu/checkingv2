@@ -33,7 +33,7 @@ function* patchPrintStatusItem(param) {     // lấy total page
 
         yield put({
             type: type.GET_CHECKING_REQUEST, // trigger valueToGetAPIReducer , tính lại total Page
-            payload: "?datatype=item&name=" + _.replace(res1.item_post.name, '#', '%23')
+            payload: "?datatype=item&name=" + _.replace(res1.name, '#', '%23')
         })
     } catch (error) {
         yield put({

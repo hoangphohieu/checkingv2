@@ -976,4 +976,9 @@ input[type=text]:placeholder {
   left: 0;
   top: 30vh;
   width: 33.63333% !important;
+ 
+  
+}
+input.card-text {
+  padding: 0;
 }
