@@ -89,10 +89,35 @@ class ShowGLLM extends Component {
 
         return (
             <div className="items-con-items ">
-                <div className="d-flex">
-                    <div>{this.props.type} + {items.length} </div>
-                    <button type="button" class="btn btn-secondary" onClick={() => this.setState({ downClickExcel: true })}>Excel</button>
-                    <button type="button" class="btn btn-secondary" onClick={() => this.saveTextAsFile(strWrite)}>Json</button>
+
+
+
+                <div>
+                    {/* Button trigger modal */}
+                    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+                        Launch static backdrop modal
+                    </button>
+
+                    {/* Modal */}
+                    <div className="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabIndex={-1} role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-body">
+                                    <div className="d-flex">
+                                        <div>{this.props.type} + {items.length} </div>
+                                        <button type="button" class="btn btn-secondary" onClick={() => this.setState({ downClickExcel: true })}>Excel</button>
+                                        <button type="button" class="btn btn-secondary" onClick={() => this.saveTextAsFile(strWrite)}>Json</button>
+                                    </div>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" className="btn btn-primary">Understood</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/* end modal */}
+
                 </div>
                 <div className="col-12">
                     {items}
