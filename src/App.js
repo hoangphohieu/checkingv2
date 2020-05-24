@@ -5,16 +5,48 @@ import { Switch, Route, Link } from 'react-router-dom';
 import ItemContainer from './containers/ItemContainer';
 import UploadContainer from './containers/UploadContainer';
 import UseControlContainer from './containers/UseControlContainer';
+import * as actions from './actions';
+import { connect } from 'react-redux';
 
 
+function mapStateToProps(state) {
+  return {
+    itemReducer: state.itemsApp
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    getSheetPhone: (param) => dispatch(actions.getSheetPhone(param)),
+
+
+
+  };
+}
 class App extends Component {
+
+
+
 
   componentWillMount() {
     if (JSON.parse(localStorage.getItem("UserProperties")) === null) {
       localStorage.setItem("UserProperties", JSON.stringify([]));
     }
     localStorage.setItem("SumOrderHome", JSON.stringify([]));
+    localStorage.setItem("PhonesAlltribute", JSON.stringify([]));
+
+    this.props.getSheetPhone();
   }
+  componentDidUpdate() {
+    if (this.props.itemReducer.type === "GET_SHEET_PHONE_SUCSESS") {
+      localStorage.setItem("PhonesAlltribute", JSON.stringify(this.props.itemReducer.listItem));
+    }
+    else if (this.props.itemReducer.type === "GET_SHEET_PHONE_RFAILURE")  {
+      alert("kiem tra duong truyen mang - api")
+      window.location = "/Item";
+    }
+  }
+
+
   logOut = () => {
     localStorage.setItem("UserProperties", JSON.stringify([]));
     window.location = '/';
@@ -22,7 +54,8 @@ class App extends Component {
   render() {
     let userProperties = JSON.parse(localStorage.UserProperties);
     let partnerTypeUser = userProperties[0];
-    
+    console.log(this.props.itemReducer.listItem);
+
 
 
     return (
@@ -95,7 +128,7 @@ class App extends Component {
 
 
               <div className="col-10">
-              
+
                 <Switch  >
 
                   {(partnerTypeUser !== "R" && partnerTypeUser !== undefined) ?
@@ -122,7 +155,10 @@ class App extends Component {
     );
   }
 }
-export default App;
+// export default App;
 
 
 
+export default connect(
+  mapStateToProps, mapDispatchToProps
+)(App);

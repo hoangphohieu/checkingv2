@@ -4,14 +4,29 @@ import UtilitiesChecking from './UtilitiesChecking';
 import Button from '@material-ui/core/Button';
 import _ from "lodash";
 import ShowItems from './showItems/ShowItems';
+import DayPicker from 'react-day-picker';
+
+import 'react-day-picker/lib/style.css';
 class Item extends Component {
+      constructor(props, context) {
+            super(props, context);
+            this.state = ({ selectedDay: undefined, })
+      }
+
       searchChecking = (param) => {
             this.props.searchChecking(param);
       }
+      handleDayClick = (day) => {
+            this.setState({ selectedDay: day });
+            let date=Date.parse(day)- 12*60*60*1000;
+
+            this.searchChecking(`?datatype=item&date=${date}`)
+      }
+
       render() {
 
             let items = [...this.props.ItemPayload.listItem];
-            console.log(items);
+
 
             return (
                   <React.Fragment>
@@ -31,8 +46,16 @@ class Item extends Component {
                                                       onClick={() => this.searchChecking("?datatype=item&printStatus=wait")} >
                                                       chưa in
                                                 </Button>
+                                                <div>
+                                                      <DayPicker
+                                                            onDayClick={this.handleDayClick}
+                                                            selectedDays={this.state.selectedDay}
+                                                      />
+
+                                                </div>
+
                                           </div>
-                                         <ShowItems {...this.props}/>
+                                          <ShowItems {...this.props} />
 
                                     </div>
                               </div>

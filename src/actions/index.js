@@ -7,6 +7,9 @@ export function getCheckingAPI(payload) {
 export function postItemAPI(payload) {
     return ({ type: type.POST_ITEM_EXCEL_REQUEST, payload })
 }
+export function getSheetPhone(payload) {
+    return ({ type: type.GET_SHEET_PHONE_REQUEST, payload })
+}
 
 export function patchItemsExcelFailAPI(payload) {
     return ({ type: type.PATCH_ITEM_EXCEL_FAIL_REQUEST, payload })
@@ -135,7 +138,7 @@ export function putUser(payload) {
 
 export function getSumItem(payload) {
     // console.log(payload);
-    
+
     return ({ type: type.GET_SUM_ITEM_REQUEST, payload })
 }
 export function stateStoreHomeToDefault() {

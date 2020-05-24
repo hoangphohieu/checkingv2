@@ -10,7 +10,6 @@ class Exceltable extends Component {
         if (datalog !== null) {
 
             datalog = datalog.map(param => {
-                param.day = (new Date(param.day)).toLocaleDateString();
                 return _.toPairs(param)
             });
             titleDatalog = datalog[0];

@@ -4,9 +4,11 @@ import ItemReducer from './ItemReducer';
 import UploadReducer from './UploadReducer';
 import ItemsPartner from './HomeReducer';
 import UseControl from './UsesReducer';
+import ItemsApp from './AppReducer';
 export default combineReducers({
       items: ItemReducer,
       ItemExcelPost: UploadReducer,
       itemsPartner: ItemsPartner,
-      UseData: UseControl
+      UseData: UseControl,
+      itemsApp: ItemsApp
 })

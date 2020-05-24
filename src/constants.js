@@ -1,5 +1,5 @@
 export const FETCH_URL_ITEMS = "http://localhost:3001/items";
-export const CLOUDINARY_URL_CDN = "https://res.cloudinary.com/hieudz/image/upload/v1566581774/demo%20tool/";
+export const SHEET_BEST_PC = "https://sheet.best/api/sheets/00588ee3-7498-4b08-983d-2c4cf8e242dd";
 export const TRACKINGMORE_KEY = "febd481b-51b5-4387-96a2-aa1c865e96d4";
 export const GET_TRACKINGMORE_API = "https://cors-anywhere.herokuapp.com/http://api.trackingmore.com/v2/trackings/get";
 
@@ -14,6 +14,11 @@ export const GET_CHECKING_RFAILURE = "GET_CHECKING_RFAILURE";
 export const POST_ITEM_EXCEL_REQUEST = "POST_ITEM_EXCEL_REQUEST";
 export const POST_ITEM_EXCEL_SUCSESS = "POST_ITEM_EXCEL_SUCSESS";
 export const POST_ITEM_EXCEL_RFAILURE = "POST_ITEM_EXCEL_RFAILURE";
+
+export const GET_SHEET_PHONE_REQUEST = "GET_SHEET_PHONE_REQUEST"; 
+export const GET_SHEET_PHONE_SUCSESS = "GET_SHEET_PHONE_SUCSESS";
+export const GET_SHEET_PHONE_RFAILURE = "GET_SHEET_PHONE_RFAILURE";
+
 
 export const PATCH_ITEM_EXCEL_FAIL_REQUEST = "PATCH_ITEM_EXCEL_FAIL_REQUEST";
 export const PATCH_ITEM_EXCEL_FAIL_SUCSESS = "PATCH_ITEM_EXCEL_FAIL_SUCSESS";

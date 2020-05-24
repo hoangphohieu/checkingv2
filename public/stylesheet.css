@@ -974,10 +974,8 @@ input[type=text]:placeholder {
 .items-ItemProperties-card {
   position: absolute;
   left: 0;
-  top: 30vh;
+  top: 36vh;
   width: 33.63333% !important;
- 
-  
 }
 input.card-text {
   padding: 0;

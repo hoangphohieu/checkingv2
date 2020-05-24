@@ -17,7 +17,7 @@ class InputExcel extends Component {
             dataExcel: null,
             reRender: 0,
             user: [],
-
+            canPost: true,
             lastItem: 0
 
         }
@@ -55,14 +55,14 @@ class InputExcel extends Component {
         else if (this.props.itemExcelReload.type === "EXCEL_GET_LIST_BY_ID_SUCSESS") { this.getListByIdSucsess() }
         else if (this.props.itemExcelReload.type === "GET_RFAILURE") { this.getRfailure() }
         else if (this.props.itemExcelReload.type === "STATE_POST_TO_DEFAULT") { }
-        else if (this.props.itemExcelReload.type === "GET_LAST_ITEM_SUCSESS") { this.getLastitemSucsess() }
+        // else if (this.props.itemExcelReload.type === "GET_LAST_ITEM_SUCSESS") { this.getLastitemSucsess() }
 
 
     }
-    getLastitemSucsess = () => {
-        this.setState({ lastItem: this.props.itemExcelReload.listItem[0].id });
-        this.props.propsImportExcelToDefault();
-    }
+    // getLastitemSucsess = () => {
+    //     this.setState({ lastItem: this.props.itemExcelReload.listItem[0].id });
+    //     this.props.propsImportExcelToDefault();
+    // }
 
 
 
@@ -146,17 +146,10 @@ class InputExcel extends Component {
     }
     convertData = (data) => {
         data[0] = data[0].map(param => { param = param.trim().toLowerCase().split(" ").join(""); return param }) // data[0] bo space va chu hoa
-        // data = data.map(param => { // chuyuyển thuộc tính undefined thành null
-        //     for (let i = 1; i <= param.length - 1; i++) {
-        //         if (param[i] === undefined) param[i] = null;
-        //     }
-        //     return param
-        // })
-
         let dataObj = data.map(param => { return _.zipObject(data[0], param) });  // [{},{}...{}]
         dataObj.shift();
         dataObj.map((param, key) => { // lọc date, country, và id
-            let dateConvert = ((param.date - 25569) * 24 * 60 * 60 * 1000);
+            let dateConvert = ((Math.floor(param.date) - 25569) * 24 * 60 * 60 * 1000);
             dateConvert = Date.parse(new Date(new Date(dateConvert).toDateString()));   // parse date sang number cho chinh xac  
             param.date = dateConvert; // lọc và định dạng lại ngày
             if ((param.country.trim().toLowerCase() === "us") || (param.country.trim().toLowerCase().split(" ").join("") === "unitedstates")) { param.country = "US" }
@@ -170,10 +163,8 @@ class InputExcel extends Component {
             param["datatype"] = "item";
             param["barcode"] = Date.parse(new Date()) + key;
             param.name = param.name.trim();
-
             return param;
         });
-
         dataObj = _.orderBy(dataObj, ['name'], ['asc']);
         for (let i = 1; i < dataObj.length; i++) {
             if (dataObj[i].name === dataObj[i - 1].name) {
@@ -182,12 +173,26 @@ class InputExcel extends Component {
 
         }
 
+        //  xử lý phoneCase i6 i7 ...
 
+        let PhonesAlltribute = JSON.parse(localStorage.PhonesAlltribute);
 
+        dataObj = dataObj.map(param => {
+            let arr = PhonesAlltribute.map(param2 => {
+                let sosanh = param2.nameVariant.split(",").filter(param3 => {
+                    return param.case.split(" ").join("").toLowerCase().endsWith(param3.split(" ").join("").toLowerCase())
+                })
+                if (sosanh.length !== 0)
+                    return param2.nameDefault
+            }).filter(param4 => param4 !== undefined);
+            return { ...param, case: arr[0] }
 
+        })
+        let alertObj = dataObj.filter(param => param.case === undefined);
+        if (alertObj.length !== 0) {
+            this.alertError("Kiem tra " + alertObj.map(param => param.name));
 
-
-
+        }
 
 
         return dataObj;
@@ -200,6 +205,7 @@ class InputExcel extends Component {
         /* convert from workbook to array of arrays */
         var first_worksheet = workbook.Sheets[workbook.SheetNames[0]];
         var data = XLSX.utils.sheet_to_json(first_worksheet, { header: 1 }); // data= arr[[],[]...[]]
+
 
         let dataObj = this.convertData(data);
         console.log(dataObj);
@@ -214,23 +220,16 @@ class InputExcel extends Component {
         let amount = data.map(param => param.amount);
         let name = data.map(param => param.name);
         let type = data.map(param => param.type.trim().toLowerCase());
-
         date.forEach(param => {
             if (isNaN(param) !== false) { this.alertError(" 'date' không đúng,"); }
             else if (param < 1262278800000 && param > 1893430800000) { this.alertError(" ngày tháng không đúng,"); }
-           
-
         })
         amount.forEach(param => {
             if (isNaN(param) !== false) { this.alertError(" 'amount' không đúng,"); }
-            
-
         })
         name.forEach(param => {
             if (param.match(/[!@$%^&*(),.?":{}|<>]/g)) {
                 this.alertError(" 'name' chứa ký tực đặc biệt   " + param.match(/[!@$%^&*(),.?":{}|<>]/g));
-             
-
             }
         })
         type.forEach(param => {
@@ -246,11 +245,26 @@ class InputExcel extends Component {
 
                 default:
                     this.alertError(" 'type' chứa ký tực đặc biệt");
-                    window.location = "/Upload";
                     break;
             }
 
         })
+
+        // phoneCase.forEach(param => {
+        //     let arr = PhonesAlltribute.map(param2 => {
+        //         let sosanh = param2.nameVariant.split(",").filter(param3 => {
+        //             return param3.split(" ").join("").toLowerCase() === param.split(" ").join("").toLowerCase()
+        //         })
+        //         if (sosanh.length !== 0)
+
+        //             return param2.nameDefault
+        //     }).filter(param4 => param4 !== undefined)
+        //     console.log(arr);
+
+
+
+
+        // })
 
 
 
@@ -260,6 +274,7 @@ class InputExcel extends Component {
     }
     alertError = (param) => {
         alert(param);
+
         window.location = "/Upload";
 
     }
