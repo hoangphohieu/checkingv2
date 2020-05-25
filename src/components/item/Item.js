@@ -18,7 +18,7 @@ class Item extends Component {
       }
       handleDayClick = (day) => {
             this.setState({ selectedDay: day });
-            let date=Date.parse(day)- 12*60*60*1000;
+            let date = Date.parse(day) - 12 * 60 * 60 * 1000;
 
             this.searchChecking(`?datatype=item&date=${date}`)
       }
@@ -41,11 +41,14 @@ class Item extends Component {
                               <div className="col-12 checking-right mt-3">
                                     <div className="grid-container-item">
                                           <div className="grid-items-item1">
-                                                <Button variant="contained" color="primary"
-                                                      style={{ width: "100%" }}
-                                                      onClick={() => this.searchChecking("?datatype=item&printStatus=wait")} >
-                                                      chưa in
-                                                </Button>
+
+                                                <button type="button" className="btn btn-warning" style={{ width: "100%" }}
+                                                      onClick={() => this.searchChecking("?datatype=item&printStatus=wait")}>Wait
+                                                </button>
+                                                <button type="button" className="btn btn-danger" style={{ width: "100%" }}
+                                                      onClick={() => this.searchChecking("?datatype=item&printStatus=failded")}>failded
+                                                </button>
+                                                
                                                 <div>
                                                       <DayPicker
                                                             onDayClick={this.handleDayClick}

@@ -67,6 +67,10 @@ class ShowItems extends Component {
         this.setState({ itemCard: { ...this.state.itemCard, printStatus: status } })
 
     }
+    setType = (status) => {
+        this.setState({ itemCard: { ...this.state.itemCard, type: status } })
+
+    }
     render() {
         let country = <div className="dropdown">
             <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -94,10 +98,20 @@ class ShowItems extends Component {
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a className="dropdown-item" href="#" onClick={() => this.setPrintStatus("wait")}>wait</a>
                 <a className="dropdown-item" href="#" onClick={() => this.setPrintStatus("printed")}>printed</a>
-                <a className="dropdown-item" href="#" onClick={() => this.setPrintStatus("faild")}>faild</a>
+                <a className="dropdown-item" href="#" onClick={() => this.setPrintStatus("failded")}>failded</a>
             </div>
         </div>
-
+        let type = <div className="dropdown">
+            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {this.state.itemCard.type}
+            </button>
+            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a className="dropdown-item" href="#" onClick={() => this.setType("glass")}>glass</a>
+                <a className="dropdown-item" href="#" onClick={() => this.setType("luminous")}>luminous</a>
+                <a className="dropdown-item" href="#" onClick={() => this.setType("silicon")}>silicon</a>
+                <a className="dropdown-item" href="#" onClick={() => this.setType("led")}>led</a>
+            </div>
+        </div>
         let properties = "";
 
         if (this.state.changeCard === false) {
@@ -107,9 +121,9 @@ class ShowItems extends Component {
                         :
                     <span >{param[1]}</span>
                 </div>)
-        }
+        }       
         else {
-            properties = _.toPairs(this.state.itemCard).filter(param => param[0] !== "datatype" & param[0] !== "id" & param[0] !== "month" & param[0] !== "year" & param[0] !== "case" & param[0] !== "country" & param[0] !== "printStatus")
+            properties = _.toPairs(this.state.itemCard).filter(param => param[0] !== "datatype" & param[0] !== "id" & param[0] !== "month" & param[0] !== "year" & param[0] !== "case" & param[0] !== "country" & param[0] !== "printStatus"& param[0] !== "type    ")
                 .map((param, key) => <input
                     className="card-text"
                     type="text"
@@ -123,11 +137,12 @@ class ShowItems extends Component {
 
                 <div className="card-body card-container">
                     <button type="button" className="btn btn-warning card-change" onClick={() => this.setState({ changeCard: !this.state.changeCard })}>Sửa</button>
-                    <button type="button" className="btn btn-btn-info" onClick={this.saveItem}>Lưu</button>
+                    <button type="button" className="btn btn-info" onClick={this.saveItem}>Lưu</button>
                     {/* us-ww-vn */}
                     {(this.state.changeCard === true) ? country : ""}
                     {(this.state.changeCard === true) ? phoneCase : ""}
                     {(this.state.changeCard === true) ? printStatus : ""}
+                    {(this.state.changeCard === true) ? type : ""}
 
                     {properties}
 
