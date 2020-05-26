@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Switch, Route, Link } from 'react-router-dom';
-
+import ControlitemsContainer from './containers/ControlitemsContainer';
 import ItemContainer from './containers/ItemContainer';
 import UploadContainer from './containers/UploadContainer';
 import UseControlContainer from './containers/UseControlContainer';
@@ -31,6 +31,9 @@ class App extends Component {
     if (JSON.parse(localStorage.getItem("UserProperties")) === null) {
       localStorage.setItem("UserProperties", JSON.stringify([]));
     }
+    if (JSON.parse(localStorage.getItem("CI_itemsPatchFail")) === null) {
+      localStorage.setItem("CI_itemsPatchFail", JSON.stringify([]));
+    }
     localStorage.setItem("SumOrderHome", JSON.stringify([]));
     localStorage.setItem("PhonesAlltribute", JSON.stringify([]));
 
@@ -40,7 +43,7 @@ class App extends Component {
     if (this.props.itemReducer.type === "GET_SHEET_PHONE_SUCSESS") {
       localStorage.setItem("PhonesAlltribute", JSON.stringify(this.props.itemReducer.listItem));
     }
-    else if (this.props.itemReducer.type === "GET_SHEET_PHONE_RFAILURE")  {
+    else if (this.props.itemReducer.type === "GET_SHEET_PHONE_RFAILURE") {
       alert("kiem tra duong truyen mang - api")
       window.location = "/Item";
     }
@@ -73,6 +76,16 @@ class App extends Component {
 
 
                   {(partnerTypeUser === undefined) ? ""
+                    : <Link to="/ControlItem" className=" nav-item-h">
+                      <div className="d-flex align-items-center">
+                        <span className="_2-hnq ml-5">
+                          <span className="_2-hnq"><img className="_219ua" src="data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 1000 1000&quot;><path d=&quot;M935.3,908.6c-0.7-16.6-3.1-33.1-4.7-49.6c-3.2-31.9-6.4-63.8-9.6-95.6c-2.9-28.6-5.7-57.2-8.5-85.7c-3.2-31.7-6.4-63.5-9.6-95.2c-3.2-31.7-6.3-63.5-9.5-95.2c-3.2-32.2-6.5-64.4-9.7-96.5c-1.4-13.7-1.7-27.5-4.1-41c-7-39.6-40.4-67.2-80.6-67.4c-25.4-0.1-50.8,0-76.2,0c-1.6,0-3.2,0-5.2,0c0-17.3,0.5-34.1-0.1-50.8c-0.5-14.2-1.3-28.4-3.6-42.4c-14-85.7-84.1-157.6-169.6-174.4c-10.2-2-20.6-3.1-30.9-4.6c-9.1,0-18.1,0-27.2,0c-1.2,0.2-2.3,0.6-3.5,0.7c-49.1,4-92.3,22.4-128.7,55.5c-42.6,38.7-66.7,86.9-71,144.4c-1.6,22.1-0.7,44.4-1,66.6c0,1.6,0,3.2,0,5c-2.3,0-4,0-5.6,0c-26.2,0-52.3-0.2-78.5,0.1c-37.2,0.5-71,28.4-77.3,65.1c-3.5,20.4-4.4,41.1-6.5,61.7c-2.9,28.6-5.7,57.1-8.5,85.7c-3.2,32-6.4,64.1-9.6,96.1c-3.1,31.4-6.3,62.9-9.4,94.3c-3.5,34.7-7,69.5-10.5,104.2c-3.2,32.3-6.5,64.7-9.7,97c-0.9,9.3-2.5,18.8-1.8,28c3.1,43,38.3,75.5,81.5,75.5c235.8,0.1,471.5,0,707.3,0c11,0,21.6-2.1,31.8-6.3C915.4,971.3,936.6,940.2,935.3,908.6z M336.7,224.2c0.9-76.6,58.7-144.2,134.3-157.1c88.8-15.1,171.1,40.9,189.2,129c1.5,7.5,2.7,15.3,2.8,22.9c0.4,20.8,0.1,41.7,0.1,63.1c-108.8,0-217.3,0-326.2,0c-0.1-1.2-0.3-2.3-0.3-3.5C336.6,260.4,336.5,242.3,336.7,224.2z M836.6,934.6c-3.9,0.6-7.8,0.9-11.7,0.9c-216.6,0-433.1,0-649.7,0c-29.4,0-51.9-18.8-55.6-47.8c-1.1-8.7,0.6-17.7,1.6-26.6c3.7-34.3,7.6-68.5,11.4-102.7c4.1-36.8,8.2-73.6,12.3-110.4c3.5-31.2,6.9-62.5,10.4-93.7c3.5-31.2,7-62.5,10.4-93.7c2.7-24.5,5.6-48.9,7.7-73.5c2.4-27.7,25.4-50,53.1-50.4c17.5-0.2,35.1-0.1,52.6-0.1c0.9,0,1.8,0.1,3.1,0.2c0,20,0.1,39.6-0.1,59c0,1.6-1.8,3.6-3.3,4.6c-33.7,23.4-30.9,74.1,5.2,93.2c25.4,13.4,56.8,4.8,71.9-19.6c15.1-24.6,8.5-56.7-15.5-73.1c-2.9-2-3.8-4-3.8-7.3c0.2-18.7,0.1-37.5,0.1-56.6c108.8,0,217.5,0,326.4,0c0.1,1.3,0.2,2.6,0.2,3.9c0,17.8-0.1,35.7,0.1,53.5c0,2.9-1,4.5-3.4,6.2c-20,13.6-28.6,38.1-21.5,61c7,22.7,28,38.3,51.7,38.4c23.8,0.1,44.9-15.2,52.1-37.8c7.3-22.9-1-47.6-20.8-61.3c-2.8-1.9-3.9-3.8-3.9-7.3c0.2-17.4,0.1-34.8,0.1-52.2c0-1.5,0-3,0-4.8c8.3,0,16.1-0.1,23.9,0c13.1,0.2,26.4-0.6,39.4,1c24.6,3,43.5,24.6,45.6,49.3c1.6,19,3.8,37.9,5.9,56.8c3.1,28.7,6.4,57.4,9.6,86.1c3.5,31.4,7,62.8,10.5,94.2c3.2,28.5,6.3,57.1,9.5,85.6c3.5,31.4,7,62.8,10.5,94.2c2.8,25.2,5.9,50.4,8.4,75.7C883.3,904.6,862.4,930.3,836.6,934.6z&quot;/></svg>" alt="" aria-hidden="true" /></span>
+                        </span>
+                        <span className="ml-4">controlItems</span>
+                      </div>
+                    </Link>}
+
+                  {(partnerTypeUser === undefined) ? ""
                     : <Link to="/Item" className=" nav-item-h">
                       <div className="d-flex align-items-center">
                         <span className="_2-hnq ml-5">
@@ -81,7 +94,6 @@ class App extends Component {
                         <span className="ml-4">Item</span>
                       </div>
                     </Link>}
-
 
                   {(partnerTypeUser !== "R" && partnerTypeUser !== undefined) ? <>
 
@@ -130,7 +142,9 @@ class App extends Component {
               <div className="col-10">
 
                 <Switch  >
-
+                  {(partnerTypeUser !== "R" && partnerTypeUser !== undefined) ?
+                    <Route exact path="/ControlItem" render={(props) => <ControlitemsContainer {...props} />} />
+                    : ""}
                   {(partnerTypeUser !== "R" && partnerTypeUser !== undefined) ?
                     <Route exact path="/Item" render={(props) => <ItemContainer {...props} />} />
                     : ""}

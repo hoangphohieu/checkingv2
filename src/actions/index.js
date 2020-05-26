@@ -4,6 +4,15 @@ export function getCheckingAPI(payload) {
     return ({ type: type.GET_CHECKING_REQUEST, payload })
 }
 
+
+export function getCheckingControlItem(payload) {
+    return ({ type: type.GET_CI_CHECKING_REQUEST, payload })
+}
+
+export function patchItem_ControlItems(payload) {
+    return ({ type: type.CI_PATCH_ITEMS_REQUEST, payload })
+}
+
 export function postItemAPI(payload) {
     return ({ type: type.POST_ITEM_EXCEL_REQUEST, payload })
 }
@@ -36,6 +45,9 @@ export function itemPostItem(payload) {
 }
 export function propsItemsToDefault(payload) {
     return ({ type: type.PROPS_ITEMS_TO_DEFAULT, payload })
+}
+export function propsControlItemsToDefault(payload) {
+    return ({ type: type.PROPS_CONTROL_ITEMS_TO_DEFAULT, payload })
 }
 export function getLastitem(payload) {
     return ({ type: type.GET_LAST_ITEM_REQUEST, payload })
