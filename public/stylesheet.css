@@ -991,3 +991,9 @@ input.card-text {
 .d-modal>.modal-content>.modal-body {
   min-height: 80vh;
 }
+.loading{
+  position: absolute;
+  z-index: 99999999999;
+  left: 50%;
+    top: 50%;
+}

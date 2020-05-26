@@ -13,12 +13,14 @@ class CheckingInput extends Component {
       searchChecking = () => {
 
             this.props.searchChecking("?datatype=item&barcode=" + this.state.valueInput);
+            this.setState({ valueInput: "" })
       }
       SearchItemByEnter = (e) => {
             if (e.key === "Enter") { this.searchChecking() }
       }
       render() {
 
+            
 
             return (
                   <React.Fragment>
@@ -29,6 +31,7 @@ class CheckingInput extends Component {
                                     aria-describedby="basic-addon2"
                                     onChange={this.changeValueInput}
                                     onKeyDown={this.SearchItemByEnter}
+                                    value={this.state.valueInput}
                                     autoFocus />
                               <div className="input-group-prepend">
                                     <span className="input-group-text hover-pointer" id="basic-addon2" onClick={this.searchChecking}><i className="fa fa-search"></i></span>
