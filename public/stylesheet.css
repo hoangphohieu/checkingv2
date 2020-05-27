@@ -4,6 +4,26 @@
   
 }
 
+p.gll-sku {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 3.5rem;
+    color: #007bff;
+    cursor: pointer;
+}
+
+
+
+p.gll-date {
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    left: 0;
+}
+
 .card-title {
     position: relative;
 }
@@ -996,4 +1016,61 @@ input.card-text {
   z-index: 99999999999;
   left: 50%;
     top: 50%;
+}
+
+.gll-ctn1 {
+  border: 1px solid #000;
+}
+
+.col-2.gll-ctn1 {
+  position: relative;
+  height: 130px;
+}
+
+p.gll-name {
+  cursor: pointer;
+  margin: 0;
+  font-size: 1.2rem;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 3px;
+  font-weight: 600;
+}
+p.gll-amount {
+  position: absolute;
+  right: 0;
+  border: 2px solid red;
+  color: red;
+  font-weight: 600;
+  padding: 2px 3px;
+  background: #fff;
+  z-index: 99;
+}
+
+p.gll-country {
+  font-size: 1.2rem;
+  margin: 0;
+  position: absolute;
+  bottom: 2.2rem;
+  text-align: center;
+  left: 0;
+  width: 100%;
+}
+
+p.gll-sku {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+p.gll-phoneCase {
+  font-size: 1.2rem;
+  position: absolute;
+  bottom: 1rem;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  left: 0;
+  font-weight: 500;
 }

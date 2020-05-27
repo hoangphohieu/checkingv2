@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import CheckFileIn from "./CheckFileIn";
+import OneTable from "./OneTable";
 class BigTable extends Component {
     constructor(props) {
         super(props);
@@ -50,7 +51,7 @@ class BigTable extends Component {
 
             danhSach = itemSheet.map(itemSheet1 => itemSheet1.nameDefault);
 
-      
+
 
             {
                 itemSheet = itemSheet.map(param => {
@@ -172,11 +173,11 @@ class BigTable extends Component {
 
             items = _.orderBy(items, ['case', 'name', 'sku'], ['asc', 'asc', 'desc']);
             items = items.map((item, key) => { return { ...item, stt: key + 1 } });
-            items = items.map(item => { return { name: item.name, name: item.case, sku: item.sku.trim(), stt: item.stt, pixel: toPixel(item.case), country: item.country, amount: item.amount } })
-           
+            items = items.map(item => { return { barcode: item.barcode, name: item.name, case: item.case, sku: item.sku.trim(), stt: item.stt, pixel: toPixel(item.case), country: item.country, amount: item.amount, date: item.date } })
+
 
             function toPixel(toPixel1) {// toPixel1 là nameDefault
-               
+
 
                 let dataToPixel1 = itemSheet.filter(itemSheet1 => {
                     if (toPixel1 === itemSheet1[0]) { return true }
@@ -184,7 +185,7 @@ class BigTable extends Component {
                 })
                 if (dataToPixel1.length > 1) {
                     alert("trên sheet có dòng đt bị lặp", dataToPixel1);
-                   
+
 
                     window.location.reload();
                 }
@@ -291,8 +292,10 @@ class BigTable extends Component {
             }
         }
 
-
-        console.log(arr);
+        items = arr;
+        let renderTable = [];
+        if (items.length !== 0) renderTable = items.map((item, key) => <OneTable key={key} items={item} numberTable={key} typeTable={this.props.type} />)
+        // console.log(arr);
 
         return (
             <React.Fragment>
@@ -300,14 +303,13 @@ class BigTable extends Component {
 
                 <div>
                     <CheckFileIn dataNone={allFileName} itemNoPrint={itemNotPrint} />
-                    <button type="button" class="btn btn-secondary" onClick={() => this.saveTextAsFile(arr)}>Json</button>
+                    <button type="button" class="btn btn-secondary" onClick={() => this.saveTextAsFile(items)}>Json</button>
 
-                    {/* <DownText dataMayInTo={arr} {...this.props} /> */}
                     <h2>Tổng tất cả phôi: {sumAmountAfter + " / " + sumAmountBefore}</h2>
                     <h2>Số liệu bàn in: {arr.map(arr1 => <span className="so-lieu-ban">{arr1.length}</span>)}</h2>
 
                 </div>
-
+                {renderTable}
 
                 {/* <BanTo itemsBanTo={arr} printScreen={this.state.printScreen} {...this.props} /> */}
 
