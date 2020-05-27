@@ -14,7 +14,8 @@ function mapDispatchToProps(dispatch) {
             changePrintStatus: (param) => dispatch(actions.changePrintStatusAPI(param)),
             patchItemCheckingProperties: (param) => dispatch(actions.patchItemCheckingProperties(param)),
             deleteItemChecking: (param) => dispatch(actions.deleteItemChecking(param)),
-            itemsPrintFalse: () => dispatch(actions.itemsPrintFalse()),
+            getSheetPhone: (param) => dispatch(actions.ItemGetSheetPhone(param)),
+            getPCReturn: (param) => dispatch(actions.ItemGetPCReturn(param)),
             postItem: (param) => dispatch(actions.itemPostItem(param)),
             propsItemsToDefault: () => dispatch(actions.propsItemsToDefault()),
 

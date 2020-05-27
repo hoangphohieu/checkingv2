@@ -1,6 +1,7 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import getByCustomAPI from '../fetchAPI/getByCustomAPI';
-import PutItemAPI from '../fetchAPI/PutItemAPI';
+import getByCustomAPI2 from '../fetchAPI/getByCustomAPI2';
+
 import DeleteItemAPI from '../fetchAPI/DeleteItemAPI';
 import PostItemAPI from '../fetchAPI/PostItemAPI';
 import * as type from '../constants';
@@ -24,27 +25,32 @@ function* getChecking(param) {     // lấy total page
     }
 
 }
-function* patchPrintStatusItem(param) {     // lấy total page
-    console.log(param);
+
+function* getSheetPC(param) {
+    // console.log(param);
+    let typePC = param.payload;
+    let api = type.SHEET_BEST_PC;
+    if (typePC === "led")
+        api = type.SHEET_BEST_PC_LED
+    else if (typePC === "silicon")
+        api = type.SHEET_BEST_PC_SILICON
 
     try {
-        let res1 = yield PutItemAPI(param.payload); //gọi API
-        console.log(res1);
-
+        let res1 = yield getByCustomAPI2(api);
         yield put({
-            type: type.GET_CHECKING_REQUEST, // trigger valueToGetAPIReducer , tính lại total Page
-            payload: "?datatype=item&name=" + _.replace(res1.name, '#', '%23')
+            type: type.ITEMS_GET_SHEET_PC_SUCSESS,
+            payload: res1
         })
     } catch (error) {
         yield put({
-            type: type.CHANGE_PRINT_STATUS_RFAILURE, // trigger itemsReducer
+            type: type.ITEMS_GET_SHEET_PC_RFAILURE,
             payload: {
                 errorMessage: error.Message
             }
         })
     }
-
 }
+
 
 
 
@@ -70,32 +76,34 @@ function* deleteItemChecking(param) {     // lấy total page
 }
 
 
-function* postItem(param) {     // lấy total page
-    console.log(param);
+function* getSheetPCReturn(param) {
+    // console.log(param);
+    let typePC = param.payload;
+    let api = type.SHEET_BEST_PC_GLLM_RETURN;
 
     try {
-        let res1 = yield PostItemAPI(param.payload); //gọi API
-
+        let res1 = yield getByCustomAPI2(api);
         yield put({
-            type: type.GET_CHECKING_REQUEST, // trigger valueToGetAPIReducer , tính lại total Page
-            payload: "?datatype=item&name=" + _.replace(res1.item_post.name, '#', '%23')
+            type: type.ITEMS_GET_PC_RETURN_SUCSESS,
+            payload: res1
         })
     } catch (error) {
         yield put({
-            type: type.ITEM_POST_ITEM_RFAILURE, // trigger itemsReducer
+            type: type.ITEMS_GET_PC_RETURN_RFAILURE,
             payload: {
                 errorMessage: error.Message
             }
         })
     }
-
 }
+
+
+
 export const ItemSaga = [
     takeEvery(type.GET_CHECKING_REQUEST, getChecking),
-    takeEvery(type.CHANGE_PRINT_STATUS_REQUEST, patchPrintStatusItem),
+    takeEvery(type.ITEMS_GET_SHEET_PC_REQUEST, getSheetPC),
     takeEvery(type.DELETE_ITEM_CHECKING_REQUEST, deleteItemChecking),
-    takeEvery(type.PATCH_ITEM_CHECKING_PROPERTIES_REQUEST, patchPrintStatusItem),
 
-    takeEvery(type.ITEM_POST_ITEM_REQUEST, postItem),
+    takeEvery(type.ITEMS_GET_PC_RETURN_REQUEST, getSheetPCReturn),
 
 ];   

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import copy from 'copy-to-clipboard';
-import Modalitem from "./ModalItem";
+import Modalitem from "./modal/ModalItem";
 class ShowGLLM extends Component {
     constructor(props, context) {
         super(props, context);
@@ -35,13 +35,21 @@ class ShowGLLM extends Component {
         this.copyVanban(idDesign);
     }
     closeModal = () => {
-        this.setState({ showModal: false })
+        this.setState({ showModal: false });
+        localStorage.PCSheetChild = "[]";
+        localStorage.PCSheetReturn = "[]"
+    }
+    clickMore = () => {
+        this.setState({ showModal: !this.state.showModal });
+        this.props.getSheetPhone(this.props.type);
+        if (this.props.type === "glass" || this.props.type === "luminous") this.props.getPCReturn();
+
     }
     render() {
         let type = this.props.type;
         let items = this.props.items.filter(param => param.type === type);
         let data = JSON.parse(JSON.stringify(items));
-        console.log(data);
+
 
         items = items.map((param, key) => <button
             type="button"
@@ -59,12 +67,13 @@ class ShowGLLM extends Component {
                 <div>
                     {/* Button trigger modal */}
                     <div>{this.props.type} + {items.length} </div>
-                    <button type="button" className="btn btn-primary" onClick={() => this.setState({ showModal: !this.state.showModal })}>
-                        Launch static backdrop modal
+                    <button type="button" className="btn btn-primary" onClick={this.clickMore}>
+                        more
                     </button>
 
                     {/* Modal */}
-                    <Modalitem {...this.props} dataitem={data} showModal={this.state.showModal} closeModal={this.closeModal} />
+                    {(this.state.showModal) ? <Modalitem {...this.props} dataitem={data} showModal={this.state.showModal} closeModal={this.closeModal} /> : ""}
+
 
                     {/* end modal */}
 

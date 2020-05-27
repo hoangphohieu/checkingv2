@@ -25,75 +25,75 @@
       "country": "US",
       "amount": "1",
       "sku": "j05",
-      "case": " Galaxy S8+",
+      "case": "i11",
       "date": "1590253200000",
       "type": "luminous",
-      "id": "30e071a4-9dad-11ea-95c5-bf4587e0efa0",
+      "id": "7f7e4fd0-a000-11ea-99ae-493bd4b6483e",
       "printStatus": "wait",
       "month": "5",
       "year": "2020",
       "datatype": "item",
-      "barcode": "1590317776004"
+      "barcode": "1590573458004"
     },
     {
       "name": "hdz14",
       "country": "US",
       "amount": "1",
       "sku": "j04",
-      "case": "s9",
+      "case": "i7",
       "date": "1590253200000",
       "type": "luminous",
-      "id": "30e071a3-9dad-11ea-95c5-bf4587e0efa0",
-      "printStatus": "printed",
+      "id": "7f7e28c3-a000-11ea-99ae-493bd4b6483e",
+      "printStatus": "wait",
       "month": "5",
       "year": "2020",
       "datatype": "item",
-      "barcode": "1590317776003"
+      "barcode": "1590573458003"
     },
     {
       "name": "hdz13",
       "country": "US",
       "amount": "1",
       "sku": "j03",
-      "case": " Galaxy S8+",
+      "case": "s10",
       "date": "1590253200000",
-      "type": "silicon",
-      "id": "30e071a2-9dad-11ea-95c5-bf4587e0efa0",
+      "type": "luminous",
+      "id": "7f7e28c2-a000-11ea-99ae-493bd4b6483e",
       "printStatus": "wait",
       "month": "5",
       "year": "2020",
       "datatype": "item",
-      "barcode": "1590317776002"
+      "barcode": "1590573458002"
     },
     {
       "name": "hdz12",
       "country": "US",
       "amount": "1",
       "sku": "j02",
-      "case": " Galaxy S8+",
+      "case": "s10",
       "date": "1590253200000",
       "type": "luminous",
-      "id": "30e071a1-9dad-11ea-95c5-bf4587e0efa0",
+      "id": "7f7e28c1-a000-11ea-99ae-493bd4b6483e",
       "printStatus": "wait",
       "month": "5",
       "year": "2020",
       "datatype": "item",
-      "barcode": "1590317776001"
+      "barcode": "1590573458001"
     },
     {
       "name": "hdz11",
       "country": "US",
       "amount": "1",
       "sku": "j01",
-      "case": " Galaxy S8+",
+      "case": "i7",
       "date": "1590253200000",
       "type": "luminous",
-      "id": "30e071a0-9dad-11ea-95c5-bf4587e0efa0",
+      "id": "7f7e28c0-a000-11ea-99ae-493bd4b6483e",
       "printStatus": "wait",
       "month": "5",
       "year": "2020",
       "datatype": "item",
-      "barcode": "1590317776000"
+      "barcode": "1590573458000"
     }
   ]
 }

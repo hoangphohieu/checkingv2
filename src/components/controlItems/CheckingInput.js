@@ -5,14 +5,16 @@ class CheckingInput extends Component {
             super(props, context);
             this.state = {
                   valueInput: "",
+                  inputType: "barcode"
             }
       }
       changeValueInput = (e) => {
             this.setState({ valueInput: e.target.value });
       }
       searchChecking = () => {
+            if (this.state.inputType === "name") this.props.searchChecking("?datatype=item&name=" + _.replace(this.state.valueInput, '#', '%23'));
+            else this.props.searchChecking("?datatype=item&barcode=" + this.state.valueInput);
 
-            this.props.searchChecking("?datatype=item&barcode=" + this.state.valueInput);
             this.setState({ valueInput: "" })
       }
       SearchItemByEnter = (e) => {
@@ -20,7 +22,7 @@ class CheckingInput extends Component {
       }
       render() {
 
-            
+
 
             return (
                   <React.Fragment>
@@ -33,8 +35,14 @@ class CheckingInput extends Component {
                                     onKeyDown={this.SearchItemByEnter}
                                     value={this.state.valueInput}
                                     autoFocus />
-                              <div className="input-group-prepend">
-                                    <span className="input-group-text hover-pointer" id="basic-addon2" onClick={this.searchChecking}><i className="fa fa-search"></i></span>
+                              <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {this.state.inputType}
+                              </button>
+                              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a className="dropdown-item" href="#" onClick={() => this.setState({ inputType: "barcode" })}>barcode</a>
+                                    <a className="dropdown-item" href="#" onClick={() => this.setState({ inputType: "name" })}>name</a>
+
+
                               </div>
 
                         </div>

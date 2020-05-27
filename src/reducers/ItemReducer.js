@@ -37,6 +37,55 @@ export default (state = DEFAULT_STATE, action) => {
             }
 
 
+        case type.ITEMS_GET_SHEET_PC_SUCSESS:
+
+            return {
+                ...state,
+                isFetching: false,
+                dataFetched: true,
+                error: false,
+                errorMessesage: null,
+                listItem: action.payload,
+                type: "ITEMS_GET_SHEET_PC_SUCSESS"
+            }
+
+        case type.ITEMS_GET_SHEET_PC_RFAILURE:
+
+            return {
+                listItem: [],
+                dataFetched: false,
+                isFetching: false,
+                error: false,
+                errorMessesage: null,
+                type: "ITEMS_GET_SHEET_PC_RFAILURE"
+            }
+
+
+        case type.ITEMS_GET_PC_RETURN_SUCSESS:
+
+            return {
+                ...state,
+                isFetching: false,
+                dataFetched: true,
+                error: false,
+                errorMessesage: null,
+                listItem: action.payload,
+                type: "ITEMS_GET_PC_RETURN_SUCSESS"
+            }
+
+        case type.ITEMS_GET_PC_RETURN_RFAILURE:
+
+            return {
+                listItem: [],
+                dataFetched: false,
+                isFetching: false,
+                error: false,
+                errorMessesage: null,
+                type: "ITEMS_GET_PC_RETURN_RFAILURE"
+            }
+
+
+
         case type.GET_CHECKING_RFAILURE:
             return {
                 ...state,

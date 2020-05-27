@@ -37,7 +37,7 @@ class App extends Component {
     localStorage.setItem("SumOrderHome", JSON.stringify([]));
     localStorage.setItem("PhonesAlltribute", JSON.stringify([]));
 
-    this.props.getSheetPhone();
+    this.props.getSheetPhone("gllm");
   }
   componentDidUpdate() {
     if (this.props.itemReducer.type === "GET_SHEET_PHONE_SUCSESS") {

@@ -59,6 +59,29 @@ export default (state = DEFAULT_STATE, action) => {
             }
 
 
+        case type.CI_DELETE_ITEMS_SUCSESS:
+
+            return {
+                ...state,
+                isFetching: false,
+                dataFetched: true,
+                error: false,
+                errorMessesage: null,
+                listItem: action.payload,
+                type: "CI_DELETE_ITEMS_SUCSESS"
+            }
+
+        case type.CI_DELETE_ITEMS_RFAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                error: true,
+                errorMessesage: action.payload.errorMessesage,
+                type: "CI_DELETE_ITEMS_RFAILURE"
+
+            }
+
+
         case type.PROPS_CONTROL_ITEMS_TO_DEFAULT:
 
             return {

@@ -15,6 +15,7 @@ class ControlItems extends Component {
                   clickFailded: false,
                   clickWait: false,
                   clickDone: false,
+                  clickDelete: false,
                   items: [],
                   reRender: 0
             })
@@ -39,7 +40,9 @@ class ControlItems extends Component {
       CDU_checkRequest() {
             if (this.props.ItemReducer.type === "GET_CI_CHECKING_SUCSESS") { this.getCheckingSucsess() }
             else if (this.props.ItemReducer.type === "CI_PATCH_ITEMS_SUCSESS") { this.patchItemsSucsess() }
+            else if (this.props.ItemReducer.type === "CI_DELETE_ITEMS_SUCSESS") { this.patchItemsSucsess() }
             else if (this.props.ItemReducer.type === "CI_PATCH_ITEMS_RFAILURE") { this.patchItemsFaild() }
+            else if (this.props.ItemReducer.type === "CI_DELETE_ITEMS_RFAILURE") { this.patchItemsFaild() }
             else if (this.props.ItemReducer.type === "POST_ITEM_EXCEL_RFAILURE") { this.doingWhenPostItemFail() }
       }
       CDU_SetAllPrinted() {
@@ -64,6 +67,14 @@ class ControlItems extends Component {
                   let item = items[items.length - 1];
                   this.patchItem({ ...item, printStatus: "done" })
             }
+            else if (this.state.clickDelete === true && items.length !== 0) {
+                  let item = items[items.length - 1];
+                  this.props.deleteItem(item);
+            }
+
+
+
+
             if (localStorage.itemsPatch === "[]" && localStorage.CI_itemsPatchFail !== "[]") {
                   localStorage.itemsPatch = localStorage.CI_itemsPatchFail;
                   localStorage.CI_itemsPatchFail = "[]";
@@ -85,6 +96,7 @@ class ControlItems extends Component {
             else if (items.length === 0 && this.state.clickFailded) { this.setState({ clickFailded: false }) }
             else if (items.length === 0 && this.state.clickWait) { this.setState({ clickWait: false }) }
             else if (items.length === 0 && this.state.clickDone) { this.setState({ clickDone: false }) }
+            else if (items.length === 0 && this.state.clickDelete) { this.setState({ clickDelete: false }) }
 
 
 
@@ -102,6 +114,7 @@ class ControlItems extends Component {
             else if (items.length === 0 && this.state.clickFailded) { this.setState({ clickFailded: false }) }
             else if (items.length === 0 && this.state.clickWait) { this.setState({ clickWait: false }) }
             else if (items.length === 0 && this.state.clickDone) { this.setState({ clickDone: false }) }
+            else if (items.length === 0 && this.state.clickDelete) { this.setState({ clickDelete: false }) }
 
 
 
@@ -158,6 +171,9 @@ class ControlItems extends Component {
                                                 </button>
                                                 <button type="button" className="btn btn-success" style={{ width: "100%" }}
                                                       onClick={() => this.setStatus({ clickDone: true })}>đánh dấu hàng đã hoàn thành
+                                                </button>
+                                                <button type="button" className="btn btn-dark" style={{ width: "100%" }}
+                                                      onClick={() => this.setStatus({ clickDelete: true })}>xóa tất cả
                                                 </button>
                                                 {/* <div>
                                                       <DayPicker

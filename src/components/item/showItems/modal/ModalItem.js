@@ -1,30 +1,17 @@
 import React, { Component } from 'react';
 import { json2excel } from 'js2excel';
-
+import GL_LM_LED from './GL_LM_LED';
 class ModalItem extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
             downClickExcel: false,
             downClickJson: false,
-            
-            
+
+
         }
     }
 
-    saveTextAsFile = (param) => {
-        let paramToText = JSON.stringify(param)
-        var textToWrite = paramToText // file contents
-        var textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
-        var fileNameToSaveAs = `day${param.day}_${param.mounth}.json`// tên file
-
-
-        var downloadLink = document.createElement("a");
-        downloadLink.download = fileNameToSaveAs;
-        downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
-        downloadLink.click();
-        this.setState({ downClickJson: true })
-    }
     render() {
         let data = this.props.dataitem;
         let amountAllPhoneCase = [];
@@ -40,11 +27,6 @@ class ModalItem extends Component {
 
         }
 
-        let strWrite = {
-            data: data,
-            day: 10,
-            mounth: 12
-        };
         if (this.state.downClickExcel === true) {
 
             try {
@@ -63,14 +45,18 @@ class ModalItem extends Component {
 
         return (
             <div className={(this.props.showModal === false) ? "d-none" : " d-modal"}>
+
+
+                {/* modal */}
                 <div className="modal-content">
                     <div className="modal-body">
                         <div className="d-flex">
-                            <button type="button" class="btn btn-secondary" onClick={() => this.setState({ downClickExcel: true })}>Excel</button>
-                            <button type="button" class="btn btn-secondary" onClick={() => this.saveTextAsFile(strWrite)}>Json</button>
+                            <button type="button" className="btn btn-secondary" onClick={() => this.setState({ downClickExcel: true })}>Excel</button>
                         </div>
 
                         {/* <h2 style={{ textAlign: 'center', marginTop: 50 }}>Tổng tất cả: {sumAmountAfter + "/" + sumAmountBefore}</h2> */}
+                        <GL_LM_LED {...this.props} itemsLocal={data} />
+
                         <table className="table table-striped table_amounts">
                             <thead>
                                 <tr>

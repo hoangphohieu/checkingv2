@@ -55,12 +55,12 @@ function* deleteItemChecking(param) {     // lấy total page
         let res1 = yield DeleteItemAPI(param.payload); //gọi API
 
         yield put({
-            type: type.GET_CHECKING_REQUEST, // trigger valueToGetAPIReducer , tính lại total Page
-            payload: "?datatype=item&name=" + _.replace(res1.item_post.name, '#', '%23')
+            type: type.CI_DELETE_ITEMS_SUCSESS, // trigger valueToGetAPIReducer , tính lại total Page
+            payload: res1
         })
     } catch (error) {
         yield put({
-            type: type.GET_CHECKING_RFAILURE, // trigger itemsReducer
+            type: type.CI_DELETE_ITEMS_RFAILURE, // trigger itemsReducer
             payload: {
                 errorMessage: error.Message
             }
@@ -92,7 +92,7 @@ function* postItem(param) {     // lấy total page
 }
 export const ControlItemsSaga = [
     takeEvery(type.GET_CI_CHECKING_REQUEST, getChecking), // da su dung
-    takeEvery(type.DELETE_ITEM_CHECKING_REQUEST, deleteItemChecking),
+    takeEvery(type.CI_DELETE_ITEMS_REQUEST, deleteItemChecking), // da su dung
     takeEvery(type.CI_PATCH_ITEMS_REQUEST, patchItem), // da su dung
 
     takeEvery(type.ITEM_POST_ITEM_REQUEST, postItem),

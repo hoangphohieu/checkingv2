@@ -12,6 +12,10 @@ export function getCheckingControlItem(payload) {
 export function patchItem_ControlItems(payload) {
     return ({ type: type.CI_PATCH_ITEMS_REQUEST, payload })
 }
+export function CI_deleteItem(payload) {
+    return ({ type: type.CI_DELETE_ITEMS_REQUEST, payload })
+}
+
 
 export function postItemAPI(payload) {
     return ({ type: type.POST_ITEM_EXCEL_REQUEST, payload })
@@ -36,9 +40,14 @@ export function deleteItemChecking(payload) {
     return ({ type: type.DELETE_ITEM_CHECKING_REQUEST, payload })
 }
 
-export function itemsPrintFalse(payload) {
-    return ({ type: type.ITEMS_PRINT_FALSE_REQUEST, payload })
+export function ItemGetSheetPhone(payload) {
+    return ({ type: type.ITEMS_GET_SHEET_PC_REQUEST, payload })
 }
+
+export function ItemGetPCReturn(payload) {
+    return ({ type: type.ITEMS_GET_PC_RETURN_REQUEST, payload })
+}
+
 
 export function itemPostItem(payload) {
     return ({ type: type.ITEM_POST_ITEM_REQUEST, payload })

@@ -15,11 +15,17 @@ class ShowItems extends Component {
     componentDidUpdate() {
         this.CDU_checkRequest(); // kiểm tra và thực hiện hành động khi  request trả về
     }
-
+    componentDidMount() {
+        localStorage.PCSheetChild = JSON.stringify([]);
+        localStorage.PCSheetReturn = JSON.stringify([]);
+    }
     CDU_checkRequest() {
 
         if (this.props.ItemPayload.type === "GET_CHECKING_SUCSESS") { this.getCheckingSucsess() }
-        else if (this.props.ItemPayload.type === "POST_ITEM_EXCEL_RFAILURE") { this.doingWhenPostItemFail() }
+        else if (this.props.ItemPayload.type === "ITEMS_GET_SHEET_PC_SUCSESS") { this.getSheetPCDone() }
+        else if (this.props.ItemPayload.type === "ITEMS_GET_PC_RETURN_SUCSESS") { this.getSheetPCReturnDone() }
+        else if (this.props.ItemPayload.type === "ITEMS_GET_SHEET_PC_RFAILURE" || this.props.ItemPayload.type === "ITEMS_GET_PC_RETURN_RFAILURE") { this.getSheetPCFail() }
+        else if (this.props.ItemPayload.type === "GET_CHECKING_RFAILURE") { this.getCheckingFail() }
 
 
 
@@ -27,6 +33,23 @@ class ShowItems extends Component {
 
     getCheckingSucsess = () => {
         this.setState({ items: this.props.ItemPayload.listItem });
+        this.props.propsItemsToDefault();
+
+    }
+    getSheetPCFail = () => {
+        alert("Kiem tra duong truyen mang");
+        window.location = '/Item';
+    }
+    getSheetPCDone = () => {
+        localStorage.PCSheetChild = JSON.stringify(this.props.ItemPayload.listItem);
+        this.props.propsItemsToDefault();
+    }
+    getSheetPCReturnDone = () => {
+        localStorage.PCSheetReturn = JSON.stringify(this.props.ItemPayload.listItem);
+        this.props.propsItemsToDefault();
+    }
+    getCheckingFail = () => {
+        alert("kiem tra duong truyen mang");
         this.props.propsItemsToDefault();
 
     }
@@ -72,6 +95,8 @@ class ShowItems extends Component {
 
     }
     render() {
+
+
         let country = <div className="dropdown">
             <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {this.state.itemCard.country}
@@ -121,9 +146,9 @@ class ShowItems extends Component {
                         :
                     <span >{param[1]}</span>
                 </div>)
-        }       
+        }
         else {
-            properties = _.toPairs(this.state.itemCard).filter(param => param[0] !== "datatype" & param[0] !== "id" & param[0] !== "month" & param[0] !== "year" & param[0] !== "case" & param[0] !== "country" & param[0] !== "printStatus"& param[0] !== "type    ")
+            properties = _.toPairs(this.state.itemCard).filter(param => param[0] !== "datatype" & param[0] !== "id" & param[0] !== "month" & param[0] !== "year" & param[0] !== "case" & param[0] !== "country" & param[0] !== "printStatus" & param[0] !== "type    ")
                 .map((param, key) => <input
                     className="card-text"
                     type="text"
@@ -157,13 +182,13 @@ class ShowItems extends Component {
         return (
             <div>
                 <div className="grid-items-item2">
-                    <ShowGLLM type="glass" items={this.state.items} setCard={this.setCard} />
+                    <ShowGLLM type="glass" items={this.state.items} setCard={this.setCard} {...this.props} />
 
-                    <ShowGLLM type="luminous" items={this.state.items} setCard={this.setCard} />
+                    <ShowGLLM type="luminous" items={this.state.items} setCard={this.setCard} {...this.props} />
 
-                    <ShowGLLM type="led" items={this.state.items} setCard={this.setCard} />
+                    <ShowGLLM type="led" items={this.state.items} setCard={this.setCard} {...this.props} />
 
-                    <ShowGLLM type="silicon" items={this.state.items} setCard={this.setCard} />
+                    <ShowGLLM type="silicon" items={this.state.items} setCard={this.setCard}  {...this.props} />
                 </div>
                 {card}
             </div>

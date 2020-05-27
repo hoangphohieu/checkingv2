@@ -11,10 +11,12 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
       return {
             patchItem: (param) => dispatch(actions.patchItem_ControlItems(param)),
+            deleteItem: (param) => dispatch(actions.CI_deleteItem(param)),
             searchChecking: (param) => dispatch(actions.getCheckingControlItem(param)),
             propsItemsToDefault: () => dispatch(actions.propsControlItemsToDefault()),
-            
-           
+
+
+
       };
 }
 
