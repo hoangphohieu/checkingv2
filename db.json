@@ -28,12 +28,12 @@
       "case": "i11",
       "date": "1590598800000",
       "type": "glass",
-      "id": "023e7c84-a0d1-11ea-b442-77d22c7f52f6",
+      "id": "60c9c5a4-a0f1-11ea-9364-0959a94e4702",
       "printStatus": "wait",
       "month": "5",
       "year": "2020",
       "datatype": "item",
-      "barcode": "1590663013004"
+      "barcode": "15906769150004"
     },
     {
       "name": "glass04",
@@ -43,12 +43,12 @@
       "case": "i7",
       "date": "1590598800000",
       "type": "glass",
-      "id": "023e7c83-a0d1-11ea-b442-77d22c7f52f6",
+      "id": "60c9c5a3-a0f1-11ea-9364-0959a94e4702",
       "printStatus": "wait",
       "month": "5",
       "year": "2020",
       "datatype": "item",
-      "barcode": "1590663013003"
+      "barcode": "15906769150003"
     },
     {
       "name": "glass03",
@@ -58,12 +58,12 @@
       "case": "s9",
       "date": "1590598800000",
       "type": "glass",
-      "id": "023e7c82-a0d1-11ea-b442-77d22c7f52f6",
+      "id": "60c9c5a2-a0f1-11ea-9364-0959a94e4702",
       "printStatus": "wait",
       "month": "5",
       "year": "2020",
       "datatype": "item",
-      "barcode": "1590663013001"
+      "barcode": "15906769150001"
     },
     {
       "name": "glass03",
@@ -73,12 +73,12 @@
       "case": "s10",
       "date": "1590598800000",
       "type": "glass",
-      "id": "023e7c81-a0d1-11ea-b442-77d22c7f52f6",
+      "id": "60c9c5a1-a0f1-11ea-9364-0959a94e4702",
       "printStatus": "wait",
       "month": "5",
       "year": "2020",
       "datatype": "item",
-      "barcode": "1590663013001"
+      "barcode": "15906769150001"
     },
     {
       "name": "glass01",
@@ -88,12 +88,12 @@
       "case": "i7",
       "date": "1590598800000",
       "type": "glass",
-      "id": "023e7c80-a0d1-11ea-b442-77d22c7f52f6",
+      "id": "60c9c5a0-a0f1-11ea-9364-0959a94e4702",
       "printStatus": "wait",
       "month": "5",
       "year": "2020",
       "datatype": "item",
-      "barcode": "1590663013000"
+      "barcode": "15906769150000"
     }
   ]
 }

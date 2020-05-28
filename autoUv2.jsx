@@ -75,7 +75,7 @@ button1.onClick = function () {
         file.close();
         // read data from json
         var data = JSON.parse(strFile);
-        var  type = data.type;
+        var type = data.type;
         switch (type) {
             case "glass":
                 createTableGlass(data);
@@ -103,7 +103,7 @@ button1.onClick = function () {
 }
 
 function createTableGlass(data) {
-    var arr = data.data;
+    var arr = data.items;
     var day = data.day; var type = data.type;
     var mounth = data.mounth; var hour = data.hour;
     var wAll = 2400, hAll = 1300;
@@ -113,6 +113,8 @@ function createTableGlass(data) {
 
     var yPosition, xPosition, hLast, wLast;
     var stt = 0;
+
+
     for (var i = 0; i <= arr.length - 1; i++) { // loop làm file in
         app.documents.add(wAll, hAll, 300, "GLLM");
         app.activeDocument.layerSets.add();
@@ -125,6 +127,7 @@ function createTableGlass(data) {
         hLast = 0;
         wLast = 0;
         var lastName = "";
+
         GLLMOneTable(arr, wAll, hAll, yPosition, xPosition, hLast, wLast, lastName, stt, i);
 
         { // xử lý sau khi duplicate hết items
@@ -138,9 +141,9 @@ function createTableGlass(data) {
         { // lưu file khung
             app.activeDocument.layerSets.getByName("SPOT").visible = false;
             app.activeDocument.layerSets.getByName("CMYK").visible = false;
-            var folder1 = Folder("~/Desktop/in an/Glass " + (i + 1) + " ngay " + day);
+            var folder1 = Folder("~/Desktop/in an/Glass " + (i + 1) + "_" + hour + "_" + day + "_" + mounth);
             if (!folder1.exists) { folder1.create(); }
-            app.activeDocument.saveAs(Folder("~/Desktop/in an/Glass " + (i + 1) + "_" + hour + "_" + mounth + "_" + day + "/khung.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
+            app.activeDocument.saveAs(Folder("~/Desktop/in an/Glass " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/khung.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
 
         }// lưu file in
         {
@@ -151,7 +154,7 @@ function createTableGlass(data) {
             app.doAction("createSmarkOBJ", "autoUv");
             app.doAction("selectArea", "autoUv");
             app.doAction("createSPOTWithArea", "autoUv");
-            app.activeDocument.saveAs(Folder("~/Desktop/in an/Glass " + (i + 1) + "_" + hour + "_" + mounth + "_" + day + "/in.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
+            app.activeDocument.saveAs(Folder("~/Desktop/in an/Glass " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/in.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
 
         }
         app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
@@ -161,9 +164,9 @@ function createTableGlass(data) {
         for (var i = 0; i <= arr.length - 1; i++) {
             for (var j = 0; j <= arr[i].length - 1; j++) {
                 moveTem(arr[i][j], day, mounth);
-                var folder1 = Folder("~/Desktop/in an/Glass " + (i + 1) + "_" + hour + "_" + mounth + "_" + day + "/tem");
+                var folder1 = Folder("~/Desktop/in an/Glass " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/tem");
                 if (!folder1.exists) { folder1.create(); }
-                app.activeDocument.saveAs(Folder("~/Desktop/in an/Glass " + (i + 1) + "_" + hour + "_" + mounth + "_" + day + "/tem/" + arr[i][j].stt + ".jpg"), JPEGSaveOptions, true, Extension.LOWERCASE);
+                app.activeDocument.saveAs(Folder("~/Desktop/in an/Glass " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/tem/" + arr[i][j].stt + ".jpg"), JPEGSaveOptions, true, Extension.LOWERCASE);
 
 
             }
@@ -173,7 +176,7 @@ function createTableGlass(data) {
     }
 };
 function createTableLuminous(data) {
-    var arr = data.data;
+    var arr = data.items;
     var day = data.day; var type = data.type;
     var mounth = data.mounth; var hour = data.hour;
     var wAll = 2400, hAll = 1300;
@@ -208,26 +211,24 @@ function createTableLuminous(data) {
         { // lưu file khung
             app.activeDocument.layerSets.getByName("SPOT").visible = false;
             app.activeDocument.layerSets.getByName("CMYK").visible = false;
-            var folder1 = Folder("~/Desktop/in an/Luminous " + (i + 1) + " ngay " + day);
+            var folder1 = Folder("~/Desktop/in an/Luminous " + (i + 1) + "_" + hour + "_" + day + "_" + mounth);
             if (!folder1.exists) { folder1.create(); }
-            app.activeDocument.saveAs(Folder("~/Desktop/in an/Luminous " + (i + 1) + "_" + hour + "_" + mounth + "_" + day + "/khung.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
-
+            app.activeDocument.saveAs(Folder("~/Desktop/in an/Luminous " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/khung.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
         }
         {// lưu file in
             app.activeDocument.channels.getByName("Spot Color 1").remove();
             app.activeDocument.layerSets.getByName("CMYK").visible = true;
 
-            app.activeDocument.saveAs(Folder("~/Desktop/in an/Luminous " + (i + 1) + "_" + hour + "_" + mounth + "_" + day + "/in.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
+            app.activeDocument.saveAs(Folder("~/Desktop/in an/Luminous " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/in.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
 
         }
         {
-
             app.activeDocument.activeLayer = app.activeDocument.layerSets.getByName("CMYK");
             app.doAction("createSmarkOBJ", "autoUv");
             app.doAction("selectArea", "autoUv");
             app.doAction("createSPOTWithArea", "autoUv");
             app.activeDocument.artLayers.getByName("CMYK").visible = false;
-            app.activeDocument.saveAs(Folder("~/Desktop/in an/Luminous " + (i + 1) + "_" + hour + "_" + mounth + "_" + day + "/white.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
+            app.activeDocument.saveAs(Folder("~/Desktop/in an/Luminous " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/white.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
         }
         app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
     } // hết làm file
@@ -236,19 +237,16 @@ function createTableLuminous(data) {
         for (var i = 0; i <= arr.length - 1; i++) {
             for (var j = 0; j <= arr[i].length - 1; j++) {
                 moveTem(arr[i][j], day, mounth);
-                var folder1 = Folder("~/Desktop/in an/Luminous " + (i + 1) + "_" + hour + "_" + mounth + "_" + day + "/tem");
+                var folder1 = Folder("~/Desktop/in an/Luminous " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/tem");
                 if (!folder1.exists) { folder1.create(); }
-                app.activeDocument.saveAs(Folder("~/Desktop/in an/Luminous " + (i + 1) + "_" + hour + "_" + mounth + "_" + day + "/tem/" + arr[i][j].stt + ".jpg"), JPEGSaveOptions, true, Extension.LOWERCASE);
-
-
+                app.activeDocument.saveAs(Folder("~/Desktop/in an/Luminous " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/tem/" + arr[i][j].stt + ".jpg"), JPEGSaveOptions, true, Extension.LOWERCASE);
             }
         }
         app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
-
     }
 };
 function createTableSilicon(data) {
-    var type = data.data;
+    var type = data.items;
     var day = data.day; var type = data.type;
     var mounth = data.mounth; var hour = data.hour;
     var hAll = 6496, wAll = 10039;
@@ -454,7 +452,7 @@ function createTableSilicon(data) {
 
 };
 function createTableLed(data) {
-    var arr = data.data;
+    var arr = data.items;
     var day = data.day; var type = data.type;
     var mounth = data.mounth; var hour = data.hour;
 
@@ -497,9 +495,9 @@ function createTableLed(data) {
             app.activeDocument.layerSets.getByName("SPOT").visible = false;
             app.activeDocument.layerSets.getByName("SPOT2").visible = false;
             app.activeDocument.layerSets.getByName("CMYK").visible = false;
-            var folder1 = Folder("~/Desktop/in an/Led " + (i + 1) + " ngay " + day);
+            var folder1 = Folder("~/Desktop/in an/Led " + (i + 1) + "_" + hour + "_" + day + "_" + mounth);
             if (!folder1.exists) { folder1.create(); }
-            app.activeDocument.saveAs(Folder("~/Desktop/in an/Led " + (i + 1) + "_" + hour + "_" + mounth + "_" + day + "/khung.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
+            app.activeDocument.saveAs(Folder("~/Desktop/in an/Led " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/khung.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
 
         }
         {// lưu file in 1
@@ -515,7 +513,7 @@ function createTableLed(data) {
             app.doAction("fillChannelsLED0", "autoUv");
             showRGBChannel();
             app.activeDocument.channels.getByName("Spot Color 1").visible = true;
-            app.activeDocument.saveAs(Folder("~/Desktop/in an/Led " + (i + 1) + "_" + hour + "_" + mounth + "_" + day + "/in 1.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
+            app.activeDocument.saveAs(Folder("~/Desktop/in an/Led " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/in 1.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
 
         }
         { // lưu file in 2
@@ -550,7 +548,7 @@ function createTableLed(data) {
             app.activeDocument.activeChannels = [app.activeDocument.channels.getByName("Spot Color 1")];
             app.doAction("fillChannelsLED20", "autoUv");
             showRGBChannel();
-            app.activeDocument.saveAs(Folder("~/Desktop/in an/Led " + (i + 1) + "_" + hour + "_" + mounth + "_" + day + "/in 2.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
+            app.activeDocument.saveAs(Folder("~/Desktop/in an/Led " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/in 2.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
 
 
 
@@ -563,9 +561,9 @@ function createTableLed(data) {
         for (var i = 0; i <= arr.length - 1; i++) {
             for (var j = 0; j <= arr[i].length - 1; j++) {
                 moveTem(arr[i][j], day, mounth);
-                var folder1 = Folder("~/Desktop/in an/Led " + (i + 1) + "_" + hour + "_" + mounth + "_" + day + "/tem");
+                var folder1 = Folder("~/Desktop/in an/Led " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/tem");
                 if (!folder1.exists) { folder1.create(); }
-                app.activeDocument.saveAs(Folder("~/Desktop/in an/Led " + (i + 1) + "_" + hour + "_" + mounth + "_" + day + "/tem/" + arr[i][j].stt + ".jpg"), JPEGSaveOptions, true, Extension.LOWERCASE);
+                app.activeDocument.saveAs(Folder("~/Desktop/in an/Led " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/tem/" + arr[i][j].stt + ".jpg"), JPEGSaveOptions, true, Extension.LOWERCASE);
 
 
             }
@@ -574,7 +572,6 @@ function createTableLed(data) {
 
     }
 };
-
 function createTem() {
     var wtem = 50; var htem = 30;
     wtem = Math.round(wtem / 0.084667);
@@ -687,7 +684,6 @@ function convertDate(date, type, country) {
     var nameDate = new Date(date).getDate() + "-" + (new Date(date).getMonth() + 1) + " " + _type + " / " + country;
     return nameDate
 }
-
 function moveTem(item, day, mounth) {
     // alert(item)
     var PRectangleTem = app.activeDocument.artLayers.getByName("Rectangle 1").bounds;
@@ -717,11 +713,9 @@ function moveTem(item, day, mounth) {
     var PAmount = app.activeDocument.artLayers.getByName("amount").bounds;
     app.activeDocument.artLayers.getByName("amount").translate(PRectangleTem[2] + ((app.activeDocument.width - PRectangleTem[2] - PAmount[2] + PAmount[0]) / 2), ((app.activeDocument.height / 2) - PAmount[3] + PAmount[1]) / 2);
 }
-
 function GLLMOneTable(arr, wAll, hAll, yPosition, xPosition, hLast, wLast, lastName, stt, i) {
     // for loop items
-    console.log("gllm");
-    
+
     for (var j = 0; j <= arr[i].length - 1; j++) {
         var wphone = arr[i][j].pixel.w;
         var hphone = arr[i][j].pixel.h;
@@ -749,11 +743,11 @@ function GLLMOneTable(arr, wAll, hAll, yPosition, xPosition, hLast, wLast, lastN
         }
 
 
-        try {
-            app.open(File("D:/DATA/file design/" + arr[i][j].sku + ".tif"));
-        } catch (error) {
-            app.documents.add(1200, 2400, 300, "aaaa");
-        }
+        // try {
+        app.open(File("D:/DATA/file design/" + arr[i][j].sku + ".tif"));
+        // } catch (error) {
+        //     app.documents.add(1200, 2400, 300, "aaaa");
+        // }
         if (app.activeDocument.width !== 1200 || app.activeDocument.height !== 2400) {
             alert(arr[i][j].sku, " khác cỡ 1200 x 2400 !")
         }
