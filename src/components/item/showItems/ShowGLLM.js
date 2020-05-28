@@ -64,11 +64,11 @@ class ShowGLLM extends Component {
 
 
 
-                <div>
+                <div className="ctn-gllm-info">
                     {/* Button trigger modal */}
-                    <div>{this.props.type} + {items.length} </div>
+                    <h3 className="GLLM-info">{this.props.type}: {items.length} </h3>
                     <button type="button" className="btn btn-primary" onClick={this.clickMore}>
-                        more
+                        Thông tin
                     </button>
 
                     {/* Modal */}

@@ -43,12 +43,18 @@ class Item extends Component {
                                           <div className="grid-items-item1">
 
                                                 <button type="button" className="btn btn-warning" style={{ width: "100%" }}
-                                                      onClick={() => this.searchChecking("?datatype=item&printStatus=wait")}>Wait
+                                                      onClick={() => this.searchChecking("?datatype=item&printStatus=wait")}>Hàng chưa in
                                                 </button>
                                                 <button type="button" className="btn btn-danger" style={{ width: "100%" }}
-                                                      onClick={() => this.searchChecking("?datatype=item&printStatus=failded")}>failded
+                                                      onClick={() => this.searchChecking("?datatype=item&printStatus=printed")}>Hàng in xong chưa gửi
                                                 </button>
-                                                
+                                                <button type="button" className="btn btn-dark" style={{ width: "100%" }}
+                                                      onClick={() => this.searchChecking("?datatype=item&printStatus=failded")}>Hàng lỗi
+                                                </button>
+                                                <button type="button" className="btn btn-secondary" style={{ width: "100%" }}
+                                                      onClick={() => this.searchChecking("?datatype=item&printStatus=return")}>Hàng hoàn
+                                                </button>
+
                                                 <div>
                                                       <DayPicker
                                                             onDayClick={this.handleDayClick}

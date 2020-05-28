@@ -4,6 +4,42 @@
   
 }
 
+.card-title-pro {
+    font-weight: 500;
+}
+
+.ctn-card-pro {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.case-itemthua {
+    width: 50%;
+    font-size: 1.5rem;
+}
+
+.name-itemthua {width: 50%;font-size: 1.5rem;}
+
+.ctn-itemthua {
+    display: flex;
+    justify-content: center;
+    border: 1px solid red;
+    margin: 1rem;
+}
+
+
+
+h3.GLLM-info {
+    margin-left: 10px;
+    font-size: 1.3rem;
+}
+
+.ctn-gllm-info {
+    display: flex;
+    justify-content: space-between;
+}
+
 p.gll-sku {
     position: absolute;
     width: 100%;
@@ -985,7 +1021,9 @@ input[type=text]:placeholder {
   grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 .items-con-items {
-  border: 1px solid black;
+  border: 1px solid #b9b9b9;
+  margin: 1px;
+  border-radius: 5px;
 }
 .ItemProperties:focus {
   background: #007bff;
@@ -994,7 +1032,7 @@ input[type=text]:placeholder {
 .items-ItemProperties-card {
   position: absolute;
   left: 0;
-  top: 36vh;
+  bottom: 0;
   width: 33.63333% !important;
 }
 input.card-text {
@@ -1002,14 +1040,14 @@ input.card-text {
 }
 .d-modal {
   position: absolute;
-  top: 0;
+  top: -1rem;
   left: 0;
   z-index: 9999;
   width: 100%;
 }
 
 .d-modal>.modal-content>.modal-body {
-  min-height: 80vh;
+  min-height: 88vh;
 }
 .loading{
   position: absolute;

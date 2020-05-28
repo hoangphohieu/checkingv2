@@ -66,8 +66,8 @@ class ModalItem extends Component {
                 <div className="modal-content">
                     <div className="modal-body">
                         <div className="d-flex">
-                            <button type="button" class="btn btn-secondary" onClick={() => this.setState({ downClickExcel: true })}>Excel</button>
-                            <button type="button" class="btn btn-secondary" onClick={() => this.saveTextAsFile(strWrite)}>Json</button>
+                            <button type="button" className="btn btn-secondary" onClick={() => this.setState({ downClickExcel: true })}>Excel</button>
+                            <button type="button" className="btn btn-secondary" onClick={() => this.saveTextAsFile(strWrite)}>Json</button>
                         </div>
 
                         {/* <h2 style={{ textAlign: 'center', marginTop: 50 }}>Tổng tất cả: {sumAmountAfter + "/" + sumAmountBefore}</h2> */}

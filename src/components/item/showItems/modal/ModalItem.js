@@ -50,26 +50,30 @@ class ModalItem extends Component {
                 {/* modal */}
                 <div className="modal-content">
                     <div className="modal-body">
-                        <div className="d-flex">
-                            <button type="button" className="btn btn-secondary" onClick={() => this.setState({ downClickExcel: true })}>Excel</button>
+                        <div className="d-flex justify-content-center">
+                            <button type="button" className="btn btn-warning down-excel" onClick={() => this.setState({ downClickExcel: true })}>Down Load Excel</button>
                         </div>
 
                         {/* <h2 style={{ textAlign: 'center', marginTop: 50 }}>Tổng tất cả: {sumAmountAfter + "/" + sumAmountBefore}</h2> */}
                         <GL_LM_LED {...this.props} itemsLocal={data} />
+                        <div className="row">
+                            <div className="col-5">
+                                <table className="table table-striped table_amounts">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">STT</th>
+                                            <th scope="col">Tên</th>
+                                            <th scope="col">Số lượng</th>
+                                        </tr>
+                                    </thead>
 
-                        <table className="table table-striped table_amounts">
-                            <thead>
-                                <tr>
-                                    <th scope="col">STT</th>
-                                    <th scope="col">Tên</th>
-                                    <th scope="col">Số lượng</th>
-                                </tr>
-                            </thead>
+                                    <tbody>
+                                        {amountAllPhoneCase}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
-                            <tbody>
-                                {amountAllPhoneCase}
-                            </tbody>
-                        </table>
 
 
                     </div>
@@ -79,7 +83,7 @@ class ModalItem extends Component {
                     </div>
                 </div>
 
-            </div>
+            </div >
         );
     }
 }

@@ -33,6 +33,8 @@ export function changePrintStatusAPI(payload) {
 }
 
 export function patchItemCheckingProperties(payload) {
+    console.log(payload);
+
     return ({ type: type.PATCH_ITEM_CHECKING_PROPERTIES_REQUEST, payload })
 }
 

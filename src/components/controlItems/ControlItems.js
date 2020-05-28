@@ -156,23 +156,25 @@ class ControlItems extends Component {
                               <div className="col-12 checking-right mt-3">
                                     <div className="grid-container-item">
                                           <div className="grid-items-item1">
-
-                                                <button type="button" className="btn btn-warning" style={{ width: "100%" }}
-                                                      onClick={() => this.setStatus({ clickPrinted: true })}>đánh dấu đã in
-                                                </button>
-                                                <button type="button" className="btn btn-secondary" style={{ width: "100%" }}
-                                                      onClick={() => this.setStatus({ clickReturn: true })}>đánh dấu hàng hoàn
-                                                </button>
                                                 <button type="button" className="btn btn-danger" style={{ width: "100%" }}
-                                                      onClick={() => this.setStatus({ clickFailded: true })}>đánh dấu hàng lỗi
-                                                </button>
-                                                <button type="button" className="btn btn-primary" style={{ width: "100%" }}
-                                                      onClick={() => this.setStatus({ clickWait: true })}>đánh dấu hàng chưa in
+                                                      onClick={() => this.setStatus({ clickPrinted: true })}>đánh dấu đã in xong
                                                 </button>
                                                 <button type="button" className="btn btn-success" style={{ width: "100%" }}
                                                       onClick={() => this.setStatus({ clickDone: true })}>đánh dấu hàng đã hoàn thành
                                                 </button>
+                                                <button type="button" className="btn btn-warning" style={{ width: "100%" }}
+                                                      onClick={() => this.setStatus({ clickWait: true })}>đánh dấu hàng chưa in
+                                                </button>
+
+                                                <button type="button" className="btn btn-secondary" style={{ width: "100%" }}
+                                                      onClick={() => this.setStatus({ clickReturn: true })}>đánh dấu hàng hoàn
+                                                </button>
                                                 <button type="button" className="btn btn-dark" style={{ width: "100%" }}
+                                                      onClick={() => this.setStatus({ clickFailded: true })}>đánh dấu hàng lỗi
+                                                </button>
+
+
+                                                <button type="button" className="btn btn-info" style={{ width: "100%" }}
                                                       onClick={() => this.setStatus({ clickDelete: true })}>xóa tất cả
                                                 </button>
                                                 {/* <div>

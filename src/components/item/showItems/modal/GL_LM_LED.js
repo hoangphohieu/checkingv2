@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import CheckFileIn from "./CheckFileIn";
 import OneTable from "./OneTable";
+import ItemLoi from './ItemLoi';
 class BigTable extends Component {
     constructor(props) {
         super(props);
@@ -9,7 +10,7 @@ class BigTable extends Component {
             printScreen: false,
             changePrint: false,
             wkhay: 2400,
-            hkhay: 1200
+            hkhay: 1300
         }
     }
 
@@ -18,13 +19,16 @@ class BigTable extends Component {
     changePrint = () => { this.setState({ changePrint: !this.state.changePrint }) }
 
     saveTextAsFile = (param) => {
-        let paramToText = JSON.stringify(param)
-        var textToWrite = paramToText // file contents
-        var textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
-        var fileNameToSaveAs = `day${param.day}_${param.mounth}.json`// tên file
+        let items = { items: param, type: this.props.type, day: new Date().getDate(), mounth: new Date().getMonth() + 1, hour: new Date().getHours() }
+        let paramToText = JSON.stringify(items)
+        let textToWrite = paramToText // file contents
+        let textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
+
+        let fileNameToSaveAs = `day${new Date().getDate()}${this.props.type}${new Date().getHours()}_${(new Date().getMonth() + 1)}.json`
 
 
-        var downloadLink = document.createElement("a");
+
+        let downloadLink = document.createElement("a");
         downloadLink.download = fileNameToSaveAs;
         downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
         downloadLink.click();
@@ -42,7 +46,7 @@ class BigTable extends Component {
         let sumAmountBefore, sumAmountAfter, itemsFilter;
         let amountAllcase = [];
         let allFileName = [];
-        let dataSortItems = [];
+        let itemThua = [];
         let arr = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
         let danhSach = [], danhsach2 = [];
 
@@ -135,6 +139,20 @@ class BigTable extends Component {
             }
 
 
+            // dem item thua
+            itemsFilter = items.filter(items1 => {
+                let itemsFilter2 = itemSheet.filter(itemSheet1 => {
+                    if (itemSheet1[0] === items1.case) { return true }
+                    else { return false }
+                })
+                if (itemsFilter2.length !== 0) { return true }
+                else { return false }
+            })
+
+
+            // lấy item thừa 
+            itemThua = _.difference(items, itemsFilter);
+            items = itemsFilter;
 
 
             // lấy sku để xem file nào chưa có
@@ -185,10 +203,10 @@ class BigTable extends Component {
                 })
                 if (dataToPixel1.length > 1) {
                     alert("trên sheet có dòng đt bị lặp", dataToPixel1);
-
-
                     window.location.reload();
                 }
+
+
                 return { w: dataToPixel1[0][1], h: dataToPixel1[0][2] }
             }
             sumAmountAfter = items.length;
@@ -299,76 +317,15 @@ class BigTable extends Component {
 
         return (
             <React.Fragment>
-                <p>itemFail</p>
-
                 <div>
                     <CheckFileIn dataNone={allFileName} itemNoPrint={itemNotPrint} />
-                    <button type="button" class="btn btn-secondary" onClick={() => this.saveTextAsFile(items)}>Json</button>
+                    <button type="button" className="btn btn-secondary" onClick={() => this.saveTextAsFile(items)}>Down Load Json</button>
 
                     <h2>Tổng tất cả phôi: {sumAmountAfter + " / " + sumAmountBefore}</h2>
                     <h2>Số liệu bàn in: {arr.map(arr1 => <span className="so-lieu-ban">{arr1.length}</span>)}</h2>
-
+                    <ItemLoi items={itemThua} />
                 </div>
                 {renderTable}
-
-                {/* <BanTo itemsBanTo={arr} printScreen={this.state.printScreen} {...this.props} /> */}
-
-
-                {/* <div className="row justify-content-center">
-                        <div className="col-5">
-                            <h2 style={{ textAlign: 'center', marginTop: 50 }}>Tổng tất cả: {sumAmountAfter + "/" + sumAmountBefore}</h2>
-                            <table className="table table-striped table_amounts">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">STT</th>
-                                        <th scope="col">Tên</th>
-                                        <th scope="col">Số lượng</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {amountAllcase}
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className="col-5">
-                            <h2 style={{ textAlign: 'center', marginTop: 50 }}>Tổng tất cả: {sumAmountAfter + "/" + sumAmountBefore}</h2>
-                            <div className="row justify-content-around">
-                                <div className="col-3">
-                                    <table className="table  table_amounts">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Tên</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {danhSach.map((param, key) => <tr key={key}>
-                                                <td className="cot_row">{param}</td>
-                                            </tr>)}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className="col-3">
-                                    <table className="table  table_amounts">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Số lượng</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {danhsach2.map((param, key) => <tr key={key}>
-                                                <td className="cot_row">{param[1]}</td>
-                                            </tr>)}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                    </div> */}
-
-
             </React.Fragment>
         );
 

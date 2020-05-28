@@ -58,7 +58,7 @@ class CheckFileIn extends Component {
         return (
             <div className="mt-2">
                 <input id='file-input' type='file' className=" btn btn-info" onChange={this.checkFilesNone} multiple style={{ display: "none" }} />
-                <label htmlFor="file-input" className="input_exel btn btn-info">File Tif</label>
+                <label htmlFor="file-input" className="input_exel btn btn-info">Kiểm Tra File Tif (Phòng in)</label>
                 <div className="row justify-content-center">
                     <div className="col-5">
                         {
