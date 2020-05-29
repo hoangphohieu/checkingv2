@@ -7,6 +7,7 @@ import UploadContainer from './containers/UploadContainer';
 import UseControlContainer from './containers/UseControlContainer';
 import * as actions from './actions';
 import { connect } from 'react-redux';
+import _ from "lodash";
 
 
 function mapStateToProps(state) {
@@ -39,9 +40,13 @@ class App extends Component {
 
     this.props.getSheetPhone("gllm");
   }
+  convertPCProperties = (items) => {
+    let C_Items = _.toPairs(items).filter(param => (param[0] !== "id" && param[0] !== "type")).map(param => { return { ...param[1], nameDefault: param[0] } });
+    localStorage.setItem("PhonesAlltribute", JSON.stringify(C_Items));
+  }
   componentDidUpdate() {
     if (this.props.itemReducer.type === "GET_SHEET_PHONE_SUCSESS") {
-      localStorage.setItem("PhonesAlltribute", JSON.stringify(this.props.itemReducer.listItem));
+      this.convertPCProperties(this.props.itemReducer.listItem);
     }
     else if (this.props.itemReducer.type === "GET_SHEET_PHONE_RFAILURE") {
       alert("kiem tra duong truyen mang - api")
@@ -58,8 +63,6 @@ class App extends Component {
     let userProperties = JSON.parse(localStorage.UserProperties);
     let partnerTypeUser = userProperties[0];
     console.log(this.props.itemReducer.listItem);
-
-
 
     return (
       <React.Fragment>
@@ -165,7 +168,7 @@ class App extends Component {
 
 
         </div>
-      </React.Fragment>
+      </React.Fragment >
     );
   }
 }
@@ -176,3 +179,11 @@ class App extends Component {
 export default connect(
   mapStateToProps, mapDispatchToProps
 )(App);
+
+
+
+
+
+
+
+

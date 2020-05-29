@@ -29,14 +29,16 @@ function* getChecking(param) {     // lấy total page
 function* getSheetPC(param) {
     // console.log(param);
     let typePC = param.payload;
-    let api = type.SHEET_BEST_PC;
+    let api = "/zero";
     if (typePC === "led")
-        api = type.SHEET_BEST_PC_LED
+        api = "/pc_led"
     else if (typePC === "silicon")
-        api = type.SHEET_BEST_PC_SILICON
+        api = "/pc_silicon"
+    else if (typePC === "gllm")
+        api = "/pc_gllm"
 
     try {
-        let res1 = yield getByCustomAPI2(api);
+        let res1 = yield getByCustomAPI(api);
         yield put({
             type: type.ITEMS_GET_SHEET_PC_SUCSESS,
             payload: res1

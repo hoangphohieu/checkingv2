@@ -11,10 +11,7 @@ class ShowGLLM extends Component {
         }
     }
 
-    open = () => {
-        window.open("~/Users/MSI/Downloads/sp181233.jpg")
-    }
-
+ 
     tempAlert = (msg, duration) => {
         var el = document.createElement("div");
         el.setAttribute("style", "position:fixed;z-index:1000;top:10px;left:46%;background-color:#80ced6;padding:10px;font-size:2rem;color:white");

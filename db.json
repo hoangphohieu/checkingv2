@@ -21,6 +21,520 @@
       "datatype": "user"
     },
     {
+      "id": "pc_gllm",
+      "type": "pc_properties",
+      "i6": {
+        "amount": 1000,
+        "width": 67,
+        "hight": 138,
+        "nameVariant": "ip6,ip6s,iphone 6/6s,iphone 6 6s,iphone 6,iphone 6s,Iphone 6-6s"
+      },
+      "i6plus": {
+        "amount": 1000,
+        "width": 78,
+        "hight": 159,
+        "nameVariant": "iphone 6plus,i 6splus,6splus,i6 splus,i 6 plus,ip6p,6/6s plus,6 plus/6s plus,6/6splus,Ip6 plus,IP6plus"
+      },
+      "i7": {
+        "amount": 1000,
+        "width": 67,
+        "hight": 138,
+        "nameVariant": "ip7,i phone 7,iphone 8,ip78,ip8,iphone 7 8,iphone 7/8"
+      },
+      "i7plus": {
+        "amount": 1000,
+        "width": 78,
+        "hight": 159,
+        "nameVariant": "ip7plus,ip8plus,78 plus,8/7 plus,7 / 8 plus,iphone 8plus,iphone 7plus,ip 7/ip8 plus,ip78p,iPhone 7 Plus/ 8 Plus"
+      },
+      "ix": {
+        "amount": 1000,
+        "width": 68,
+        "hight": 140,
+        "nameVariant": "ipx,i phone x"
+      },
+      "ixs": {
+        "amount": 1000,
+        "width": 67,
+        "hight": 140,
+        "nameVariant": "xs"
+      },
+      "ixr": {
+        "amount": 1000,
+        "width": 74,
+        "hight": 149,
+        "nameVariant": "xr"
+      },
+      "imax": {
+        "amount": 1000,
+        "width": 76,
+        "hight": 156,
+        "nameVariant": "xsmax,ipxm"
+      },
+      "i11": {
+        "amount": 1000,
+        "width": 74,
+        "hight": 149,
+        "nameVariant": "i11,,iphone 11"
+      },
+      "i11promax": {
+        "amount": 1000,
+        "width": 75,
+        "hight": 155,
+        "nameVariant": "11 pro max,11pm,11max,iphone 11pro max"
+      },
+      "s7": {
+        "amount": 1000,
+        "width": 69,
+        "hight": 141,
+        "nameVariant": "s7"
+      },
+      "s7e": {
+        "amount": 1000,
+        "width": 73,
+        "hight": 151,
+        "nameVariant": "s7 e,s7 edge"
+      },
+      "s8": {
+        "amount": 1000,
+        "width": 66,
+        "hight": 146,
+        "nameVariant": "s8"
+      },
+      "s8plus": {
+        "amount": 1000,
+        "width": 72,
+        "hight": 158,
+        "nameVariant": "s8plus,ss 8plus,s8p,s8+,ss8p"
+      },
+      "note8": {
+        "amount": 1000,
+        "width": 73,
+        "hight": 161,
+        "nameVariant": "samsung note 8,samsung galaxy note 8"
+      },
+      "s9": {
+        "amount": 1000,
+        "width": 67,
+        "hight": 145,
+        "nameVariant": "s9"
+      },
+      "s9plus": {
+        "amount": 1000,
+        "width": 71,
+        "hight": 156,
+        "nameVariant": "s9plus,ss 9 plus,s9p,s9 +"
+      },
+      "note9": {
+        "amount": 1000,
+        "width": 75,
+        "hight": 161,
+        "nameVariant": "note 9,n9,ss9n"
+      },
+      "s10e": {
+        "amount": 1000,
+        "width": 67,
+        "hight": 139,
+        "nameVariant": "s10e,s10 e"
+      },
+      "s10": {
+        "amount": 1000,
+        "width": 69,
+        "hight": 149,
+        "nameVariant": "s10"
+      },
+      "s10plus": {
+        "amount": 1000,
+        "width": 73,
+        "hight": 157,
+        "nameVariant": "s10plus,ss 10 plus,s10p,s10 +,ss10p,SAMSUNG 10 PLUS"
+      },
+      "note10": {
+        "amount": 1000,
+        "width": 72,
+        "hight": 151,
+        "nameVariant": "note10,n10,ss10n"
+      },
+      "note10plus": {
+        "amount": 1000,
+        "width": 77,
+        "hight": 162,
+        "nameVariant": "note 10plus,note 10+,n10+,Note10 Plus"
+      },
+      "s20": {
+        "amount": 1000,
+        "width": 67,
+        "hight": 150,
+        "nameVariant": "samsung s20,SS S20"
+      },
+      "s20plus": {
+        "amount": 1000,
+        "width": 71,
+        "hight": 159,
+        "nameVariant": "samsung s20 plus,Galaxy S20+"
+      },
+      "s20ultra": {
+        "amount": 1000,
+        "width": 73,
+        "hight": 164,
+        "nameVariant": "samsung s20 ultra,SS S20 ULTRA,Galaxy S20 Ultra"
+      },
+      "sm10": {
+        "amount": 1000,
+        "width": 74,
+        "hight": 154,
+        "nameVariant": "samsung m10"
+      },
+      "sm20": {
+        "amount": 1000,
+        "width": 71,
+        "hight": 153,
+        "nameVariant": "samsung m20"
+      },
+      "sm30": {
+        "amount": 1000,
+        "width": 71,
+        "hight": 155,
+        "nameVariant": "samsung m30"
+      },
+      "snote10lite": {
+        "amount": 1000,
+        "width": 73,
+        "hight": 161,
+        "nameVariant": "SS NOTE 10 LITE,Note 10 lite"
+      },
+      "sa30": {
+        "amount": 1000,
+        "width": 72,
+        "hight": 155,
+        "nameVariant": "samsung a30"
+      },
+      "sa50": {
+        "amount": 1000,
+        "width": 72,
+        "hight": 156,
+        "nameVariant": "samsung a50,SS A50,Samsung Galaxy A50"
+      },
+      "sa51": {
+        "amount": 1000,
+        "width": 71,
+        "hight": 156,
+        "nameVariant": "samsunga51,Samsung A51,SS A51"
+      },
+      "sa71": {
+        "amount": 1000,
+        "width": 73,
+        "hight": 161,
+        "nameVariant": "samsung a71,SS A71"
+      },
+      "sa6": {
+        "amount": 1000,
+        "width": 68,
+        "hight": 147,
+        "nameVariant": "samsung a6,sa6,SS A6 2018"
+      },
+      "sa6plus": {
+        "amount": 1000,
+        "width": 75,
+        "hight": 158,
+        "nameVariant": "sung A6+,sam sung a6 plus,Samsung Galaxy A6 Plus,SS A6 PLUS"
+      },
+      "sa7": {
+        "amount": 1000,
+        "width": 75,
+        "hight": 158,
+        "nameVariant": "samsung a7,Samsung Galaxy A7 2018,Samsung A7 2018,SAMSUNG A7 (2018)"
+      },
+      "sa9": {
+        "amount": 1000,
+        "width": 75,
+        "hight": 160,
+        "nameVariant": "samsung a9,Samsung A9 2018"
+      },
+      "sa750": {
+        "amount": 1000,
+        "width": 75,
+        "hight": 158,
+        "nameVariant": "samsung a750"
+      },
+      "sj6plus": {
+        "amount": 1000,
+        "width": 75,
+        "hight": 158,
+        "nameVariant": "sung J6+,SAM SUNG J6 PLUS,SS J6 PLUS,Samsung Galaxy J6 Plus"
+      },
+      "sa70": {
+        "amount": 1000,
+        "width": 75,
+        "hight": 163,
+        "nameVariant": "Galaxy A70,SS A70"
+      },
+      "sa50s": {
+        "amount": 1000,
+        "width": 75,
+        "hight": 158,
+        "nameVariant": "SS A50S,Sam sung A50s,Samsung Galaxy A50S"
+      },
+      "oreno2z": {
+        "amount": 1000,
+        "width": 73,
+        "hight": 161,
+        "nameVariant": "oppo reno 2z,oppo reno 2z,OPPO RENO 2F,OPPO RENNO 2F"
+      },
+      "oreno2": {
+        "amount": 1000,
+        "width": 72,
+        "hight": 158,
+        "nameVariant": "oppo reno 2"
+      },
+      "orealme5": {
+        "amount": 1000,
+        "width": 72,
+        "hight": 162,
+        "nameVariant": "oppo realme 5"
+      },
+      "oa7": {
+        "amount": 1000,
+        "width": 73,
+        "hight": 153,
+        "nameVariant": "oppo a7"
+      },
+      "oa91": {
+        "amount": 1000,
+        "width": 71,
+        "hight": 158,
+        "nameVariant": "oppo a91"
+      },
+      "oa1k": {
+        "amount": 1000,
+        "width": 72,
+        "hight": 152,
+        "nameVariant": "oppo a1k"
+      },
+      "oa37": {
+        "amount": 1000,
+        "width": 70,
+        "hight": 141,
+        "nameVariant": "oppo a37"
+      },
+      "oa39": {
+        "amount": 1000,
+        "width": 72,
+        "hight": 148,
+        "nameVariant": "oppo a39"
+      },
+      "of11": {
+        "amount": 1000,
+        "width": 75,
+        "hight": 163,
+        "nameVariant": "oppo f11"
+      },
+      "of11pro": {
+        "amount": 1000,
+        "width": 76,
+        "hight": 160,
+        "nameVariant": "Oppo F11 Pro"
+      },
+      "of1s": {
+        "amount": 1000,
+        "width": 76,
+        "hight": 155,
+        "nameVariant": "oppo f1s"
+      },
+      "of5": {
+        "amount": 1000,
+        "width": 75,
+        "hight": 156,
+        "nameVariant": "oppo f5"
+      },
+      "of7": {
+        "amount": 1000,
+        "width": 73,
+        "hight": 154,
+        "nameVariant": "oppo f7"
+      },
+      "of9": {
+        "amount": 1000,
+        "width": 72,
+        "hight": 156,
+        "nameVariant": "oppo f9"
+      },
+      "oa5": {
+        "amount": 1000,
+        "width": 74,
+        "hight": 154,
+        "nameVariant": "OPPO A5"
+      },
+      "hp20": {
+        "amount": 1000,
+        "width": 70,
+        "hight": 147,
+        "nameVariant": "p20"
+      },
+      "hp20pro": {
+        "amount": 1000,
+        "width": 72,
+        "hight": 153,
+        "nameVariant": "p20 pro"
+      },
+      "hmate20pro": {
+        "amount": 1000,
+        "width": 70,
+        "hight": 156,
+        "nameVariant": "mate 20 pro"
+      },
+      "hp30": {
+        "amount": 1000,
+        "width": 70,
+        "hight": 148,
+        "nameVariant": "p30"
+      },
+      "hp30pro": {
+        "amount": 1000,
+        "width": 71,
+        "hight": 156,
+        "nameVariant": "p30 pro"
+      },
+      "hy9prime": {
+        "amount": 1000,
+        "width": 75,
+        "hight": 161,
+        "nameVariant": "y9 prime"
+      },
+      "hnova2i": {
+        "amount": 1000,
+        "width": 70,
+        "hight": 152,
+        "nameVariant": "nova 2i"
+      },
+      "hnova3i": {
+        "amount": 1000,
+        "width": 72,
+        "hight": 154,
+        "nameVariant": "nova 3i"
+      },
+      "hy6": {
+        "amount": 1000,
+        "width": 70,
+        "hight": 152,
+        "nameVariant": "huawei y6"
+      },
+      "xa1": {
+        "amount": 1000,
+        "width": 74,
+        "hight": 154,
+        "nameVariant": "xiaomi a1,xiaomi 5x"
+      },
+      "xrnote4": {
+        "amount": 1000,
+        "width": 76,
+        "hight": 151,
+        "nameVariant": "redmi note 4"
+      },
+      "x8lite": {
+        "amount": 1000,
+        "width": 73,
+        "hight": 154,
+        "nameVariant": "mi 8 lite"
+      },
+      "xnote7pro": {
+        "amount": 1000,
+        "width": 73,
+        "hight": 157,
+        "nameVariant": "note 7 pro"
+      },
+      "x8pro": {
+        "amount": 1000,
+        "width": 73,
+        "hight": 152,
+        "nameVariant": "mi 8 pro"
+      },
+      "xcc9": {
+        "amount": 1000,
+        "width": 71,
+        "hight": 154,
+        "nameVariant": "cc9"
+      },
+      "xk20pro": {
+        "amount": 1000,
+        "width": 71,
+        "hight": 155,
+        "nameVariant": "k20 pro"
+      },
+      "vy91c": {
+        "amount": 1000,
+        "width": 72,
+        "hight": 152,
+        "nameVariant": "vivo y91c"
+      },
+      "vy85": {
+        "amount": 1000,
+        "width": 74,
+        "hight": 154,
+        "nameVariant": "vivo y85"
+      },
+      "vy11": {
+        "amount": 1000,
+        "width": 72,
+        "hight": 156,
+        "nameVariant": "vivo y11"
+      },
+      "vy17": {
+        "amount": 1000,
+        "width": 74,
+        "hight": 157,
+        "nameVariant": "vivo y17"
+      },
+      "vy19": {
+        "amount": 1000,
+        "width": 74,
+        "hight": 161,
+        "nameVariant": "vivo y19"
+      },
+      "vv15": {
+        "amount": 1000,
+        "width": 75,
+        "hight": 161,
+        "nameVariant": "vivo v15"
+      },
+      "vv15pro": {
+        "amount": 1000,
+        "width": 76,
+        "hight": 158,
+        "nameVariant": "vivo v15pro,Vivo V15 Pro"
+      },
+      "oneplus6": {
+        "amount": 1000,
+        "width": 73,
+        "hight": 153,
+        "nameVariant": "one plus 6"
+      },
+      "oa5s": {
+        "amount": 1000,
+        "width": 80,
+        "hight": 160,
+        "nameVariant": "OPPO A5S"
+      },
+      "oa52020": {
+        "amount": 1000,
+        "width": 80,
+        "hight": 160,
+        "nameVariant": "Oppo A5 2020"
+      },
+      "sj7pro": {
+        "amount": 1000,
+        "width": 80,
+        "hight": 160,
+        "nameVariant": "Sam sung J7pro"
+      },
+      "sj7plus": {
+        "amount": 1000,
+        "width": 80,
+        "hight": 160,
+        "nameVariant": "Samsung J7 Plus"
+      }
+    },
+    {
       "name": "glass05",
       "country": "US",
       "amount": "1",
