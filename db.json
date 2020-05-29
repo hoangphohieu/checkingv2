@@ -28,12 +28,12 @@
       "case": "i11",
       "date": "1590598800000",
       "type": "glass",
-      "id": "60c9c5a4-a0f1-11ea-9364-0959a94e4702",
+      "id": "901052f3-a161-11ea-9439-b75c37393072",
       "printStatus": "wait",
       "month": "5",
       "year": "2020",
       "datatype": "item",
-      "barcode": "15906769150004"
+      "barcode": "15907250980004"
     },
     {
       "name": "glass04",
@@ -43,12 +43,12 @@
       "case": "i7",
       "date": "1590598800000",
       "type": "glass",
-      "id": "60c9c5a3-a0f1-11ea-9364-0959a94e4702",
+      "id": "901052f2-a161-11ea-9439-b75c37393072",
       "printStatus": "wait",
       "month": "5",
       "year": "2020",
       "datatype": "item",
-      "barcode": "15906769150003"
+      "barcode": "15907250980003"
     },
     {
       "name": "glass03",
@@ -58,12 +58,12 @@
       "case": "s9",
       "date": "1590598800000",
       "type": "glass",
-      "id": "60c9c5a2-a0f1-11ea-9364-0959a94e4702",
+      "id": "901052f1-a161-11ea-9439-b75c37393072",
       "printStatus": "wait",
       "month": "5",
       "year": "2020",
       "datatype": "item",
-      "barcode": "15906769150001"
+      "barcode": "15907250980001"
     },
     {
       "name": "glass03",
@@ -73,12 +73,12 @@
       "case": "s10",
       "date": "1590598800000",
       "type": "glass",
-      "id": "60c9c5a1-a0f1-11ea-9364-0959a94e4702",
+      "id": "901052f0-a161-11ea-9439-b75c37393072",
       "printStatus": "wait",
       "month": "5",
       "year": "2020",
       "datatype": "item",
-      "barcode": "15906769150001"
+      "barcode": "15907250980001"
     },
     {
       "name": "glass01",
@@ -88,12 +88,12 @@
       "case": "i7",
       "date": "1590598800000",
       "type": "glass",
-      "id": "60c9c5a0-a0f1-11ea-9364-0959a94e4702",
+      "id": "90102be0-a161-11ea-9439-b75c37393072",
       "printStatus": "wait",
       "month": "5",
       "year": "2020",
       "datatype": "item",
-      "barcode": "15906769150000"
+      "barcode": "15907250980000"
     }
   ]
 }

@@ -78,16 +78,16 @@ button1.onClick = function () {
         var type = data.type;
         switch (type) {
             case "glass":
-                createTableGlass(data);
+                createTableGlass(data, type);
                 break;
             case "luminous":
-                createTableLuminous(data);
+                createTableLuminous(data, type);
                 break;
             case "led":
-                createTableLed(data);
+                createTableLed(data, type);
                 break;
             case "silicon":
-                createTableSilicon(data);
+                createTableSilicon(data, type);
                 break;
 
             default:
@@ -115,55 +115,12 @@ function createTableGlass(data) {
     var stt = 0;
 
 
-    for (var i = 0; i <= arr.length - 1; i++) { // loop làm file in
-        app.documents.add(wAll, hAll, 300, "GLLM");
-        app.activeDocument.layerSets.add();
-        app.activeDocument.activeLayer.name = "CMYK";
-        app.activeDocument.layerSets.add();
-        app.activeDocument.activeLayer.name = "SPOT";
 
-        yPosition = 0;
-        xPosition = 0;
-        hLast = 0;
-        wLast = 0;
-        var lastName = "";
-
-        GLLMOneTable(arr, wAll, hAll, yPosition, xPosition, hLast, wLast, lastName, stt, i);
-
-        { // xử lý sau khi duplicate hết items
-            app.activeDocument.activeLayer = app.activeDocument.layerSets["SPOT"].artLayers.getByName("SPOTKhung");
-            var PSpotKhung = app.activeDocument.activeLayer.bounds;
-            app.activeDocument.crop(PSpotKhung, 0, PSpotKhung[2] - PSpotKhung[0], PSpotKhung[3] - PSpotKhung[1]);
-            app.activeDocument.rotateCanvas(180);
-            app.doAction("selectArea", "autoUv");
-            app.doAction("createSPOTWithArea", "autoUv");
-        }
-        { // lưu file khung
-            app.activeDocument.layerSets.getByName("SPOT").visible = false;
-            app.activeDocument.layerSets.getByName("CMYK").visible = false;
-            var folder1 = Folder("~/Desktop/in an/Glass " + (i + 1) + "_" + hour + "_" + day + "_" + mounth);
-            if (!folder1.exists) { folder1.create(); }
-            app.activeDocument.saveAs(Folder("~/Desktop/in an/Glass " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/khung.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
-
-        }// lưu file in
-        {
-            app.activeDocument.channels.getByName("Spot Color 1").remove();
-            app.activeDocument.layerSets.getByName("CMYK").visible = true;
-            var PCMYK = app.activeDocument.layerSets.getByName("CMYK").bounds;
-            app.activeDocument.activeLayer = app.activeDocument.layerSets.getByName("CMYK");
-            app.doAction("createSmarkOBJ", "autoUv");
-            app.doAction("selectArea", "autoUv");
-            app.doAction("createSPOTWithArea", "autoUv");
-            app.activeDocument.saveAs(Folder("~/Desktop/in an/Glass " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/in.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
-
-        }
-        app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
-    } // hết làm file
     { // tạo nhãn
         createTem(); // hàm tạo tem và nhãn
         for (var i = 0; i <= arr.length - 1; i++) {
             for (var j = 0; j <= arr[i].length - 1; j++) {
-                moveTem(arr[i][j], day, mounth);
+                moveTem(arr[i][j], type);
                 var folder1 = Folder("~/Desktop/in an/Glass " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/tem");
                 if (!folder1.exists) { folder1.create(); }
                 app.activeDocument.saveAs(Folder("~/Desktop/in an/Glass " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/tem/" + arr[i][j].stt + ".jpg"), JPEGSaveOptions, true, Extension.LOWERCASE);
@@ -572,6 +529,7 @@ function createTableLed(data) {
 
     }
 };
+
 function createTem() {
     var wtem = 50; var htem = 30;
     wtem = Math.round(wtem / 0.084667);
@@ -588,8 +546,8 @@ function createTem() {
         app.activeDocument.artLayers.add(); // tao layer text
         app.activeDocument.activeLayer.kind = LayerKind.TEXT;
         app.doAction("changeFontRoboto", "autoUv");
-        app.activeDocument.activeLayer.name = "_name";
-        app.activeDocument.activeLayer.textItem.contents = "_name";
+        app.activeDocument.activeLayer.name = "name";
+        app.activeDocument.activeLayer.textItem.contents = "name";
         app.activeDocument.activeLayer.textItem.kind = TextType.PARAGRAPHTEXT; // loại text
         app.activeDocument.activeLayer.textItem.width = 100; // chiều rộng của khung
         app.activeDocument.activeLayer.textItem.height = 60; // chiều cao của khung
@@ -635,8 +593,7 @@ function createTem() {
         app.activeDocument.activeLayer.textItem.justification = Justification.CENTER; // căn giữa
         app.activeDocument.activeLayer.textItem.size = 20; // font size
         app.activeDocument.activeLayer.textItem.color = colorTextBlack; // màu chữ 
-        app.doAction("moveBarcode", "autoUv");
-        app.activeDocument.artLayers.getByName("barcode").translate(0, 120);
+
 
     }
 
@@ -684,16 +641,19 @@ function convertDate(date, type, country) {
     var nameDate = new Date(date).getDate() + "-" + (new Date(date).getMonth() + 1) + " " + _type + " / " + country;
     return nameDate
 }
-function moveTem(item, day, mounth) {
-    // alert(item)
+function moveTem(item, type) {
+    // alert(type)
     var PRectangleTem = app.activeDocument.artLayers.getByName("Rectangle 1").bounds;
     app.activeDocument.artLayers.getByName("date").textItem.contents = convertDate(item.date, type, item.country);
-    app.activeDocument.artLayers.getByName("_name").textItem.contents = item._name;
+    app.activeDocument.artLayers.getByName("name").textItem.contents = item.name;
     app.activeDocument.artLayers.getByName("barcode").textItem.contents = item.barcode;
-    app.activeDocument.activeLayer = app.activeDocument.artLayers.getByName("_name");
+    app.activeDocument.activeLayer = app.activeDocument.artLayers.getByName("barcode");
+    app.doAction("moveBarcode", "autoUv");
+    app.activeDocument.artLayers.getByName("barcode").translate(0, 120);
+    app.activeDocument.activeLayer = app.activeDocument.artLayers.getByName("name");
     app.doAction("moveTL", "autoUv");
-    var P_name = app.activeDocument.artLayers.getByName("_name").bounds;
-    app.activeDocument.activeLayer.translate(10, (260 + P_name[1] - P_name[3]) / 2);
+    var Pname = app.activeDocument.artLayers.getByName("name").bounds;
+    app.activeDocument.activeLayer.translate(10, (260 + Pname[1] - Pname[3]) / 2);
 
     app.activeDocument.artLayers.getByName("stt").textItem.contents = item.stt;
     app.activeDocument.activeLayer = app.activeDocument.artLayers.getByName("stt");
@@ -713,6 +673,8 @@ function moveTem(item, day, mounth) {
     var PAmount = app.activeDocument.artLayers.getByName("amount").bounds;
     app.activeDocument.artLayers.getByName("amount").translate(PRectangleTem[2] + ((app.activeDocument.width - PRectangleTem[2] - PAmount[2] + PAmount[0]) / 2), ((app.activeDocument.height / 2) - PAmount[3] + PAmount[1]) / 2);
 }
+
+
 function GLLMOneTable(arr, wAll, hAll, yPosition, xPosition, hLast, wLast, lastName, stt, i) {
     // for loop items
 
