@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { json2excel } from 'js2excel';
 import GL_LM_LED from './GL_LM_LED';
+import PhoiIn from './PhoiIn';
 class ModalItem extends Component {
     constructor(props, context) {
         super(props, context);
@@ -14,18 +15,7 @@ class ModalItem extends Component {
 
     render() {
         let data = this.props.dataitem;
-        let amountAllPhoneCase = [];
-        let phonecaseSheet = JSON.parse(localStorage.PhonesAlltribute).map(param => param.nameDefault);
-        for (let i = 0; i < phonecaseSheet.length; i++) {
-            let data2 = data.filter(param => param.case === phonecaseSheet[i]);
-            if (data2.length !== 0)
-                amountAllPhoneCase = [...amountAllPhoneCase, <tr key={i}>
-                    <th scope="row">{amountAllPhoneCase.length + 1}</th>
-                    <td className="cot_row">{phonecaseSheet[i]}</td>
-                    <td className="cot_row">{data2.length}</td>
-                </tr>];
 
-        }
 
         if (this.state.downClickExcel === true) {
 
@@ -42,6 +32,7 @@ class ModalItem extends Component {
             }
             this.setState({ downClickExcel: false })
         }
+        // console.log(data);
 
         return (
             <div className={(this.props.showModal === false) ? "d-none" : " d-modal"}>
@@ -58,20 +49,11 @@ class ModalItem extends Component {
                         <GL_LM_LED {...this.props} itemsLocal={data} />
                         <div className="row">
                             <div className="col-5">
-                                <table className="table table-striped table_amounts">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">STT</th>
-                                            <th scope="col">Tên</th>
-                                            <th scope="col">Số lượng</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        {amountAllPhoneCase}
-                                    </tbody>
-                                </table>
+                                <PhoiIn dataitem={this.props.dataitem} type={this.props.type} />
                             </div>
+                            <div className="col-5">
+                            </div>
+
                         </div>
 
 
@@ -79,7 +61,7 @@ class ModalItem extends Component {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" onClick={this.props.closeModal}>Close</button>
-                        <button type="button" className="btn btn-primary">Understood</button>
+
                     </div>
                 </div>
 

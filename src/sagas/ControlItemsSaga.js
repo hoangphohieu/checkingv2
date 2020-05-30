@@ -90,10 +90,35 @@ function* postItem(param) {     // lấy total page
     }
 
 }
+
+function* updatePCPro(param) {     // lấy total page
+    
+
+    try {
+        let res1 = yield PutItemAPI(param.payload); //gọi API
+        console.log(res1);
+
+        yield put({
+            type: type.CI_UPDATE_PC_PRO_SUCSESS, // trigger valueToGetAPIReducer , tính lại total Page
+            payload: res1
+        })
+    } catch (error) {
+        yield put({
+            type: type.CI_UPDATE_PC_PRO_RFAILURE, // trigger itemsReducer
+            payload: {
+                errorMessage: error.Message
+            }
+        })
+    }
+
+}
+
+
 export const ControlItemsSaga = [
     takeEvery(type.GET_CI_CHECKING_REQUEST, getChecking), // da su dung
     takeEvery(type.CI_DELETE_ITEMS_REQUEST, deleteItemChecking), // da su dung
     takeEvery(type.CI_PATCH_ITEMS_REQUEST, patchItem), // da su dung
+    takeEvery(type.CI_UPDATE_PC_PRO_REQUEST, updatePCPro), // da su dung
 
     takeEvery(type.ITEM_POST_ITEM_REQUEST, postItem),
 

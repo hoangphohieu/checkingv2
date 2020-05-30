@@ -124,7 +124,7 @@ class BigTable extends Component {
 
 
         };
-        console.log(barcode);
+        // console.log(barcode);
 
         if (barcode.split("").length !== 14) this.alertError("co loi upload.js - barcode");
         barcode = barcode.split("");
@@ -167,7 +167,14 @@ class BigTable extends Component {
 
 
         let items = this.props.itemsLocal;
-        let itemSheet = JSON.parse(localStorage.PCSheetChild);
+        let itemSheet = [];
+        if (this.props.type === "glass" || this.props.type === "luminous") {
+            itemSheet = JSON.parse(localStorage.pc_gllm);
+        }
+        else if (this.props.type === "led") {
+            itemSheet = JSON.parse(localStorage.pc_led);
+
+        }
         let itemFail = JSON.parse(localStorage.PCSheetReturn);
 
 
@@ -179,6 +186,8 @@ class BigTable extends Component {
         let arr = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
         let danhSach = [], danhsach2 = [];
 
+        // console.log(items);
+        // console.log(itemSheet);
 
         if (items.length !== 0 && itemSheet.length !== 0) {
 
@@ -283,6 +292,7 @@ class BigTable extends Component {
             itemThua = _.difference(items, itemsFilter);
             items = itemsFilter;
 
+            // console.log(items);
 
             // lấy sku để xem file nào chưa có
             allFileName = items.map(item => { return item.sku })
@@ -442,7 +452,7 @@ class BigTable extends Component {
         items = arr;
         let renderTable = [];
         if (items.length !== 0) renderTable = items.map((item, key) => <OneTable key={key} items={item} numberTable={key} typeTable={this.props.type} />)
-        // console.log(arr);
+        // console.log(items);
 
         return (
             <React.Fragment>

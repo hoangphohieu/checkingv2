@@ -4,6 +4,27 @@
   
 }
 
+.add-pc-pro {
+    font-size: 1.2rem;
+    border: 1px solid #000;
+    /* width: 3rem; */
+    margin-top: 0px;
+    padding: 0.2rem 1rem;
+}
+
+.ptk-item {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.ptl-ctn {
+    border: 1px solid gray;
+    margin: 2px;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 .card-title-pro {
     font-weight: 500;
 }

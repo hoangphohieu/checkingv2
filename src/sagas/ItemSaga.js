@@ -34,7 +34,7 @@ function* getSheetPC(param) {
         api = "/pc_led"
     else if (typePC === "silicon")
         api = "/pc_silicon"
-    else if (typePC === "gllm")
+    else if (typePC === "glass" || typePC === "luminous")
         api = "/pc_gllm"
 
     try {
@@ -98,7 +98,7 @@ function* getSheetPCReturn(param) {
         })
     }
 }
-function* patchPrintStatusItem(param) {     // lấy total page
+function* patchItem(param) {     // lấy total page
     console.log(param);
 
     try {
@@ -111,7 +111,48 @@ function* patchPrintStatusItem(param) {     // lấy total page
         })
     } catch (error) {
         yield put({
-            type: type.CHANGE_PRINT_STATUS_RFAILURE, // trigger itemsReducer
+            type: type.PATCH_ITEM_CHECKING_PROPERTIES_RFAILURE, // trigger itemsReducer
+            payload: {
+                errorMessage: error.Message
+            }
+        })
+    }
+
+}
+
+function* updatePCPro(param) {     // lấy total page
+    // console.log(param);
+
+    try {
+        let res1 = yield PutItemAPI(param.payload); //gọi API
+        // console.log(res1);
+
+        yield put({
+            type: type.ITEM_GET_PC_PRO_REQUEST, // trigger valueToGetAPIReducer , tính lại total Page
+            payload: "?type=pc_properties"
+        })
+    } catch (error) {
+        yield put({
+            type: type.ITEM_UPDATE_PC_PRO_RFAILURE, // trigger itemsReducer
+            payload: {
+                errorMessage: error.Message
+            }
+        })
+    }
+
+}
+
+function* getPCPro(param) {     // lấy total page
+    // console.log("getPCPro",param);
+    try {
+        let res1 = yield getByCustomAPI(param.payload); //gọi API
+        yield put({
+            type: type.ITEM_GET_PC_PRO_SUCSESS, // trigger valueToGetAPIReducer , tính lại total Page
+            payload: res1
+        })
+    } catch (error) {
+        yield put({
+            type: type.ITEM_GET_PC_PRO_RFAILURE, // trigger itemsReducer
             payload: {
                 errorMessage: error.Message
             }
@@ -122,11 +163,14 @@ function* patchPrintStatusItem(param) {     // lấy total page
 
 
 
+
 export const ItemSaga = [
     takeEvery(type.GET_CHECKING_REQUEST, getChecking),
     takeEvery(type.ITEMS_GET_SHEET_PC_REQUEST, getSheetPC),
     takeEvery(type.DELETE_ITEM_CHECKING_REQUEST, deleteItemChecking),
-    takeEvery(type.PATCH_ITEM_CHECKING_PROPERTIES_REQUEST, patchPrintStatusItem),
-    takeEvery(type.ITEMS_GET_PC_RETURN_REQUEST, getSheetPCReturn),
+    takeEvery(type.PATCH_ITEM_CHECKING_PROPERTIES_REQUEST, patchItem),
+    takeEvery(type.ITEMS_GET_PC_RETURN_REQUEST, getSheetPCReturn), 
+    takeEvery(type.ITEM_UPDATE_PC_PRO_REQUEST, updatePCPro),
+    takeEvery(type.ITEM_GET_PC_PRO_REQUEST, getPCPro),
 
 ];   

@@ -40,9 +40,12 @@ class App extends Component {
 
     this.props.getSheetPhone("gllm");
   }
-  convertPCProperties = (items) => {
-    let C_Items = _.toPairs(items).filter(param => (param[0] !== "id" && param[0] !== "type")).map(param => { return { ...param[1], nameDefault: param[0] } });
-    localStorage.setItem("PhonesAlltribute", JSON.stringify(C_Items));
+  convertPCProperties = (payload) => {
+    payload.forEach(items => {
+      let C_Items = _.toPairs(items).filter(param => (param[0] !== "id" && param[0] !== "type")).map(param => { return { ...param[1], nameDefault: param[0] } });
+      localStorage.setItem(items.id, JSON.stringify(C_Items));
+
+    });
   }
   componentDidUpdate() {
     if (this.props.itemReducer.type === "GET_SHEET_PHONE_SUCSESS") {
@@ -62,7 +65,7 @@ class App extends Component {
   render() {
     let userProperties = JSON.parse(localStorage.UserProperties);
     let partnerTypeUser = userProperties[0];
-    console.log(this.props.itemReducer.listItem);
+    console.log("renderapp....................");
 
     return (
       <React.Fragment>

@@ -13,9 +13,10 @@ function mapDispatchToProps(dispatch) {
             patchItem: (param) => dispatch(actions.patchItem_ControlItems(param)),
             deleteItem: (param) => dispatch(actions.CI_deleteItem(param)),
             searchChecking: (param) => dispatch(actions.getCheckingControlItem(param)),
+            updatePcPro: (param) => dispatch(actions.CI_updatePcPro(param)),
             propsItemsToDefault: () => dispatch(actions.propsControlItemsToDefault()),
 
-
+  
 
       };
 }

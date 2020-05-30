@@ -17,6 +17,8 @@ function mapDispatchToProps(dispatch) {
             getSheetPhone: (param) => dispatch(actions.ItemGetSheetPhone(param)),
             getPCReturn: (param) => dispatch(actions.ItemGetPCReturn(param)),
             postItem: (param) => dispatch(actions.itemPostItem(param)),
+            updatePcProperties: (param) => dispatch(actions.Items_updatePcProperties(param)),
+
             propsItemsToDefault: () => dispatch(actions.propsItemsToDefault()),
 
 

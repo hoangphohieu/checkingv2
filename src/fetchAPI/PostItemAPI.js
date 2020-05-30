@@ -6,7 +6,7 @@ export default function postItemExcel(param) {
       
       return new Promise((resolve, reject) => {
           const url =type.FETCH_URL_ITEMS;
-          console.log("Post",url);
+          // console.log("Post",url);
           fetch(url, {
               method: "POST",
               headers: {

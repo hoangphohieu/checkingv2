@@ -23,10 +23,13 @@ class CardItem extends Component {
                 arrObj[item[i][0]] = this.refs[item[i][0]].value;
             }
         }
+        console.log(arrObj);
+
         this.props.patchItemCheckingProperties(arrObj);
 
     }
     render() {
+        // console.log(this.props.itemCard);
 
         let country = <div className="dropdown">
             <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -79,7 +82,7 @@ class CardItem extends Component {
                 </div>)
         }
         else {
-            properties = _.toPairs(this.props.itemCard).filter(param => param[0] !== "datatype" & param[0] !== "id" & param[0] !== "month" & param[0] !== "year" & param[0] !== "case" & param[0] !== "country" & param[0] !== "printStatus" & param[0] !== "type    ")
+            properties = _.toPairs(this.props.itemCard).filter(param => param[0] !== "datatype" & param[0] !== "id" & param[0] !== "month" & param[0] !== "year" & param[0] !== "case" & param[0] !== "country" & param[0] !== "printStatus" & param[0] !== "type")
                 .map((param, key) => <div key={key} className="ctn-card-pro">
                     <div className="card-title-pro">{param[0]}: </div>
                     <input

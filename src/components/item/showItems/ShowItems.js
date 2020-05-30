@@ -17,15 +17,13 @@ class ShowItems extends Component {
         this.CDU_checkRequest(); // kiểm tra và thực hiện hành động khi  request trả về
     }
     componentDidMount() {
-        localStorage.PCSheetChild = JSON.stringify([]);
         localStorage.PCSheetReturn = JSON.stringify([]);
     }
     CDU_checkRequest() {
 
         if (this.props.ItemPayload.type === "GET_CHECKING_SUCSESS") { this.getCheckingSucsess() }
-        else if (this.props.ItemPayload.type === "ITEMS_GET_SHEET_PC_SUCSESS") { this.getSheetPCDone() }
         else if (this.props.ItemPayload.type === "ITEMS_GET_PC_RETURN_SUCSESS") { this.getSheetPCReturnDone() }
-        else if (this.props.ItemPayload.type === "ITEMS_GET_SHEET_PC_RFAILURE" || this.props.ItemPayload.type === "ITEMS_GET_PC_RETURN_RFAILURE") { this.getSheetPCFail() }
+        else if ( this.props.ItemPayload.type === "ITEMS_GET_PC_RETURN_RFAILURE") { this.getSheetPCFail() }
         else if (this.props.ItemPayload.type === "GET_CHECKING_RFAILURE") { this.getCheckingFail() }
 
 
@@ -41,10 +39,7 @@ class ShowItems extends Component {
         alert("Kiem tra duong truyen mang");
         window.location = '/Item';
     }
-    getSheetPCDone = () => {
-        localStorage.PCSheetChild = JSON.stringify(this.props.ItemPayload.listItem);
-        this.props.propsItemsToDefault();
-    }
+
     getSheetPCReturnDone = () => {
         localStorage.PCSheetReturn = JSON.stringify(this.props.ItemPayload.listItem);
         this.props.propsItemsToDefault();
@@ -70,12 +65,13 @@ class ShowItems extends Component {
     }
     clickChangeCard = (param) => {
         this.setState(param);
-        
-        
+
+
     }
 
     render() {
 
+// console.log(this.state.itemCard);
 
 
         return (
@@ -89,7 +85,7 @@ class ShowItems extends Component {
 
                     <ShowGLLM type="silicon" items={this.state.items} setCard={this.setCard}  {...this.props} />
                 </div>
-                <CardItem {...this.props} itemCard={this.state.itemCard} changeCard={this.state.changeCard} clickChangeCard={this.clickChangeCard} />
+                <CardItem {...this.props} itemCard={this.state.itemCard} changeCard={this.state.changeCard} clickChangeCard={this.clickChangeCard} /> 
             </div>
         );
     }

@@ -43,7 +43,16 @@ class ControlItems extends Component {
             else if (this.props.ItemReducer.type === "CI_DELETE_ITEMS_SUCSESS") { this.patchItemsSucsess() }
             else if (this.props.ItemReducer.type === "CI_PATCH_ITEMS_RFAILURE") { this.patchItemsFaild() }
             else if (this.props.ItemReducer.type === "CI_DELETE_ITEMS_RFAILURE") { this.patchItemsFaild() }
+            else if (this.props.ItemReducer.type === "CI_UPDATE_PC_PRO_SUCSESS") { this.updatePCProDone() }
+            else if (this.props.ItemReducer.type === "CI_UPDATE_PC_PRO_RFAILURE") { this.updatePCProfail() }
+
             else if (this.props.ItemReducer.type === "POST_ITEM_EXCEL_RFAILURE") { this.doingWhenPostItemFail() }
+      }
+      updatePCProDone = () => {
+            let pcPro = this.props.ItemReducer.listItem;
+            if (pcPro.id = "pc_gllm") localStorage.items_gllm = "[]";
+            if (pcPro.id = "pc_led") localStorage.items_led = "[]";
+            if (pcPro.id = "pc_silicon") localStorage.items_silicon = "[]";
       }
       CDU_SetAllPrinted() {
             let items = JSON.parse(localStorage.itemsPatch);
@@ -75,9 +84,20 @@ class ControlItems extends Component {
 
 
 
-            if (localStorage.itemsPatch === "[]" && localStorage.CI_itemsPatchFail !== "[]") {
+            if (localStorage.itemsPatch === "[]" & localStorage.CI_itemsPatchFail !== "[]" & localStorage.items_gllm === "[]" & localStorage.items_led === "[]" & localStorage.items_silicon === "[]") {
                   localStorage.itemsPatch = localStorage.CI_itemsPatchFail;
                   localStorage.CI_itemsPatchFail = "[]";
+            }
+            if (localStorage.itemsPatch === "[]") {
+                  if (localStorage.items_gllm !== "[]") {
+                        this.props.updatePcPro(JSON.parse(localStorage.items_gllm));
+                  }
+                  else if (localStorage.items_led !== "[]") {
+                        this.props.updatePcPro(JSON.parse(localStorage.items_led));
+                  }
+                  else if (localStorage.items_silicon !== "[]") {
+                        this.props.updatePcPro(JSON.parse(localStorage.items_silicon));
+                  }
             }
       }
       patchItem = (item) => {
@@ -89,15 +109,56 @@ class ControlItems extends Component {
             items.pop();
             localStorage.itemsPatch = JSON.stringify(items);
             this.props.propsItemsToDefault();
-            console.log(items);
 
-            if (items.length === 0 && this.state.clickPrinted) { this.setState({ clickPrinted: false }) }
+            if (items.length === 0 && this.state.clickPrinted) {
+                  this.setState({ clickPrinted: false });
+
+                  let items = JSON.parse(localStorage.itemsPrinted);
+                  if (JSON.parse(localStorage.CI_itemsPatchFail).length !== 0) {
+                        items = _.difference(JSON.parse(localStorage.itemsPrinted), JSON.parse(localStorage.CI_itemsPatchFail));
+                  }
+                  localStorage.items_gllm = JSON.stringify(items.filter(param => (param.type === "glass" || param.type === "luminous")));
+                  localStorage.items_led = JSON.stringify(items.filter(param => param.type === "led"));
+                  localStorage.items_silicon = JSON.stringify(items.filter(param => param.type === "silicon"));
+
+                  // dem 
+                  if (localStorage.items_gllm !== "[]") localStorage.items_gllm = JSON.stringify(this.change_pc_pro(JSON.parse(localStorage.items_gllm), "pc_gllm"));
+                  if (localStorage.items_led !== "[]") localStorage.items_led = JSON.stringify(this.change_pc_pro(JSON.parse(localStorage.items_led), "pc_led"));
+                  if (localStorage.items_silicon !== "[]") localStorage.items_silicon = JSON.stringify(this.change_pc_pro(JSON.parse(localStorage.items_silicon), "pc_silicon"));
+
+
+            }
             else if (items.length === 0 && this.state.clickReturn) { this.setState({ clickReturn: false }) }
             else if (items.length === 0 && this.state.clickFailded) { this.setState({ clickFailded: false }) }
             else if (items.length === 0 && this.state.clickWait) { this.setState({ clickWait: false }) }
             else if (items.length === 0 && this.state.clickDone) { this.setState({ clickDone: false }) }
             else if (items.length === 0 && this.state.clickDelete) { this.setState({ clickDelete: false }) }
 
+
+
+      }
+
+      change_pc_pro = (items, type) => {
+            let pc_pro = JSON.parse(localStorage.getItem(type));
+            let amountAllPhoneCase = [];
+            let phonecaseSheet = pc_pro.map(param => param.nameDefault);
+
+
+            for (let i = 0; i < phonecaseSheet.length; i++) {
+                  let data2 = items.filter(param => param.case === phonecaseSheet[i]);
+                  amountAllPhoneCase = [...amountAllPhoneCase, [phonecaseSheet[i], data2.length]];
+            }
+
+
+            pc_pro = pc_pro.map(param => [param.nameDefault, param]);
+            pc_pro = _.fromPairs(pc_pro);
+            pc_pro = { ...pc_pro, id: type, type: "pc_properties" }
+
+
+
+
+            amountAllPhoneCase.forEach(param => { pc_pro[param[0]].amount = pc_pro[param[0]].amount - param[1] });
+            return pc_pro;
 
 
       }
@@ -135,7 +196,12 @@ class ControlItems extends Component {
 
       }
 
+      clickPrinterd = () => {
+            localStorage.itemsPrinted = localStorage.itemsPatch;
+            this.setStatus({ clickPrinted: true });
 
+
+      }
       render() {
             console.log(this.props.ItemReducer);
 
@@ -157,7 +223,7 @@ class ControlItems extends Component {
                                     <div className="grid-container-item">
                                           <div className="grid-items-item1">
                                                 <button type="button" className="btn btn-danger" style={{ width: "100%" }}
-                                                      onClick={() => this.setStatus({ clickPrinted: true })}>đánh dấu đã in xong
+                                                      onClick={this.clickPrinterd}>đánh dấu đã in xong
                                                 </button>
                                                 <button type="button" className="btn btn-success" style={{ width: "100%" }}
                                                       onClick={() => this.setStatus({ clickDone: true })}>đánh dấu hàng đã hoàn thành
@@ -197,7 +263,7 @@ class ControlItems extends Component {
                               <UtilitiesChecking {...this.props} newItems={newItems} /> // download excel
                         </div> */}
 
-                  </React.Fragment>
+                  </React.Fragment >
             );
       }
 }

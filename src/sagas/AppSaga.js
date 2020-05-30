@@ -4,7 +4,7 @@ import * as type from '../constants';
 
 function* getSheetPC(param) {
       try {
-            let res1 = yield getByCustomAPI("/pc_gllm");
+            let res1 = yield getByCustomAPI("?type=pc_properties");
             yield put({
                   type: type.GET_SHEET_PHONE_SUCSESS,
                   payload: res1

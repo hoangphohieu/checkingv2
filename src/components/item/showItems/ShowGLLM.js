@@ -11,8 +11,9 @@ class ShowGLLM extends Component {
         }
     }
 
- 
+
     tempAlert = (msg, duration) => {
+
         var el = document.createElement("div");
         el.setAttribute("style", "position:fixed;z-index:1000;top:10px;left:46%;background-color:#80ced6;padding:10px;font-size:2rem;color:white");
         el.innerHTML = msg;
@@ -33,12 +34,10 @@ class ShowGLLM extends Component {
     }
     closeModal = () => {
         this.setState({ showModal: false });
-        localStorage.PCSheetChild = "[]";
         localStorage.PCSheetReturn = "[]"
     }
     clickMore = () => {
         this.setState({ showModal: !this.state.showModal });
-        this.props.getSheetPhone(this.props.type);
         if (this.props.type === "glass" || this.props.type === "luminous") this.props.getPCReturn();
 
     }

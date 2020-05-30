@@ -9,6 +9,12 @@ export function getCheckingControlItem(payload) {
     return ({ type: type.GET_CI_CHECKING_REQUEST, payload })
 }
 
+export function CI_updatePcPro(payload) {
+    return ({ type: type.CI_UPDATE_PC_PRO_REQUEST, payload })
+}
+
+
+
 export function patchItem_ControlItems(payload) {
     return ({ type: type.CI_PATCH_ITEMS_REQUEST, payload })
 }
@@ -54,6 +60,14 @@ export function ItemGetPCReturn(payload) {
 export function itemPostItem(payload) {
     return ({ type: type.ITEM_POST_ITEM_REQUEST, payload })
 }
+
+export function Items_updatePcProperties(payload) {
+
+
+    return ({ type: type.ITEM_UPDATE_PC_PRO_REQUEST, payload })
+}
+
+
 export function propsItemsToDefault(payload) {
     return ({ type: type.PROPS_ITEMS_TO_DEFAULT, payload })
 }

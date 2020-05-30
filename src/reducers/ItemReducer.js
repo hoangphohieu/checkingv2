@@ -96,6 +96,42 @@ export default (state = DEFAULT_STATE, action) => {
 
             }
 
+
+
+            case type.ITEM_UPDATE_PC_PRO_RFAILURE:
+                return {
+                    ...state,
+                    isFetching: false,
+                    error: true,
+                    errorMessesage: action.payload.errorMessesage,
+                    type: "ITEM_UPDATE_PC_PRO_RFAILURE"
+    
+                }
+
+               
+
+            case type.ITEM_GET_PC_PRO_RFAILURE:
+                return {
+                    ...state,
+                    isFetching: false,
+                    error: true,
+                    errorMessesage: action.payload.errorMessesage,
+                    type: "ITEM_GET_PC_PRO_RFAILURE"
+    
+                } 
+
+
+        case type.ITEM_GET_PC_PRO_SUCSESS:
+
+            return {
+                ...state,
+                isFetching: false,
+                dataFetched: true,
+                error: false,
+                errorMessesage: null,
+                listItem: action.payload,
+                type: "ITEM_GET_PC_PRO_SUCSESS"
+            }
         default:
             return state;
     }
