@@ -8,11 +8,31 @@ import * as type from '../constants';
 import _ from "lodash";
 
 function* getChecking(param) {     // lấy total page
-    console.log(param);
+    
     try {
         let res1 = yield getByCustomAPI(param.payload); //gọi API
         yield put({
             type: type.GET_CHECKING_SUCSESS, // trigger valueToGetAPIReducer , tính lại total Page
+            payload: res1
+        })
+    } catch (error) {
+        yield put({
+            type: type.GET_CHECKING_RFAILURE, // trigger itemsReducer
+            payload: {
+                errorMessage: error.Message
+            }
+        })
+    }
+
+}
+
+
+function* getCheckingDate(param) {     // lấy total page
+    
+    try {
+        let res1 = yield getByCustomAPI(param.payload); //gọi API
+        yield put({
+            type: type.GET_CHECKING_DATE_SUCSESS, // trigger valueToGetAPIReducer , tính lại total Page
             payload: res1
         })
     } catch (error) {
@@ -164,12 +184,13 @@ function* getPCPro(param) {     // lấy total page
 
 
 
-export const ItemSaga = [
+export const HomeSaga = [
     takeEvery(type.GET_CHECKING_REQUEST, getChecking),
+    takeEvery(type.GET_CHECKING_DATE_REQUEST, getCheckingDate),
     takeEvery(type.ITEMS_GET_SHEET_PC_REQUEST, getSheetPC),
     takeEvery(type.DELETE_ITEM_CHECKING_REQUEST, deleteItemChecking),
     takeEvery(type.PATCH_ITEM_CHECKING_PROPERTIES_REQUEST, patchItem),
-    takeEvery(type.ITEMS_GET_PC_RETURN_REQUEST, getSheetPCReturn), 
+    takeEvery(type.ITEMS_GET_PC_RETURN_REQUEST, getSheetPCReturn),
     takeEvery(type.ITEM_UPDATE_PC_PRO_REQUEST, updatePCPro),
     takeEvery(type.ITEM_GET_PC_PRO_REQUEST, getPCPro),
 

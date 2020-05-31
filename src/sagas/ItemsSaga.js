@@ -114,7 +114,7 @@ function* updatePCPro(param) {     // lấy total page
 }
 
 
-export const ControlItemsSaga = [
+export const ItemsSaga = [
     takeEvery(type.GET_CI_CHECKING_REQUEST, getChecking), // da su dung
     takeEvery(type.CI_DELETE_ITEMS_REQUEST, deleteItemChecking), // da su dung
     takeEvery(type.CI_PATCH_ITEMS_REQUEST, patchItem), // da su dung

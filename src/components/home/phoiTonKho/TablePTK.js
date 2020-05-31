@@ -128,9 +128,10 @@ class TablePTK extends Component {
 
 
                         <div className="row justify-content-center">
-                              <div className="add-pc-pro" onClick={() => this.setState({ showFieldAdd: !this.state.showFieldAdd })}>
+                              <button className="add-pc-pro" onClick={() => this.setState({ showFieldAdd: !this.state.showFieldAdd })}>
                                     {(this.state.showFieldAdd === false) ? "Thêm" : "Đóng"}
-                              </div>
+                              </button>
+
                         </div>
                   </div>
 

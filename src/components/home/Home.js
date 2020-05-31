@@ -2,33 +2,27 @@ import React, { Component } from 'react';
 import CheckingInput from './CheckingInput';
 import _ from "lodash";
 import ShowItems from './showItems/ShowItems';
-import DayPicker from 'react-day-picker';
 import PhoiTonKho from './phoiTonKho/PhoiTonKho';
-
+import DatePicker from './DatePicker';
 import 'react-day-picker/lib/style.css';
+import Button from '@material-ui/core/Button';
 class Item extends Component {
       constructor(props, context) {
             super(props, context);
             this.state = ({
-                  selectedDay: undefined,
-                  ShowQLP: false
+                  ShowQLP: false,
+                  arrDate: [Date.parse(new Date().toDateString())]
             })
       }
 
       searchChecking = (param) => {
             this.props.searchChecking(param);
       }
-      handleDayClick = (day) => {
-            this.setState({ selectedDay: day });
-            let date = Date.parse(day) - 12 * 60 * 60 * 1000;
 
-            this.searchChecking(`?datatype=item&date=${date}`)
-      }
       componentDidUpdate() {
-            console.log(this.props.ItemPayload);
-
             this.CDU_checkRequest();
       }
+
       CDU_checkRequest() {
 
             if (this.props.ItemPayload.type === "ITEM_UPDATE_PC_PRO_RFAILURE" || this.props.ItemPayload.type === "ITEM_GET_PC_PRO_RFAILURE") { this.getPcProFail() }
@@ -37,7 +31,7 @@ class Item extends Component {
       }
       showAlert = (param) => {
             alert(param);
-            window.location = "/item"
+            window.location = "/"
       }
       getPcProFail = () => {
             this.showAlert("items.js-kiem tra duong truyen mang! ")
@@ -65,7 +59,12 @@ class Item extends Component {
 
             });
       }
+      getItemsDatePicker = (endPoint, arrDate) => {
+            this.setState({ arrDate: arrDate });
+            this.props.searchCheckingDate(endPoint);
+      }
       render() {
+
 
 
 
@@ -83,34 +82,31 @@ class Item extends Component {
                               <div className="col-12 checking-right mt-3">
                                     <div className="grid-container-item">
                                           <div className="grid-items-item1">
-
-                                                <button type="button" className="btn btn-warning" style={{ width: "100%" }}
+                                                <Button variant="outlined" className="mb-1 w-100  bt-show"
                                                       onClick={() => this.searchChecking("?datatype=item&printStatus=wait")}>Hàng chưa in
-                                                </button>
-                                                <button type="button" className="btn btn-danger" style={{ width: "100%" }}
+                                                </Button>
+                                                <Button variant="outlined" className="mb-1 w-100  bt-show"
                                                       onClick={() => this.searchChecking("?datatype=item&printStatus=printed")}>Hàng in xong chưa gửi
-                                                </button>
-                                                <button type="button" className="btn btn-dark" style={{ width: "100%" }}
+                                                </Button>
+                                                <Button variant="outlined" className="mb-1 w-100  bt-show"
                                                       onClick={() => this.searchChecking("?datatype=item&printStatus=failded")}>Hàng lỗi
-                                                </button>
-                                                <button type="button" className="btn btn-secondary" style={{ width: "100%" }}
+                                                </Button>
+                                                <Button variant="outlined" className="mb-1 w-100  bt-show"
                                                       onClick={() => this.searchChecking("?datatype=item&printStatus=return")}>Hàng hoàn
-                                                </button>
-                                                <button type="button" className="btn btn-secondary" style={{ width: "100%" }}
+                                                </Button>
+                                                <Button variant="outlined" className="mb-1 w-100 bt-show"
                                                       onClick={() => this.setState({ ShowQLP: true })}>Quản lý phôi
-                                                </button>
+                                                </Button>
+
                                                 <PhoiTonKho ShowQLP={this.state.ShowQLP} closeModal={() => this.setState({ ShowQLP: false })} {...this.props} />
 
-                                                <div>
-                                                      <DayPicker
-                                                            onDayClick={this.handleDayClick}
-                                                            selectedDays={this.state.selectedDay}
-                                                      />
 
+                                                <div className="mt-4">
+                                                      <DatePicker getItemsDatePicker={this.getItemsDatePicker} />
                                                 </div>
 
                                           </div>
-                                          <ShowItems {...this.props} />
+                                          <ShowItems {...this.props} arrDate={this.state.arrDate} />
 
                                     </div>
                               </div>

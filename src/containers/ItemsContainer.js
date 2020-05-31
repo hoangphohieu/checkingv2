@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import ControlItems from '../components/controlItems/ControlItems';
+import Items from '../components/Items/Items'; 
 function mapStateToProps(state) {
       return {
-            ItemReducer: state.ControlItemsReducer
+            ItemReducer: state.ItemsReducer
       };
 }
 
@@ -21,13 +21,13 @@ function mapDispatchToProps(dispatch) {
       };
 }
 
-class ControlitemsContainer extends Component {
+class ItemsContainer extends Component {
       render() {
 
             return (
                   <React.Fragment>
 
-                        <ControlItems {...this.props} />
+                        <Items {...this.props} />
                   </React.Fragment>
             );
       }
@@ -35,4 +35,4 @@ class ControlitemsContainer extends Component {
 
 export default connect(
       mapStateToProps, mapDispatchToProps
-)(ControlitemsContainer);
+)(ItemsContainer);

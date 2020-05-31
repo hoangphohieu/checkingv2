@@ -24,15 +24,23 @@ class CardItem extends Component {
             }
         }
         console.log(arrObj);
-
+        let amuntCV = Number(arrObj.amount);
+        if(isNaN(amuntCV)){
+            alert("vui long nhap so");
+        }
+        else{
+            arrObj.amount=Number(arrObj.amount);
         this.props.patchItemCheckingProperties(arrObj);
+
+        }
+
 
     }
     render() {
         // console.log(this.props.itemCard);
 
         let country = <div className="dropdown">
-            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button className="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {this.props.itemCard.country}
             </button>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -42,16 +50,16 @@ class CardItem extends Component {
             </div>
         </div>
         let phoneCase = <div className="dropdown">
-            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button className="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {this.props.itemCard.case}
             </button>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                {(JSON.parse(localStorage.PhonesAlltribute)).map((param, key) => <a className="dropdown-item" href="#" key={key} onClick={() => this.setPhoneCase(param.nameDefault)}>{param.nameDefault}</a>)}
+                {(JSON.parse(localStorage.pc_gllm)).map((param, key) => <a className="dropdown-item" href="#" key={key} onClick={() => this.setPhoneCase(param.nameDefault)}>{param.nameDefault}</a>)}
 
             </div>
         </div>
         let printStatus = <div className="dropdown">
-            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button className="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {this.props.itemCard.printStatus}
             </button>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -61,7 +69,7 @@ class CardItem extends Component {
             </div>
         </div>
         let type = <div className="dropdown">
-            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button className="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {this.props.itemCard.type}
             </button>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -104,13 +112,14 @@ class CardItem extends Component {
                 <div className="ctn-card-pro"><div className="card-title-pro">printStatus: </div>{printStatus}</div>
                 <div className="ctn-card-pro"><div className="card-title-pro">type: </div>{type}</div></>
         }
-        if (JSON.stringify(this.props.itemCard) !== "{}") {
-            card = <div className="card items-ItemProperties-card" style={{ width: "18rem" }}>
+        if (this.props.showCard === true) {
+            card = <div className="card items-ItemProperties-card">
 
                 <div className="card-body card-container">
                     <button type="button" className="btn btn-warning card-change"
                         onClick={() => this.props.clickChangeCard({ changeCard: !this.props.changeCard })}>Sửa</button>
                     <button type="button" className="btn btn-info" onClick={this.saveItem}>Lưu</button>
+                    <div className="close-card" onClick={this.props.closeCard}>X</div>
                     {proDropdown}
                     {properties}
 

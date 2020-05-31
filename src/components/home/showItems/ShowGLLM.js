@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import copy from 'copy-to-clipboard';
-import Modalitem from "./ModalItem";
+import Modalitem from "./modal/ModalItem";
 class ShowGLLM extends Component {
     constructor(props, context) {
         super(props, context);
@@ -11,11 +11,9 @@ class ShowGLLM extends Component {
         }
     }
 
-    open = () => {
-        window.open("~/Users/MSI/Downloads/sp181233.jpg")
-    }
 
     tempAlert = (msg, duration) => {
+
         var el = document.createElement("div");
         el.setAttribute("style", "position:fixed;z-index:1000;top:10px;left:46%;background-color:#80ced6;padding:10px;font-size:2rem;color:white");
         el.innerHTML = msg;
@@ -31,17 +29,23 @@ class ShowGLLM extends Component {
         this.tempAlert(param, 200);
     }
     clickItem = (param, idDesign) => {
-     
+        this.props.setCard(param);
         this.copyVanban(idDesign);
     }
     closeModal = () => {
-        this.setState({ showModal: false })
+        this.setState({ showModal: false });
+        localStorage.PCSheetReturn = "[]"
+    }
+    clickMore = () => {
+        this.setState({ showModal: !this.state.showModal });
+        if (this.props.type === "glass" || this.props.type === "luminous") this.props.getPCReturn();
+
     }
     render() {
         let type = this.props.type;
         let items = this.props.items.filter(param => param.type === type);
         let data = JSON.parse(JSON.stringify(items));
-        
+
 
         items = items.map((param, key) => <button
             type="button"
@@ -56,15 +60,16 @@ class ShowGLLM extends Component {
 
 
 
-                <div>
+                <div className="ctn-gllm-info">
                     {/* Button trigger modal */}
-                    <div>{this.props.type} + {items.length} </div>
-                    <button type="button" className="btn btn-primary" onClick={() => this.setState({ showModal: !this.state.showModal })}>
-                        Launch static backdrop modal
+                    <h3 className="GLLM-info " >{this.props.type}: {items.length} </h3>
+                    <button type="button" className="btn btn-primary bt-thongtin" onClick={this.clickMore}>
+                        Thông tin
                     </button>
 
                     {/* Modal */}
-                    <Modalitem {...this.props} dataitem={data} showModal={this.state.showModal} closeModal={this.closeModal} />
+                    {(this.state.showModal) ? <Modalitem {...this.props} dataitem={data} showModal={this.state.showModal} closeModal={this.closeModal} /> : ""}
+
 
                     {/* end modal */}
 

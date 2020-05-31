@@ -36,7 +36,7 @@
         "nameDefault": "i6plus"
       },
       "i7": {
-        "amount": 998,
+        "amount": 997,
         "width": 67,
         "hight": 138,
         "nameVariant": "ip7,i phone 7,iphone 8,ip78,ip8,iphone 7 8,iphone 7/8",
@@ -923,7 +923,7 @@
     {
       "name": "glass03",
       "country": "US",
-      "amount": "1",
+      "amount": 1,
       "sku": "fb01",
       "case": "s9",
       "date": "1590598800000",

@@ -1,16 +1,15 @@
 // file này để combine các reducer lại
 import { combineReducers } from 'redux';
-import ItemReducer from './ItemReducer';
-import ControlItemsReducer from './ControlItemsReducer';
+
+import ItemsReducer from './ItemsReducer';
 import UploadReducer from './UploadReducer';
-import ItemsPartner from './HomeReducer';
+import HomeReducer from './HomeReducer';
 import UseControl from './UsesReducer';
 import ItemsApp from './AppReducer';
 export default combineReducers({
-      items: ItemReducer,
       ItemExcelPost: UploadReducer,
-      itemsPartner: ItemsPartner,
+      HomeReducer: HomeReducer,
       UseData: UseControl,
       itemsApp: ItemsApp,
-      ControlItemsReducer: ControlItemsReducer,
-})
+      ItemsReducer: ItemsReducer,
+}) 

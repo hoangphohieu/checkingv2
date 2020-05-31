@@ -3,7 +3,9 @@ import * as type from './../constants';
 export function getCheckingAPI(payload) {
     return ({ type: type.GET_CHECKING_REQUEST, payload })
 }
-
+export function Item_searchCheckingDate(payload) {
+    return ({ type: type.GET_CHECKING_DATE_REQUEST, payload })
+}
 
 export function getCheckingControlItem(payload) {
     return ({ type: type.GET_CI_CHECKING_REQUEST, payload })

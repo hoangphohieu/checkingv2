@@ -5,6 +5,8 @@ import ShowItems from './showItems/ShowItems';
 import DayPicker from 'react-day-picker';
 import ReactLoading from 'react-loading';
 import 'react-day-picker/lib/style.css';
+import Button from '@material-ui/core/Button';
+
 class ControlItems extends Component {
       constructor(props, context) {
             super(props, context);
@@ -222,34 +224,28 @@ class ControlItems extends Component {
                               <div className="col-12 checking-right mt-3">
                                     <div className="grid-container-item">
                                           <div className="grid-items-item1">
-                                                <button type="button" className="btn btn-danger" style={{ width: "100%" }}
-                                                      onClick={this.clickPrinterd}>đánh dấu đã in xong
-                                                </button>
-                                                <button type="button" className="btn btn-success" style={{ width: "100%" }}
-                                                      onClick={() => this.setStatus({ clickDone: true })}>đánh dấu hàng đã hoàn thành
-                                                </button>
-                                                <button type="button" className="btn btn-warning" style={{ width: "100%" }}
-                                                      onClick={() => this.setStatus({ clickWait: true })}>đánh dấu hàng chưa in
-                                                </button>
+                                                <Button variant="outlined" className="mb-1 w-100  bt-show"
+                                                       onClick={this.clickPrinterd}>đánh dấu đã in xong
+                                                </Button>
 
-                                                <button type="button" className="btn btn-secondary" style={{ width: "100%" }}
-                                                      onClick={() => this.setStatus({ clickReturn: true })}>đánh dấu hàng hoàn
-                                                </button>
-                                                <button type="button" className="btn btn-dark" style={{ width: "100%" }}
-                                                      onClick={() => this.setStatus({ clickFailded: true })}>đánh dấu hàng lỗi
-                                                </button>
+                                                <Button variant="outlined" className="mb-1 w-100  bt-show"
+                                                        onClick={() => this.setStatus({ clickDone: true })}>đánh dấu hàng đã hoàn thành
+                                                </Button>
+                                                <Button variant="outlined" className="mb-1 w-100  bt-show"
+                                                          onClick={() => this.setStatus({ clickWait: true })}>đánh dấu hàng chưa in
+                                                </Button>
+                                                <Button variant="outlined" className="mb-1 w-100  bt-show"
+                                                        onClick={() => this.setStatus({ clickReturn: true })}>đánh dấu hàng hoàn
+                                                </Button>
 
+                                                <Button variant="outlined" className="mb-1 w-100  bt-show"
+                                                     onClick={() => this.setStatus({ clickFailded: true })}>đánh dấu hàng lỗi
+                                                </Button>
+                                                <Button variant="outlined" className="mb-1 w-100  bt-show"
+                                                     onClick={() => this.setStatus({ clickDelete: true })}>xóa tất cả
+                                                </Button>
 
-                                                <button type="button" className="btn btn-info" style={{ width: "100%" }}
-                                                      onClick={() => this.setStatus({ clickDelete: true })}>xóa tất cả
-                                                </button>
-                                                {/* <div>
-                                                      <DayPicker
-                                                            onDayClick={this.handleDayClick}
-                                                            selectedDays={this.state.selectedDay}
-                                                      />
-
-                                                </div> */}
+                                          
 
                                           </div>
                                           <ShowItems {...this.props} items={items} />

@@ -22,22 +22,40 @@ class ShowItems extends Component {
     CDU_checkRequest() {
 
         if (this.props.ItemPayload.type === "GET_CHECKING_SUCSESS") { this.getCheckingSucsess() }
+        else if (this.props.ItemPayload.type === "GET_CHECKING_DATE_SUCSESS") { this.getCheckingDateSucsess() }
         else if (this.props.ItemPayload.type === "ITEMS_GET_PC_RETURN_SUCSESS") { this.getSheetPCReturnDone() }
-        else if ( this.props.ItemPayload.type === "ITEMS_GET_PC_RETURN_RFAILURE") { this.getSheetPCFail() }
+        else if (this.props.ItemPayload.type === "ITEMS_GET_PC_RETURN_RFAILURE") { this.getSheetPCFail() }
         else if (this.props.ItemPayload.type === "GET_CHECKING_RFAILURE") { this.getCheckingFail() }
 
 
 
     }
-
     getCheckingSucsess = () => {
         this.setState({ items: this.props.ItemPayload.listItem });
         this.props.propsItemsToDefault();
 
     }
+    getCheckingDateSucsess = () => {
+
+
+        let items = this.props.ItemPayload.listItem;
+        console.log(items);
+
+
+        let arrDate = this.props.arrDate;
+        items = items.filter(param => {
+            arrDate = arrDate.filter(param2 => param2 === Number(param.date));
+            if (arrDate.length !== 0) return true
+            else return false
+        })
+
+        this.setState({ items: items });
+        this.props.propsItemsToDefault();
+
+    }
     getSheetPCFail = () => {
         alert("Kiem tra duong truyen mang");
-        window.location = '/Item';
+        window.location = '/';
     }
 
     getSheetPCReturnDone = () => {
@@ -50,11 +68,11 @@ class ShowItems extends Component {
 
     }
     setCard = (item) => {
-        // console.log(_.toPairs(item));
-        // item = _.toPairs(item);
+
         this.setState({
             itemCard: item,
-            changeCard: false
+            changeCard: false,
+            showCard: true
         });
 
         for (let i = 0; i <= item.length - 1; i++) {
@@ -68,10 +86,13 @@ class ShowItems extends Component {
 
 
     }
+    closeCard = () => {
+        this.setState({ showCard: false })
+    }
 
     render() {
 
-// console.log(this.state.itemCard);
+        console.log(this.state.changeCard);
 
 
         return (
@@ -85,7 +106,7 @@ class ShowItems extends Component {
 
                     <ShowGLLM type="silicon" items={this.state.items} setCard={this.setCard}  {...this.props} />
                 </div>
-                <CardItem {...this.props} itemCard={this.state.itemCard} changeCard={this.state.changeCard} clickChangeCard={this.clickChangeCard} /> 
+                <CardItem {...this.props} itemCard={this.state.itemCard} changeCard={this.state.changeCard} showCard={this.state.showCard} clickChangeCard={this.clickChangeCard} closeCard={this.closeCard} />
             </div>
         );
     }
