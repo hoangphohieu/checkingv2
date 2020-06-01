@@ -25,12 +25,12 @@ class CardItem extends Component {
         }
         console.log(arrObj);
         let amuntCV = Number(arrObj.amount);
-        if(isNaN(amuntCV)){
+        if (isNaN(amuntCV)) {
             alert("vui long nhap so");
         }
-        else{
-            arrObj.amount=Number(arrObj.amount);
-        this.props.patchItemCheckingProperties(arrObj);
+        else {
+            arrObj.amount = Number(arrObj.amount);
+            this.props.patchItemCheckingProperties(arrObj);
 
         }
 

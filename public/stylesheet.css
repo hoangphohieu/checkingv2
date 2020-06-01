@@ -89,10 +89,16 @@ body{
 
 .add-pc-pro {
     font-size: 1.2rem;
-    border: 1px solid #000;
-    /* width: 3rem; */
+    border: 1px solid #ff7526;
+    border-radius: 5px;
+    color: #ff7526;
+    background: #fff;
     margin-top: 0px;
     padding: 0.2rem 1rem;
+}
+
+button.add-pc-pro:hover {
+    background: #ffddca;
 }
 
 .ptk-item {
@@ -106,6 +112,11 @@ body{
     padding: 5px;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.row.ptl-ctn:hover {
+    border: 1px solid #ff7526;
+    background: #ffe0ce;
 }
 
 .card-title-pro {

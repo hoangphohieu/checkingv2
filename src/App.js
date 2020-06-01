@@ -37,6 +37,7 @@ class App extends Component {
     }
     localStorage.setItem("SumOrderHome", JSON.stringify([]));
     localStorage.setItem("PhonesAlltribute", JSON.stringify([]));
+    localStorage.setItem("pc_gllm", JSON.stringify([]));
 
     this.props.getSheetPhone("gllm");
   }

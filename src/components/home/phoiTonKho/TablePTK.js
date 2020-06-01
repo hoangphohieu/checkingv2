@@ -107,7 +107,7 @@ class TablePTK extends Component {
             }
             return (
                   <div className="col-4">
-                        {(this.props.typePTK === "pc_gllm") ? <h3 className=""> Glass-Luminous</h3> : ((this.props.typePTK === "pc_led") ? <h3 className=""> Led</h3> : <h3 className="">Silicon</h3>)}
+                        {(this.props.typePTK === "pc_gllm") ? <h3 className="ptk-title"> Glass-Luminous</h3> : ((this.props.typePTK === "pc_led") ? <h3 className="ptk-title"> Led</h3> : <h3 className="ptk-title">Silicon</h3>)}
 
                         <div className="row ptl-ctn">
                               <div className="col-3 ptk-item">
