@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import copy from 'copy-to-clipboard';
 import Modalitem from "./modal/ModalItem";
+import _ from "lodash";
 class ShowGLLM extends Component {
     constructor(props, context) {
         super(props, context);
@@ -44,13 +45,14 @@ class ShowGLLM extends Component {
     render() {
         let type = this.props.type;
         let items = this.props.items.filter(param => param.type === type);
+        items= _.orderBy(items, ['note'], ['desc']);
         let data = JSON.parse(JSON.stringify(items));
 
 
         items = items.map((param, key) => <button
             type="button"
             onClick={() => this.clickItem(param, param.name)}
-            className="btn btn-outline-primary ItemProperties"
+            className={"btn btn-outline-primary ItemProperties" + ((param.note !== "") ? " bt-gllm-note" : "")}
             key={key}>{param.name}</button>);
 
 

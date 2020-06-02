@@ -4,6 +4,19 @@ import _ from 'lodash';
 class Exceltable extends Component {
     render() {
         let datalog = JSON.parse(this.props.dataExcelTable);
+        datalog = datalog.map(param => {
+            return {
+                name: param.name,
+                country: param.country,
+                amount: param.amount,
+                sku: param.sku,
+                case: param.case,
+                type: param.type,
+                date: new Date(param.date).toDateString(),
+            }
+        })
+        console.log(datalog);
+
         let titleDatalog = undefined;
         // console.log(datalog);
 
@@ -14,7 +27,7 @@ class Exceltable extends Component {
             });
             titleDatalog = datalog[0];
         }
-        // console.log(titleDatalog);
+
 
         return (
             <React.Fragment>

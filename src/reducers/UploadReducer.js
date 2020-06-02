@@ -18,7 +18,7 @@ export default (state = DEFAULT_STATE, action) => {
                 dataFetched: false,
                 isFetching: false,
                 error: false,
-                type: "STATE_POST_TO_DEFAULT",
+                type: "STATE_TO_DEFAULT",
                 errorMessesage: null
             }
 

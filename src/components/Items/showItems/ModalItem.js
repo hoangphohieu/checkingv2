@@ -28,7 +28,7 @@ class ModalItem extends Component {
     render() {
         let data = this.props.dataitem;
         let amountAllPhoneCase = [];
-        let phonecaseSheet = JSON.parse(localStorage.PhonesAlltribute).map(param => param.nameDefault);
+        let phonecaseSheet = JSON.parse(localStorage.pc_gllm).map(param => param.nameDefault);
         for (let i = 0; i < phonecaseSheet.length; i++) {
             let data2 = data.filter(param => param.case === phonecaseSheet[i]);
             if (data2.length !== 0)

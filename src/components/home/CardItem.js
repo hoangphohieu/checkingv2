@@ -83,8 +83,8 @@ class CardItem extends Component {
 
         if (this.props.changeCard === false) {
             properties = _.toPairs(this.props.itemCard).filter(param => param[0] !== "datatype" & param[0] !== "id" & param[0] !== "month" & param[0] !== "year")
-                .map((param, key) => <div key={key} >
-                    <span >{param[0]}</span>
+                .map((param, key) => <div key={key} className="ct-card-pro" >
+                    <span className="tt-card-pro">{param[0]}</span>
                         :
                     <span >{param[1]}</span>
                 </div>)
