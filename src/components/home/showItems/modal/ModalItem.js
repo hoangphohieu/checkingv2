@@ -40,6 +40,8 @@ class ModalItem extends Component {
 
                 {/* modal */}
                 <div className="modal-content">
+                <button type="button" className="btn btn-secondary bt-close-card" onClick={this.props.closeModal}>Close</button>
+
                     <div className="modal-body">
                         <div className="d-flex justify-content-center">
                             <button type="button" className="btn btn-warning down-excel" onClick={() => this.setState({ downClickExcel: true })}>Down Load Excel</button>
@@ -60,7 +62,6 @@ class ModalItem extends Component {
 
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" onClick={this.props.closeModal}>Close</button>
 
                     </div>
                 </div>

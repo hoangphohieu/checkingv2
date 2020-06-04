@@ -86,11 +86,11 @@ class CardItem extends Component {
                 .map((param, key) => <div key={key} className="ct-card-pro" >
                     <span className="tt-card-pro">{param[0]}</span>
                         :
-                    <span >{param[1]}</span>
+                    <span >{(param[0] === "date") ? (new Date(Number(param[1])).toDateString()) : param[1]}</span>
                 </div>)
         }
         else {
-            properties = _.toPairs(this.props.itemCard).filter(param => param[0] !== "datatype" & param[0] !== "id" & param[0] !== "month" & param[0] !== "year" & param[0] !== "case" & param[0] !== "country" & param[0] !== "printStatus" & param[0] !== "type")
+            properties = _.toPairs(this.props.itemCard).filter(param => param[0] !== "datatype" & param[0] !== "id" & param[0] !== "month" & param[0] !== "year" & param[0] !== "case" & param[0] !== "date" & param[0] !== "country" & param[0] !== "printStatus" & param[0] !== "type")
                 .map((param, key) => <div key={key} className="ctn-card-pro">
                     <div className="card-title-pro">{param[0]}: </div>
                     <input

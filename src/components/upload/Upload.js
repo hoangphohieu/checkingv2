@@ -13,7 +13,6 @@ class InputExcel extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataExcel: null,
             reRender: 0,
             user: [],
             canPost: true,
@@ -27,18 +26,13 @@ class InputExcel extends Component {
         if (JSON.parse(localStorage.getItem("ItemsExcelFail")) === null) {
             localStorage.setItem("ItemsExcelFail", JSON.stringify([]));
         }
-        if (JSON.parse(localStorage.getItem("ItemsExcel")) === null) {
+        if (JSON.parse(localStorage.ItemsExcel) === null) {
             localStorage.setItem("ItemsExcel", JSON.stringify([]));
         }
         localStorage.setItem("numberSucsess", JSON.stringify(0));
 
         // this.props.getLastitem("?datatype=item&_limit=1&_sort=name&_order=desc"); // lay sanh sach cac partner
 
-    }
-    componentDidMount() {
-        if (JSON.parse(localStorage.getItem("ItemsExcel")) !== null) {
-            this.setState({ dataExcel: JSON.parse(localStorage.getItem("ItemsExcel")) })
-        }
     }
 
 
@@ -70,18 +64,18 @@ class InputExcel extends Component {
             localStorage.ItemsExcel = localStorage.ItemsExcelFail;
             localStorage.ItemsExcelFail = "[]";
             this.props.propsImportExcelToDefault();
-            this.setState({ dataExcel: JSON.parse(localStorage.ItemsExcel) });
+
 
         }
     }
 
     PostItemSucsess = () => { //TRUE: ItemsExcel -1 và ItemsExcelSuccess+1, sau đó post ItemsExcel, vòng lặp đến khi nào ItemsExcel=0
-        let ItemsExcel = JSON.parse(localStorage.getItem("ItemsExcel"));
+        let ItemsExcel = JSON.parse(localStorage.ItemsExcel);
         if (ItemsExcel.length > 0) {
             ItemsExcel.pop();
             localStorage.setItem("ItemsExcel", JSON.stringify(ItemsExcel));
             setTimeout(() => {
-                this.postToServer(JSON.parse(localStorage.getItem("ItemsExcel")));
+                this.postToServer(JSON.parse(localStorage.ItemsExcel));
             }, 100);
 
 
@@ -89,7 +83,7 @@ class InputExcel extends Component {
         }
     }
     PostItemFail = () => { // FAIL: ItemsExcel-1  và ItemsExcelFail +1; sau đó post ItemsExcel, vòng lặp đến khi nào ItemsExcel=0
-        let ItemsExcel = JSON.parse(localStorage.getItem("ItemsExcel"));
+        let ItemsExcel = JSON.parse(localStorage.ItemsExcel);
         let itemFail = JSON.parse(localStorage.getItem("ItemsExcelFail"));
         if (ItemsExcel.length > 0) {
             itemFail = _.uniqWith([...itemFail, [...ItemsExcel].pop()], _.isEqual);  // loc va tao ra itemFail
@@ -97,7 +91,7 @@ class InputExcel extends Component {
             ItemsExcel.pop();
             localStorage.setItem("ItemsExcel", JSON.stringify(ItemsExcel));
             setTimeout(() => {
-                this.postToServer(JSON.parse(localStorage.getItem("ItemsExcel")));
+                this.postToServer(JSON.parse(localStorage.ItemsExcel));
             }, 100);
         }
     }
@@ -121,7 +115,7 @@ class InputExcel extends Component {
 
     postItemsExcelFail = (param, id) => {
         this.deleteItemsExcelFail(id);
-        let ItemsExcel = JSON.parse(localStorage.getItem("ItemsExcel"));
+        let ItemsExcel = JSON.parse(localStorage.ItemsExcel);
         ItemsExcel.push(param);
         localStorage.setItem("ItemsExcel", JSON.stringify(ItemsExcel));
         setTimeout(() => {
@@ -142,15 +136,28 @@ class InputExcel extends Component {
 
         data[0] = data[0].map(param => { param = param.trim().toLowerCase().split(" ").join(""); return param }) // data[0] bo space va chu hoa
         let dataObj = data.map(param => { return _.zipObject(data[0], param) });  // [{},{}...{}]
-        { // kiem tra xem cac truong excel co dung khong
-            let checkData = { ...dataObj[0] };
-            console.log(checkData);
-
-            if (checkData.amount === undefined || checkData.case === undefined || checkData.country === undefined || checkData.date === undefined || checkData.name === undefined || checkData.type === undefined)
-                this.alertError("sai thong tin excel");
-        }
-
+        let checkData = { ...dataObj[0] };
+        if (checkData.amount === undefined || checkData.case === undefined || checkData.country === undefined || checkData.date === undefined || checkData.name === undefined || checkData.type === undefined)
+            this.alertError("sai thong tin excel - dong 1");
         dataObj.shift();
+        // kiem tra items thieu thong tin
+        let lengthData = dataObj.length;
+        dataObj = dataObj.filter(param => {
+            if (param.name !== undefined
+                & param.country !== undefined
+                & param.amount !== undefined
+                & param.sku !== undefined
+                & param.date !== undefined
+                & param.type !== undefined
+            ) return true
+            else return false
+        })
+        if (lengthData !== dataObj.length) {
+            this.alertError("co item khong du thong tin");
+            return []
+        }
+        // het kiem tra thieu thon tin
+        
         dataObj.map((param, key) => { // lọc date, country, và id
             let dateConvert = ((Math.floor(param.date) - 25569) * 24 * 60 * 60 * 1000);
             dateConvert = Date.parse(new Date(new Date(dateConvert).toDateString()));   // parse date sang number cho chinh xac  
@@ -183,23 +190,17 @@ class InputExcel extends Component {
 
         dataObj = dataObj.map(param => {
             let arr = PhonesAlltribute.map(param2 => {
-                let sosanh = param2.nameVariant.split(",").filter(param3 => {
-                    return param.case.split(" ").join("").toLowerCase().endsWith(param3.split(" ").join("").toLowerCase())
+                let sosanh = param2.nameVariant.trim().split(",").filter(param3 => param3 !== "").filter(param3 => {
+                    return param.case.split(" ").join("").toLowerCase().endsWith(_.camelCase(param3).toLowerCase())
                 })
+
+
                 if (sosanh.length !== 0)
                     return param2.nameDefault
             }).filter(param4 => param4 !== undefined);
             return { ...param, case: arr[0] }
 
         })
-        let alertObj = dataObj.filter(param => param.case === undefined);
-        if (alertObj.length !== 0) {
-
-
-            this.alertError("Kiem tra uploadjs 218" + alertObj.map(param => param.name));
-
-        }
-
 
         return dataObj;
     }
@@ -214,12 +215,9 @@ class InputExcel extends Component {
 
 
         let dataObj = this.convertData(data);
-        // console.log(dataObj);
-
         dataObj = this.checkDataFailImport([...dataObj]);
         localStorage.setItem("ItemsExcel", JSON.stringify(dataObj));
         this.setState({
-            dataExcel: dataObj,
             itemsLength: dataObj.length
         });
 
@@ -228,19 +226,51 @@ class InputExcel extends Component {
         let date = data.map(param => param.date);
         let amount = data.map(param => param.amount);
         let name = data.map(param => param.name);
+        let sku = data.map(param => param.sku);
         let type = data.map(param => param.type.trim().toLowerCase());
-        date.forEach(param => {
-            if (isNaN(param) !== false) { this.alertError(" 'date' không đúng,"); }
-            else if (param < 1262278800000 && param > 1893430800000) { this.alertError(" ngày tháng không đúng,"); }
-        })
-        amount.forEach(param => {
-            if (isNaN(param) !== false) { this.alertError(" 'amount' không đúng,"); }
-        })
-        name.forEach(param => {
-            if (param.match(/[!@$%^&*(),.?":{}|<>]/g)) {
-                this.alertError(" 'name' chứa ký tực đặc biệt   " + param.match(/[!@$%^&*(),.?":{}|<>]/g));
+
+        let errorDate = [], errorAmount = [], errCase = [], errST = [];
+        { // kiểm tra ngày
+            date.forEach(param => {
+                if (isNaN(param) !== false) { errorDate.push(1) }
+                else if (param < 1262278800000 || param > 1893430800000) { errorDate.push(1) }
+            })
+            if (errorDate.length !== 0) {
+                this.alertError(' "date" khong dung');
             }
-        })
+        }
+
+        { // kiem tra so luong
+            amount.forEach(param => {
+                if (isNaN(param) !== false) { errorAmount.push(1) }
+            })
+            if (errorAmount.length !== 0)
+                this.alertError(" 'amount' không đúng,");
+        }
+        {// kiem tra phoneCase
+            data.forEach(param => {
+                if (param.case === undefined) { errCase.push(param.name) }
+            })
+            errCase = _.uniq(errCase);
+            if (errCase.length !== 0) {
+                this.alertError(`"kiem tra phoneCase: " + ${errCase}`)
+            }
+        }
+        {// kiem tra name va sku
+            name.forEach(param => {
+                if (param.match(/[!@$%^&*(),.?":{}|<>]/g)) {
+                    this.alertError(" 'name' chứa ký tực đặc biệt   " + param.match(/[!@$%^&*(),.?":{}|<>]/g));
+                    errST.push(1);
+                }
+            });
+            sku.forEach(param => {
+                if (param.match(/[!@$%#^&*(),.?":{}|<>]/g)) {
+                    errST.push(1);
+                    this.alertError(" 'sku' chứa ký tực đặc biệt   " + param.match(/[!#@$%^&*(),.?":{}|<>]/g));
+                }
+            })
+        }
+
         type.forEach(param => {
             switch (param) {
                 case "glass":
@@ -258,9 +288,11 @@ class InputExcel extends Component {
             }
 
         })
-        return data;
+        if (errorDate.length !== 0 || errorAmount.length !== 0 || errCase.length !== 0 || errST.length !== 0) return []
+        else return data;
 
     }
+
     alertError = (param) => {
         alert(param);
 
@@ -310,7 +342,7 @@ class InputExcel extends Component {
                 <input type="file" id="fileinput" className="" onChange={this.readSingleFile} defaultValue="" />
                 <button type="button" className="btn btn-success" onClick={this.clickPostToServer}>Post to Server</button>
 
-                <Exceltable dataExcelTable={localStorage.ItemsExcel} />
+                <Exceltable />
 
             </div>
             {(this.state.fetchAPI === true) ? <div className="pro-get-upload">

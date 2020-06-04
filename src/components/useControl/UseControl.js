@@ -27,7 +27,7 @@ console.log(user);
             properties.push(user.phone);
             localStorage.setItem("UserProperties", JSON.stringify(properties));
             // this.props.setStateStoreToDefault(); 
-            window.location = "/useControl";
+            window.location = "/";
         }
     }
     getUserInfoFail = () => {

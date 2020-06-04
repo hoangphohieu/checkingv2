@@ -4,6 +4,24 @@
   
 }
 
+img.logo {
+    height: 63%;
+    margin: auto;
+}
+
+.bt-close-card {
+    position: absolute;
+    right: 1rem;
+    z-index: 999;
+    top: 1rem;
+    cursor: pointer;
+}
+
+span.MuiButton-label {
+    font-weight: 700;
+    /* font-family: auto; */
+}
+
 span.tt-card-pro {font-weight: 700;}
 
 .ct-card-pro {
@@ -471,6 +489,9 @@ span._2-hnq {
     width: 100%;
     height: 5vh;
     background: rgb(255, 117, 38);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .search-tracking {
@@ -749,6 +770,7 @@ p.checking-item-name {
   transform:rotate(0deg);
   text-align: left;
   padding: 0.4rem;
+  padding-left: 30%;
 }
 .nav-item-h:hover {
  background: #f9fafb;
@@ -1170,7 +1192,7 @@ input.card-text {
 }
 
 .d-modal>.modal-content>.modal-body {
-  min-height: 88vh;
+  min-height: 92vh;
 }
 .loading{
   position: absolute;
@@ -1223,6 +1245,12 @@ p.gll-country {
 p.gll-sku {
   font-size: 1.2rem;
   margin: 0;
+}
+.bt-close-ptk {position: absolute;right: 1rem;top: 0.5rem;z-index: 999;}
+
+h3.ptk-title {
+    font-size: 1.5rem;
+    margin-top: 1rem;
 }
 
 p.gll-phoneCase {

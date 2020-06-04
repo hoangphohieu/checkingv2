@@ -13,6 +13,8 @@ class PhoiTonKho extends Component {
 
                         {/* modal */}
                         <div className="modal-content">
+                        <button type="button" className="btn btn-secondary bt-close-ptk" onClick={this.props.closeModal}>Close</button>
+
                               <div className="modal-body">
                                     <div className="row">
                                           {/* gllm */}
@@ -28,7 +30,6 @@ class PhoiTonKho extends Component {
                               </div>
                         </div>
                         <div className="modal-footer">
-                              <button type="button" className="btn btn-secondary" onClick={this.props.closeModal}>Close</button>
 
                         </div>
                   </div>

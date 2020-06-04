@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 class Exceltable extends Component {
     render() {
-        let datalog = JSON.parse(this.props.dataExcelTable);
+        let datalog = JSON.parse(localStorage.ItemsExcel);
         datalog = datalog.map(param => {
             return {
                 name: param.name,
