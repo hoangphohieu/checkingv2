@@ -330,7 +330,7 @@ class BigTable extends Component {
 
             items = _.orderBy(items, ['case', 'name', 'sku'], ['asc', 'asc', 'desc']);
             items = items.map((item, key) => { return { ...item, stt: key + 1 } });
-            items = items.map(item => { return { barcode: item.barcode, name: item.name, case: item.case, sku: item.sku.trim(), stt: item.stt, pixel: toPixel(item.case), country: item.country, amount: item.amount, date: item.date } })
+            
 
 
             function toPixel(toPixel1) {// toPixel1 là nameDefault

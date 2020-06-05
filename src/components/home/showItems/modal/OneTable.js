@@ -29,8 +29,9 @@ class OneTable extends Component {
             let items = this.props.items;
             let _this = this;
             console.log(items);
-
-            let danhSachItem = items.map((item, key) => <div key={key} className={"col-2  gll-ctn1 "}>
+            let danhSachItem = "";
+            
+            danhSachItem = items.map((item, key) => <div key={key} className={"col-2  gll-ctn1 "}>
                   {(item.amount > 1) ? <p className="gll-amount">{item.amount}</p> : ""}
                   <p className={" gll-name" + ((item.amount > 1) ? " gll-name-more " : "")} onClick={() => this.copyVanban(item.name)}>{item.name}</p>
                   <p className=" gll-country">{_this.convertDate(item.date)} {_this.props.typeTable} </p>

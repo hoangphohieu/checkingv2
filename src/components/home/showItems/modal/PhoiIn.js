@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 class PhoiIn extends Component {
       render() {
             let data = this.props.dataitem;
+            console.log(data);
+
             let itemSheet = [];
             if (this.props.type === "glass" || this.props.type === "luminous") {
                   itemSheet = JSON.parse(localStorage.pc_gllm);
@@ -11,16 +13,25 @@ class PhoiIn extends Component {
                   itemSheet = JSON.parse(localStorage.pc_led);
 
             }
+            else if (this.props.type === "silicon") {
+                  itemSheet = JSON.parse(localStorage.pc_silicon);
+
+            }
             let amountAllPhoneCase = [];
-            let phonecaseSheet =itemSheet.map(param => param.nameDefault);
+            let phonecaseSheet = itemSheet.map(param => param.nameDefault);
             for (let i = 0; i < phonecaseSheet.length; i++) {
                   let data2 = data.filter(param => param.case === phonecaseSheet[i]);
-                  if (data2.length !== 0)
+                  if (data2.length !== 0) {
+                        let am = 0;
+                        data2.forEach(element => {
+                              am = am + Number(element.amount)
+                        });
                         amountAllPhoneCase = [...amountAllPhoneCase, <tr key={i}>
                               <th scope="row">{amountAllPhoneCase.length + 1}</th>
                               <td className="cot_row">{phonecaseSheet[i]}</td>
-                              <td className="cot_row">{data2.length}</td>
+                              <td className="cot_row">{am}</td>
                         </tr>];
+                  }
 
             }
             return (
