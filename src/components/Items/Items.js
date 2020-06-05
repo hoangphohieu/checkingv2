@@ -19,7 +19,8 @@ class ControlItems extends Component {
                   clickDone: false,
                   clickDelete: false,
                   items: [],
-                  reRender: 0
+                  reRender: 0,
+                  fetching: false
             })
       }
       reRender = () => {
@@ -33,6 +34,9 @@ class ControlItems extends Component {
       }
       componentWillMount() {
             localStorage.itemsPatch = JSON.stringify([]);
+            localStorage.items_gllm = "[]";
+            localStorage.items_led = "[]";
+            localStorage.items_silicon = "[]";
       }
       componentDidUpdate() {
             this.CDU_checkRequest(); // kiểm tra và thực hiện hành động khi  request trả về
@@ -113,7 +117,7 @@ class ControlItems extends Component {
             this.props.propsItemsToDefault();
 
             if (items.length === 0 && this.state.clickPrinted) {
-                  this.setState({ clickPrinted: false });
+                  this.setState({ fetching: false,clickPrinted: false });
 
                   let items = JSON.parse(localStorage.itemsPrinted);
                   if (JSON.parse(localStorage.CI_itemsPatchFail).length !== 0) {
@@ -130,11 +134,11 @@ class ControlItems extends Component {
 
 
             }
-            else if (items.length === 0 && this.state.clickReturn) { this.setState({ clickReturn: false }) }
-            else if (items.length === 0 && this.state.clickFailded) { this.setState({ clickFailded: false }) }
-            else if (items.length === 0 && this.state.clickWait) { this.setState({ clickWait: false }) }
-            else if (items.length === 0 && this.state.clickDone) { this.setState({ clickDone: false }) }
-            else if (items.length === 0 && this.state.clickDelete) { this.setState({ clickDelete: false }) }
+            else if (items.length === 0 && this.state.clickReturn) { this.setState({ fetching: false, clickReturn: false }) }
+            else if (items.length === 0 && this.state.clickFailded) { this.setState({ fetching: false, clickFailded: false }) }
+            else if (items.length === 0 && this.state.clickWait) { this.setState({ fetching: false, clickWait: false }) }
+            else if (items.length === 0 && this.state.clickDone) { this.setState({ fetching: false, clickDone: false }) }
+            else if (items.length === 0 && this.state.clickDelete) { this.setState({ fetching: false, clickDelete: false }) }
 
 
 
@@ -172,12 +176,12 @@ class ControlItems extends Component {
             items.pop();
             localStorage.itemsPatch = JSON.stringify(items);
             this.props.propsItemsToDefault();
-            if (items.length === 0 && this.state.clickPrinted) { this.setState({ clickPrinted: false }) }
-            else if (items.length === 0 && this.state.clickReturn) { this.setState({ clickReturn: false }) }
-            else if (items.length === 0 && this.state.clickFailded) { this.setState({ clickFailded: false }) }
-            else if (items.length === 0 && this.state.clickWait) { this.setState({ clickWait: false }) }
-            else if (items.length === 0 && this.state.clickDone) { this.setState({ clickDone: false }) }
-            else if (items.length === 0 && this.state.clickDelete) { this.setState({ clickDelete: false }) }
+            if (items.length === 0 && this.state.clickPrinted) { this.setState({ fetching: false, clickPrinted: false }) }
+            else if (items.length === 0 && this.state.clickReturn) { this.setState({ fetching: false, clickReturn: false }) }
+            else if (items.length === 0 && this.state.clickFailded) { this.setState({ fetching: false, clickFailded: false }) }
+            else if (items.length === 0 && this.state.clickWait) { this.setState({ fetching: false, clickWait: false }) }
+            else if (items.length === 0 && this.state.clickDone) { this.setState({ fetching: false, clickDone: false }) }
+            else if (items.length === 0 && this.state.clickDelete) { this.setState({ fetching: false, clickDelete: false }) }
 
 
 
@@ -200,12 +204,12 @@ class ControlItems extends Component {
 
       clickPrinterd = () => {
             localStorage.itemsPrinted = localStorage.itemsPatch;
-            this.setStatus({ clickPrinted: true });
+            this.setStatus({ fetching: true, clickPrinted: true });
 
 
       }
       render() {
-            console.log(this.props.ItemReducer);
+            console.log(this.state.fetching);
 
             let loadding = <ReactLoading type={"spinningBubbles"} color={"#000"} height={100} width={100} className="loading" />;
             let items = JSON.parse(localStorage.itemsPatch)
@@ -225,33 +229,39 @@ class ControlItems extends Component {
                                     <div className="grid-container-item">
                                           <div className="grid-items-item1">
                                                 <Button variant="outlined" className="mb-1 w-100  bt-show"
-                                                       onClick={this.clickPrinterd}>đánh dấu đã in xong
+                                                      onClick={this.clickPrinterd}>đánh dấu đã in xong
                                                 </Button>
 
                                                 <Button variant="outlined" className="mb-1 w-100  bt-show"
-                                                        onClick={() => this.setStatus({ clickDone: true })}>đánh dấu hàng đã hoàn thành
+                                                      onClick={() => this.setStatus({ fetching: true, clickDone: true })}>đánh dấu hàng đã hoàn thành
                                                 </Button>
                                                 <Button variant="outlined" className="mb-1 w-100  bt-show"
-                                                          onClick={() => this.setStatus({ clickWait: true })}>đánh dấu hàng chưa in
+                                                      onClick={() => this.setStatus({ fetching: true, clickWait: true })}>đánh dấu hàng chưa in
                                                 </Button>
                                                 <Button variant="outlined" className="mb-1 w-100  bt-show"
-                                                        onClick={() => this.setStatus({ clickReturn: true })}>đánh dấu hàng hoàn
+                                                      onClick={() => this.setStatus({ fetching: true, clickReturn: true })}>đánh dấu hàng hoàn
                                                 </Button>
 
                                                 <Button variant="outlined" className="mb-1 w-100  bt-show"
-                                                     onClick={() => this.setStatus({ clickFailded: true })}>đánh dấu hàng lỗi
+                                                      onClick={() => this.setStatus({ fetching: true, clickFailded: true })}>đánh dấu hàng lỗi
                                                 </Button>
                                                 <Button variant="outlined" className="mb-1 w-100  bt-show"
-                                                     onClick={() => this.setStatus({ clickDelete: true })}>xóa tất cả
+                                                      onClick={() => this.setStatus({ fetching: true, clickDelete: true })}>xóa tất cả
                                                 </Button>
 
-                                          
+                                                {/* <input id='file-input-json' type='file' className=" btn btn-info" onChange={this.uploadJson} multiple style={{ display: "none" }} />
+                                                <label htmlFor="file-input-json" className="input_exel btn btn-info">Up Load Json (phòng in)</label> */}
+
+
 
                                           </div>
                                           <ShowItems {...this.props} items={items} />
 
                                     </div>
                               </div>
+                              {(this.state.fetching === true) ? <div className="pro-get-upload">
+                                    <h1>Đang tải {JSON.parse(localStorage.itemsPatch).length}</h1>
+                              </div> : ""}
                         </div>
 
 

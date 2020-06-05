@@ -45,10 +45,13 @@ class ShowGLLM extends Component {
     render() {
         let type = this.props.type;
         let items = this.props.items.filter(param => param.type === type);
-        items= _.orderBy(items, ['note'], ['desc']);
+        items = _.orderBy(items, ['note'], ['desc']);
         let data = JSON.parse(JSON.stringify(items));
-
-
+        let itemsLength = 0;
+        items.forEach(element => {
+            itemsLength= itemsLength + Number(element.amount);
+            return 0
+        });
         items = items.map((param, key) => <button
             type="button"
             onClick={() => this.clickItem(param, param.name)}
@@ -64,7 +67,7 @@ class ShowGLLM extends Component {
 
                 <div className="ctn-gllm-info">
                     {/* Button trigger modal */}
-                    <h3 className="GLLM-info " >{this.props.type}: {items.length} </h3>
+                    <h3 className="GLLM-info " >{this.props.type}: {itemsLength} </h3>
                     <button type="button" className="btn btn-primary bt-thongtin" onClick={this.clickMore}>
                         Thông tin
                     </button>

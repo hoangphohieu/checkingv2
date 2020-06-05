@@ -36,9 +36,33 @@ class CardItem extends Component {
 
 
     }
+    deleteItem = () => {
+        let cf = window.confirm("nhấn oke để xóa.");
+        if (cf === true)
+            this.props.deleteItemChecking(this.props.itemCard);
+    }
     render() {
         // console.log(this.props.itemCard);
-
+        let printStt = "";
+        switch (this.props.itemCard.printStatus) {
+            case "wait":
+                printStt = "Chưa in"
+                break;
+            case "printed":
+                printStt = "Đã in"
+                break;
+            case "failded":
+                printStt = "Hỏng"
+                break;
+            case "done":
+                printStt = "Đã xong!"
+                break;
+            case "return":
+                printStt = "Hàng hoàn"
+                break;
+            default:
+                break;
+        }
         let country = <div className="dropdown">
             <button className="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {this.props.itemCard.country}
@@ -60,12 +84,15 @@ class CardItem extends Component {
         </div>
         let printStatus = <div className="dropdown">
             <button className="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {this.props.itemCard.printStatus}
+                {printStt}
             </button>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a className="dropdown-item" href="#" onClick={() => this.setPrintStatus("wait")}>wait</a>
-                <a className="dropdown-item" href="#" onClick={() => this.setPrintStatus("printed")}>printed</a>
-                <a className="dropdown-item" href="#" onClick={() => this.setPrintStatus("failded")}>failded</a>
+                <a className="dropdown-item" href="#" onClick={() => this.setPrintStatus("wait")}>Chưa in</a>
+                <a className="dropdown-item" href="#" onClick={() => this.setPrintStatus("printed")}>Đã in</a>
+                <a className="dropdown-item" href="#" onClick={() => this.setPrintStatus("failded")}>Hỏng</a>
+                <a className="dropdown-item" href="#" onClick={() => this.setPrintStatus("done")}>Đã xong!</a>
+                <a className="dropdown-item" href="#" onClick={() => this.setPrintStatus("return")}>Hàng hoàn</a>
+
             </div>
         </div>
         let type = <div className="dropdown">
@@ -116,9 +143,11 @@ class CardItem extends Component {
             card = <div className="card items-ItemProperties-card">
 
                 <div className="card-body card-container">
-                    <button type="button" className="btn btn-warning card-change"
+                    <button type="button" className="btn btn-warning card-change mr-1"
                         onClick={() => this.props.clickChangeCard({ changeCard: !this.props.changeCard })}>Sửa</button>
-                    <button type="button" className="btn btn-info" onClick={this.saveItem}>Lưu</button>
+                    <button type="button" className="btn btn-danger mr-1" onClick={this.deleteItem}>Xóa</button>
+
+                    <button type="button" className="btn btn-info mr-1" onClick={this.saveItem}>Lưu</button>
                     <div className="close-card" onClick={this.props.closeCard}>X</div>
                     {proDropdown}
                     {properties}

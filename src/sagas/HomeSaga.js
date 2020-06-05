@@ -8,7 +8,7 @@ import * as type from '../constants';
 import _ from "lodash";
 
 function* getChecking(param) {     // lấy total page
-    
+
     try {
         let res1 = yield getByCustomAPI(param.payload); //gọi API
         yield put({
@@ -28,7 +28,7 @@ function* getChecking(param) {     // lấy total page
 
 
 function* getCheckingDate(param) {     // lấy total page
-    
+
     try {
         let res1 = yield getByCustomAPI(param.payload); //gọi API
         yield put({
@@ -84,7 +84,7 @@ function* deleteItemChecking(param) {     // lấy total page
 
         yield put({
             type: type.GET_CHECKING_REQUEST, // trigger valueToGetAPIReducer , tính lại total Page
-            payload: "?datatype=item&name=" + _.replace(res1.item_post.name, '#', '%23')
+            payload: "?datatype=item&name=" + _.replace(param.payload.name, '#', '%23')
         })
     } catch (error) {
         yield put({
