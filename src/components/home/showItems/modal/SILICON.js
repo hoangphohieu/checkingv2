@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import BangItems from "./BangItems";
 import CheckFileIn from "./CheckFileIn";
-import OneTable from "./OneTable";
 import ItemLoi from './ItemLoi';
 class Silicon extends Component {
       constructor(props) {
@@ -351,14 +351,15 @@ class Silicon extends Component {
                   items = items.map(item => {
                         return {
                               name: item.name,
-                              name: item.case,
+                              case: item.case,
                               sku: item.sku.trim(),
                               stt: item.stt, pixel: toPixel(item.case)[0],
                               country: item.country,
                               amount: item.amount,
                               numberMica: toPixel(item.case)[1],
                               zPosition: toPixel(item.case)[2],
-                              barcode: item.barcode
+                              barcode: item.barcode,
+                              date: item.date
 
 
                         }
@@ -441,9 +442,7 @@ class Silicon extends Component {
                   z10Json = z10Json.map(z9Sort1 => {
                         let a = _.chunk(z9Sort1, 8); return a
                   });
-                  // console.log(z9);
-                  // console.log(z10);
-                  // console.log(items);
+          
 
                   sumAmountAfter = items.length;
 
@@ -456,17 +455,25 @@ class Silicon extends Component {
             } // het if param!==undefi param.namened
 
             console.log(arr);
-
+            let itemsZ9, itemsZ10;
+            if (z9Screen !== undefined) {
+                  itemsZ9 = z9Screen.map((item, key) => <BangItems key={key} Item24={item} typeTable={this.props.type} type="z9" numberTable={key} />)
+                  itemsZ10 = z10Screen.map((item, key) => <BangItems key={key} Item24={item} typeTable={this.props.type} type="z10" numberTable={key} />)
+            }
 
             return (
                   <React.Fragment>
                         <div>
-                              {/* <CheckFileIn dataNone={allFileName} itemNoPrint={itemNotPrint} /> */}
+                              <CheckFileIn dataNone={allFileName}  typeTable={"SILICON"} />
                               <button type="button" className="btn btn-secondary" onClick={() => this.saveTextAsFile([z9Json, z10Json])}>Down Load Json</button>
 
                               <h2>Tổng tất cả phôi: {sumAmountAfter + " / " + sumAmountBefore}</h2>
-                              <h2>Số liệu bàn in: {arr.map(arr1 => <span className="so-lieu-ban">{arr1.length}</span>)}</h2>
+             
                               <ItemLoi items={itemThua} />
+
+                              {itemsZ9}
+                              {itemsZ10}
+
                         </div>
                         {/* {renderTable} */}
                   </React.Fragment>

@@ -330,7 +330,8 @@ class BigTable extends Component {
 
             items = _.orderBy(items, ['case', 'name', 'sku'], ['asc', 'asc', 'desc']);
             items = items.map((item, key) => { return { ...item, stt: key + 1 } });
-            
+            items = items.map(item => { return { barcode: item.barcode, name: item.name, case: item.case, sku: item.sku.trim(), stt: item.stt, pixel: toPixel(item.case), country: item.country, amount: item.amount, date: item.date } })
+
 
 
             function toPixel(toPixel1) {// toPixel1 là nameDefault
@@ -349,6 +350,7 @@ class BigTable extends Component {
                 return { w: dataToPixel1[0][1], h: dataToPixel1[0][2] }
             }
             sumAmountAfter = items.length;
+console.log(items);
 
             // chia khay
             let hAll = this.state.hkhay;
@@ -457,7 +459,7 @@ class BigTable extends Component {
         return (
             <React.Fragment>
                 <div>
-                    <CheckFileIn dataNone={allFileName} itemNoPrint={itemNotPrint} />
+                    <CheckFileIn dataNone={allFileName}  itemNoPrint={itemNotPrint} typeTable={"GL_LM_LED"} /> 
                     <button type="button" className="btn btn-secondary" onClick={() => this.saveTextAsFile(items)}>Down Load Json</button>
 
                     <h2>Tổng tất cả phôi: {sumAmountAfter + " / " + sumAmountBefore}</h2>

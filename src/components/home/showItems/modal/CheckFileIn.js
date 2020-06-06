@@ -76,7 +76,7 @@ class CheckFileIn extends Component {
 
                         }
                     </div>
-                    <div className="col-5">
+                    {(this.props.typeTable === "SILICON" ? "" : <div className="col-5">
                         {(itemNoPrint.length !== 0) ?
                             <table className="table table-striped table_amounts">
                                 <thead>
@@ -97,7 +97,7 @@ class CheckFileIn extends Component {
                             </table> : ""
 
                         }
-                    </div>
+                    </div>)}
                 </div>
 
 

@@ -4,6 +4,11 @@
   
 }
 
+.item-silicon {
+    height: 130px;
+    width: 12.5%;
+}
+
 img.logo {
     height: 63%;
     margin: auto;
@@ -1203,6 +1208,9 @@ input.card-text {
 
 .gll-ctn1 {
   border: 1px solid #000;
+  /* width: 12.5%; */
+  /* height: 200px; */
+  position: relative;
 }
 
 .col-2.gll-ctn1 {
