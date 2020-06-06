@@ -114,7 +114,49 @@ function createTableGlass(data) {
     var yPosition, xPosition, hLast, wLast;
     var stt = 0;
 
+    for (var i = 0; i <= arr.length - 1; i++) { // loop làm file in
+        app.documents.add(wAll, hAll, 300, "GLLM");
+        app.activeDocument.layerSets.add();
+        app.activeDocument.activeLayer.name = "CMYK";
+        app.activeDocument.layerSets.add();
+        app.activeDocument.activeLayer.name = "SPOT";
 
+        yPosition = 0;
+        xPosition = 0;
+        hLast = 0;
+        wLast = 0;
+        var lastName = "";
+        GLLMOneTable(arr, wAll, hAll, yPosition, xPosition, hLast, wLast, lastName, stt, i);
+
+        { // xử lý sau khi duplicate hết items
+            app.activeDocument.activeLayer = app.activeDocument.layerSets["SPOT"].artLayers.getByName("SPOTKhung");
+            var PSpotKhung = app.activeDocument.activeLayer.bounds;
+            app.activeDocument.crop(PSpotKhung, 0, PSpotKhung[2] - PSpotKhung[0], PSpotKhung[3] - PSpotKhung[1]);
+            app.activeDocument.rotateCanvas(180);
+            app.doAction("selectArea", "autoUv");
+            app.doAction("createSPOTWithArea", "autoUv");
+        }
+        { // lưu file khung
+            app.activeDocument.layerSets.getByName("SPOT").visible = false;
+            app.activeDocument.layerSets.getByName("CMYK").visible = false;
+            var folder1 = Folder("~/Desktop/in an/Glass " + (i + 1) + "_" + hour + "_" + day + "_" + mounth );
+            if (!folder1.exists) { folder1.create(); }
+            app.activeDocument.saveAs(Folder("~/Desktop/in an/Glass " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/khung.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
+
+        }// lưu file in
+        {
+            app.activeDocument.channels.getByName("Spot Color 1").remove();
+            app.activeDocument.layerSets.getByName("CMYK").visible = true;
+            var PCMYK = app.activeDocument.layerSets.getByName("CMYK").bounds;
+            app.activeDocument.activeLayer = app.activeDocument.layerSets.getByName("CMYK");
+            app.doAction("createSmarkOBJ", "autoUv");
+            app.doAction("selectArea", "autoUv");
+            app.doAction("createSPOTWithArea", "autoUv");
+            app.activeDocument.saveAs(Folder("~/Desktop/in an/Glass " + (i + 1) + "_" + hour + "_" + day + "_" + mounth + "/in.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
+
+        }
+        app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
+    } // hết làm file
 
     { // tạo nhãn
         createTem(); // hàm tạo tem và nhãn

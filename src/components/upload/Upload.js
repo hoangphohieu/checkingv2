@@ -26,7 +26,7 @@ class InputExcel extends Component {
         if (JSON.parse(localStorage.getItem("ItemsExcelFail")) === null) {
             localStorage.setItem("ItemsExcelFail", JSON.stringify([]));
         }
-        if (JSON.parse(localStorage.ItemsExcel) === null) {
+        if (localStorage.ItemsExcel === undefined) {
             localStorage.setItem("ItemsExcel", JSON.stringify([]));
         }
         localStorage.setItem("numberSucsess", JSON.stringify(0));
@@ -141,6 +141,20 @@ class InputExcel extends Component {
             this.alertError("sai thong tin excel - dong 1");
         dataObj.shift();
         // kiem tra items thieu thong tin
+        
+        dataObj = dataObj.map(param => {
+            if (param.name !== undefined
+                & param.country !== undefined
+                & param.amount !== undefined
+                & param.sku !== undefined
+                & param.date !== undefined
+                & param.type !== undefined
+                & param.case !== undefined
+            ) return param
+            else return null
+        }).filter(param => param !== null);
+        
+
         let lengthData = dataObj.length;
         dataObj = dataObj.filter(param => {
             if (param.name !== undefined
@@ -148,16 +162,19 @@ class InputExcel extends Component {
                 & param.amount !== undefined
                 & param.sku !== undefined
                 & param.date !== undefined
+                & param.case !== undefined
                 & param.type !== undefined
             ) return true
             else return false
         })
+        
+
         if (lengthData !== dataObj.length) {
             this.alertError("co item khong du thong tin");
             return []
         }
         // het kiem tra thieu thon tin
-        
+
         dataObj.map((param, key) => { // lọc date, country, và id
             let dateConvert = ((Math.floor(param.date) - 25569) * 24 * 60 * 60 * 1000);
             dateConvert = Date.parse(new Date(new Date(dateConvert).toDateString()));   // parse date sang number cho chinh xac  

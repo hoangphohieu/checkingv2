@@ -1081,6 +1081,22 @@
       "datatype": "item",
       "note": "",
       "barcode": "15914384380005"
+    },
+    {
+      "name": "DB01917 - Chị Loan Mai",
+      "country": "VN",
+      "amount": "1",
+      "sku": "D91151539",
+      "case": "i11promax",
+      "date": "1591376400000",
+      "type": "glass",
+      "id": "6f4f2ea2-a7de-11ea-be2f-3d1e61ac32eb",
+      "printStatus": "wait",
+      "month": "6",
+      "year": "2020",
+      "datatype": "item",
+      "note": "",
+      "barcode": "15914384380005"
     }
   ]
 }
