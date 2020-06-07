@@ -113,7 +113,7 @@ class CardItem extends Component {
                 .map((param, key) => <div key={key} className="ct-card-pro" >
                     <span className="tt-card-pro">{param[0]}</span>
                         :
-                    <span >{(param[0] === "date") ? (new Date(Number(param[1])).toDateString()) : param[1]}</span>
+                    <span >{(param[0] === "date") ? (new Date(Number(param[1])).toDateString()) : ((param[0] === "printStatus") ? printStt : param[1])}</span>
                 </div>)
         }
         else {

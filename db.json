@@ -435,7 +435,7 @@
         "nameDefault": "hp20pro"
       },
       "hmate20pro": {
-        "amount": 1000,
+        "amount": 500,
         "width": 70,
         "hight": 156,
         "nameVariant": "mate 20 pro",
@@ -463,14 +463,14 @@
         "nameDefault": "hy9prime"
       },
       "hnova2i": {
-        "amount": 1000,
+        "amount": 500,
         "width": 70,
         "hight": 152,
         "nameVariant": "nova 2i",
         "nameDefault": "hnova2i"
       },
       "hnova3i": {
-        "amount": 1000,
+        "amount": 500,
         "width": 72,
         "hight": 154,
         "nameVariant": "nova 3i",
@@ -893,7 +893,7 @@
     {
       "name": "PKE127609790-Diem Nguyen",
       "country": "VN",
-      "amount": "1",
+      "amount": 1,
       "sku": "Sp181233",
       "case": "imax",
       "date": "1591376400000",
@@ -903,13 +903,13 @@
       "month": "6",
       "year": "2020",
       "datatype": "item",
-      "note": "",
+      "note": "chờ file in",
       "barcode": "15914384380003"
     },
     {
       "name": "PKE127609790-Diem Nguyen",
       "country": "VN",
-      "amount": "1",
+      "amount": 1,
       "sku": "Sp181233",
       "case": "i6plus",
       "date": "1591376400000",
@@ -919,7 +919,7 @@
       "month": "6",
       "year": "2020",
       "datatype": "item",
-      "note": "",
+      "note": "chờ file in",
       "barcode": "15914384380003"
     },
     {

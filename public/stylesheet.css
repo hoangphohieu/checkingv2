@@ -195,8 +195,9 @@ p.gll-sku {
     position: absolute;
     width: 100%;
     left: 0;
-    bottom: 3.5rem;
+    bottom: 3.7rem;
     color: #007bff;
+    font-weight: 500;
     cursor: pointer;
 }
 
@@ -208,6 +209,7 @@ p.gll-date {
     bottom: 0;
     width: 100%;
     text-align: center;
+    line-height: 1rem;
     left: 0;
 }
 
@@ -1215,10 +1217,11 @@ input.card-text {
 
 .col-2.gll-ctn1 {
   position: relative;
-  height: 130px;
+  height: 140px;
 }
 
 p.gll-name {
+  padding: 5px 0px;
   cursor: pointer;
   margin: 0;
   font-size: 1.2rem;
@@ -1226,8 +1229,14 @@ p.gll-name {
   position: absolute;
   top: 0;
   left: 0;
-  padding: 0 3px;
+  padding: 5px 3px;
+  line-height: 1.2rem;
   font-weight: 600;
+  /* margin-top: 5px; */
+}
+
+.gll-name-more {
+    border: 2px solid red;
 }
 p.gll-amount {
   position: absolute;
@@ -1244,7 +1253,7 @@ p.gll-country {
   font-size: 1.2rem;
   margin: 0;
   position: absolute;
-  bottom: 2.2rem;
+  bottom: 2.5rem;
   text-align: center;
   left: 0;
   width: 100%;
@@ -1262,7 +1271,7 @@ h3.ptk-title {
 }
 
 p.gll-phoneCase {
-  font-size: 1.2rem;
+  font-size: 1.34rem;
   position: absolute;
   bottom: 1rem;
   margin: 0;
