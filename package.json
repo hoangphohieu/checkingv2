@@ -2,6 +2,9 @@
   "name": "checkingv1",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "12.11.1"
+  },
   "dependencies": {
     "@khanacademy/react-multi-select": "^0.3.3",
     "@material-ui/core": "^4.9.14",
@@ -35,7 +38,8 @@
   },
   "scripts": {
     "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
+    "start": "serve -s build",
+    "xx": "npm-run-all -p watch-css start-js",
     "build": "react-scripts build",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
