@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "12.11.1"
+    "node": "10.15.3",
+    "npm": "6.4.1"
   },
   "dependencies": {
     "@khanacademy/react-multi-select": "^0.3.3",
@@ -38,7 +39,8 @@
   },
   "scripts": {
     "start-js": "react-scripts start",
-    "start": "node server.js",
+    "heroku-postbuild": "npm run build",
+    "start": "serve -s build",
     "xx": "npm-run-all -p watch-css start-js",
     "build": "react-scripts build",
     "build-css": "node-sass-chokidar src/ -o src/",
