@@ -29,7 +29,7 @@
         "nameDefault": "i6"
       },
       "i6plus": {
-        "amount": 1000,
+        "amount": 998,
         "width": 78,
         "hight": 159,
         "nameVariant": "iphone 6plus,i 6splus,6splus,i6 splus,i 6 plus,ip6p,6/6s plus,6 plus/6s plus,6/6splus,Ip6 plus,IP6plus",
@@ -43,56 +43,56 @@
         "nameDefault": "i7"
       },
       "i7plus": {
-        "amount": 1000,
+        "amount": -7,
         "width": 78,
         "hight": 159,
-        "nameVariant": "ip7plus,ip8plus,78 plus,8/7 plus,7 / 8 plus,iphone 8plus,iphone 7plus,ip 7/ip8 plus,ip78p,iPhone 7 Plus/ 8 Plus",
+        "nameVariant": "ip7plus,ip8plus,78 plus,8/7 plus,7 / 8 plus,iphone 8plus,iphone 7plus,ip 7/ip8 plus,ip78p,iPhone 7 Plus/ 8 Plus,iPhone 7/8 Plus",
         "nameDefault": "i7plus"
       },
       "ix": {
-        "amount": 1000,
+        "amount": 998,
         "width": 68,
         "hight": 140,
         "nameVariant": "ipx,i phone x",
         "nameDefault": "ix"
       },
       "ixs": {
-        "amount": 1000,
+        "amount": 999,
         "width": 67,
         "hight": 140,
         "nameVariant": "xs",
         "nameDefault": "ixs"
       },
       "ixr": {
-        "amount": 1000,
+        "amount": 997,
         "width": 74,
         "hight": 149,
         "nameVariant": "xr",
         "nameDefault": "ixr"
       },
       "imax": {
-        "amount": 1000,
+        "amount": 996,
         "width": 76,
         "hight": 156,
         "nameVariant": "xsmax,ipxm",
         "nameDefault": "imax"
       },
       "i11": {
-        "amount": 982,
+        "amount": 978,
         "width": 74,
         "hight": 149,
         "nameVariant": "i11,,iphone 11",
         "nameDefault": "i11"
       },
       "i11promax": {
-        "amount": 1000,
+        "amount": 996,
         "width": 75,
         "hight": 155,
         "nameVariant": "11 pro max,11pm,11max,iphone 11pro max",
         "nameDefault": "i11promax"
       },
       "s7": {
-        "amount": 1000,
+        "amount": 999,
         "width": 69,
         "hight": 141,
         "nameVariant": "s7",
@@ -127,7 +127,7 @@
         "nameDefault": "note8"
       },
       "s9": {
-        "amount": 1000,
+        "amount": 999,
         "width": 67,
         "hight": 145,
         "nameVariant": "s9",
@@ -141,14 +141,14 @@
         "nameDefault": "s9plus"
       },
       "note9": {
-        "amount": 1000,
+        "amount": 998,
         "width": 75,
         "hight": 161,
         "nameVariant": "note 9,n9,ss9n",
         "nameDefault": "note9"
       },
       "s10e": {
-        "amount": 1000,
+        "amount": 999,
         "width": 67,
         "hight": 139,
         "nameVariant": "s10e,s10 e",
@@ -162,21 +162,21 @@
         "nameDefault": "s10"
       },
       "s10plus": {
-        "amount": 1000,
+        "amount": 999,
         "width": 73,
         "hight": 157,
         "nameVariant": "s10plus,ss 10 plus,s10p,s10 +,ss10p,SAMSUNG 10 PLUS",
         "nameDefault": "s10plus"
       },
       "note10": {
-        "amount": 1000,
+        "amount": 998,
         "width": 72,
         "hight": 151,
         "nameVariant": "note10,n10,ss10n",
         "nameDefault": "note10"
       },
       "note10plus": {
-        "amount": 1000,
+        "amount": 999,
         "width": 77,
         "hight": 162,
         "nameVariant": "note 10plus,note 10+,n10+,Note10 Plus",
@@ -407,7 +407,7 @@
         "nameDefault": "of7"
       },
       "of9": {
-        "amount": 1000,
+        "amount": 999,
         "width": 72,
         "hight": 156,
         "nameVariant": "oppo f9",
@@ -435,7 +435,7 @@
         "nameDefault": "hp20pro"
       },
       "hmate20pro": {
-        "amount": 500,
+        "amount": 1000,
         "width": 70,
         "hight": 156,
         "nameVariant": "mate 20 pro",
@@ -463,14 +463,14 @@
         "nameDefault": "hy9prime"
       },
       "hnova2i": {
-        "amount": 500,
+        "amount": 1000,
         "width": 70,
         "hight": 152,
         "nameVariant": "nova 2i",
         "nameDefault": "hnova2i"
       },
       "hnova3i": {
-        "amount": 500,
+        "amount": 999,
         "width": 72,
         "hight": 154,
         "nameVariant": "nova 3i",
@@ -615,6 +615,13 @@
         "hight": 160,
         "nameVariant": "Samsung J7 Plus",
         "nameDefault": "sj7plus"
+      },
+      "i11pro": {
+        "width": 69,
+        "hight": 142,
+        "amount": 1000,
+        "nameVariant": "i11pro,iphone11pro",
+        "nameDefault": "i11pro"
       },
       "id": "pc_gllm",
       "type": "pc_properties"
@@ -852,10 +859,10 @@
         "nameDefault": "s10e"
       },
       "i11pro": {
-        "amount": 1000,
+        "amount": 0,
         "width": 74,
         "hight": 144,
-        "nameVariant": "iphone 11 pro",
+        "nameVariant": "iphone 11 pro,",
         "numberMica": 40,
         "zPosition": 7.8,
         "nameDefault": "i11pro"
@@ -891,196 +898,68 @@
       "type": "pc_properties"
     },
     {
-      "name": "PKE127609790-Diem Nguyen",
-      "country": "VN",
-      "amount": 1,
-      "sku": "Sp181233",
-      "case": "imax",
-      "date": "1591376400000",
-      "type": "glass",
-      "id": "6f4f2ea1-a7de-11ea-be2f-3d1e61ac32eb",
-      "printStatus": "wait",
-      "month": "6",
-      "year": "2020",
-      "datatype": "item",
-      "note": "chờ file in",
-      "barcode": "15914384380003"
-    },
-    {
-      "name": "PKE127609790-Diem Nguyen",
-      "country": "VN",
-      "amount": 1,
-      "sku": "Sp181233",
-      "case": "i6plus",
-      "date": "1591376400000",
-      "type": "glass",
-      "id": "6f4f2ea0-a7de-11ea-be2f-3d1e61ac32eb",
-      "printStatus": "wait",
-      "month": "6",
-      "year": "2020",
-      "datatype": "item",
-      "note": "chờ file in",
-      "barcode": "15914384380003"
-    },
-    {
-      "name": "PKE127609788-Lê Thị Hạnh",
-      "country": "VN",
-      "amount": "1",
-      "sku": "H262151734",
-      "case": "note10",
-      "date": "1591376400000",
-      "type": "glass",
-      "id": "6f4f0792-a7de-11ea-be2f-3d1e61ac32eb",
-      "printStatus": "wait",
-      "month": "6",
-      "year": "2020",
-      "datatype": "item",
-      "note": "",
-      "barcode": "15914384380002"
-    },
-    {
-      "name": "PKE127609786-Nhu May",
-      "country": "VN",
-      "amount": "1",
-      "sku": "J33113455",
-      "case": "i7plus",
-      "date": "1591376400000",
-      "type": "glass",
-      "id": "6f4f0790-a7de-11ea-be2f-3d1e61ac32eb",
-      "printStatus": "wait",
-      "month": "6",
-      "year": "2020",
-      "datatype": "item",
-      "note": "",
-      "barcode": "15914384380000"
-    },
-    {
-      "name": "PKE127609439-Nguyên thi huyen",
-      "country": "VN",
-      "amount": "1",
-      "sku": "h11111313",
-      "case": "s9",
-      "date": "1591376400000",
-      "type": "glass",
-      "id": "6f4f0791-a7de-11ea-be2f-3d1e61ac32eb",
-      "printStatus": "wait",
-      "month": "6",
-      "year": "2020",
-      "datatype": "item",
-      "note": "",
-      "barcode": "15914384380001"
-    },
-    {
-      "name": "HTV4126665",
+      "name": "Yen 3668182",
       "country": "US",
       "amount": "1",
-      "sku": "mazimum-047245",
+      "sku": "XZ8GP1",
+      "case": "note10",
+      "date": "1591549200000",
+      "type": "silicon",
+      "id": "4a7155f0-a954-11ea-af1c-11dea2edb883",
+      "printStatus": "wait",
+      "month": "6",
+      "year": "2020",
+      "datatype": "item",
+      "note": "",
+      "barcode": "15915990070000"
+    },
+    {
+      "name": "TUAN04",
+      "country": "US",
+      "amount": "1",
+      "sku": "PCT270501",
       "case": "i11",
-      "date": "1591376400000",
-      "type": "glass",
-      "id": "6f4f2ea5-a7de-11ea-be2f-3d1e61ac32eb",
+      "date": "1591549200000",
+      "type": "silicon",
+      "id": "4a7155f3-a954-11ea-af1c-11dea2edb883",
       "printStatus": "wait",
       "month": "6",
       "year": "2020",
       "datatype": "item",
       "note": "",
-      "barcode": "15914384380008"
+      "barcode": "15915990070003"
     },
     {
-      "name": "HTV2449861",
+      "name": "2THV2805",
       "country": "US",
       "amount": "1",
-      "sku": "US191PC-05619",
-      "case": "ixr",
-      "date": "1591376400000",
-      "type": "glass",
-      "id": "6f4f2ea6-a7de-11ea-be2f-3d1e61ac32eb",
+      "sku": "huuvien1504b",
+      "case": "i11",
+      "date": "1591549200000",
+      "type": "silicon",
+      "id": "4a7155f2-a954-11ea-af1c-11dea2edb883",
       "printStatus": "wait",
       "month": "6",
       "year": "2020",
       "datatype": "item",
       "note": "",
-      "barcode": "15914384380009"
+      "barcode": "15915990070002"
     },
     {
-      "name": "DB01920 - Chị Minh Phương",
-      "country": "VN",
+      "name": "1THV2805",
+      "country": "US",
       "amount": "1",
-      "sku": "TR6117178",
-      "case": "s9plus",
-      "date": "1591376400000",
-      "type": "glass",
-      "id": "6f4f2ea9-a7de-11ea-be2f-3d1e61ac32eb",
+      "sku": "THV270501",
+      "case": "note10plus",
+      "date": "1591549200000",
+      "type": "silicon",
+      "id": "4a7155f1-a954-11ea-af1c-11dea2edb883",
       "printStatus": "wait",
       "month": "6",
       "year": "2020",
       "datatype": "item",
       "note": "",
-      "barcode": "15914384380011"
-    },
-    {
-      "name": "DB01920 - Chị Minh Phương",
-      "country": "VN",
-      "amount": "1",
-      "sku": "SP181233",
-      "case": "s9plus",
-      "date": "1591376400000",
-      "type": "glass",
-      "id": "6f4f2ea8-a7de-11ea-be2f-3d1e61ac32eb",
-      "printStatus": "wait",
-      "month": "6",
-      "year": "2020",
-      "datatype": "item",
-      "note": "",
-      "barcode": "15914384380011"
-    },
-    {
-      "name": "DB01919 - Chang Phạm",
-      "country": "VN",
-      "amount": "1",
-      "sku": "J9214122",
-      "case": "note10",
-      "date": "1591376400000",
-      "type": "glass",
-      "id": "6f4f2ea7-a7de-11ea-be2f-3d1e61ac32eb",
-      "printStatus": "wait",
-      "month": "6",
-      "year": "2020",
-      "datatype": "item",
-      "note": "",
-      "barcode": "15914384380010"
-    },
-    {
-      "name": "DB01918 - Chị Hằng",
-      "country": "VN",
-      "amount": "1",
-      "sku": "J9214122",
-      "case": "ix",
-      "date": "1591376400000",
-      "type": "glass",
-      "id": "6f4f2ea4-a7de-11ea-be2f-3d1e61ac32eb",
-      "printStatus": "wait",
-      "month": "6",
-      "year": "2020",
-      "datatype": "item",
-      "note": "",
-      "barcode": "15914384380007"
-    },
-    {
-      "name": "DB01917 - Chị Loan Mai",
-      "country": "VN",
-      "amount": "1",
-      "sku": "NH9117186",
-      "case": "i11promax",
-      "date": "1591376400000",
-      "type": "glass",
-      "id": "6f4f2ea3-a7de-11ea-be2f-3d1e61ac32eb",
-      "printStatus": "wait",
-      "month": "6",
-      "year": "2020",
-      "datatype": "item",
-      "note": "",
-      "barcode": "15914384380005"
+      "barcode": "15915990070001"
     }
   ]
 }

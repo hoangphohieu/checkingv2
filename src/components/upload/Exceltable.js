@@ -15,8 +15,11 @@ class Exceltable extends Component {
                 date: new Date(param.date).toDateString(),
             }
         })
-        console.log(datalog);
-
+        // console.log(datalog);
+        let itemslength = 0;
+        datalog.forEach(element => {
+            itemslength = itemslength + Number(element.amount);
+        });
         let titleDatalog = undefined;
         // console.log(datalog);
 
@@ -31,6 +34,7 @@ class Exceltable extends Component {
 
         return (
             <React.Fragment>
+                <h3 className="excel-table-amount">Số Lượng: {itemslength}</h3>
                 <table className="table table-striped">
                     <thead>
                         <tr>{(titleDatalog !== undefined) ? (titleDatalog.map((param, id) => <th scope="col" key={id}>{param[0]}</th>)) : ""}</tr>

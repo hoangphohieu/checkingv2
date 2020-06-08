@@ -4,6 +4,19 @@
   
 }
 
+td {
+    padding: 0 !important;
+}
+
+th {
+    padding: 0 !important;
+}
+
+.excel-table-amount {
+    font-size: 1.5rem;
+    margin: 1rem;
+}
+
 .item-silicon {
     height: 130px;
     width: 12.5%;
@@ -195,9 +208,8 @@ p.gll-sku {
     position: absolute;
     width: 100%;
     left: 0;
-    bottom: 3.7rem;
+    bottom: 3.5rem;
     color: #007bff;
-    font-weight: 500;
     cursor: pointer;
 }
 
@@ -209,7 +221,6 @@ p.gll-date {
     bottom: 0;
     width: 100%;
     text-align: center;
-    line-height: 1rem;
     left: 0;
 }
 
@@ -1217,11 +1228,10 @@ input.card-text {
 
 .col-2.gll-ctn1 {
   position: relative;
-  height: 140px;
+  height: 130px;
 }
 
 p.gll-name {
-  padding: 5px 0px;
   cursor: pointer;
   margin: 0;
   font-size: 1.2rem;
@@ -1229,14 +1239,8 @@ p.gll-name {
   position: absolute;
   top: 0;
   left: 0;
-  padding: 5px 3px;
-  line-height: 1.2rem;
+  padding: 0 3px;
   font-weight: 600;
-  /* margin-top: 5px; */
-}
-
-.gll-name-more {
-    border: 2px solid red;
 }
 p.gll-amount {
   position: absolute;
@@ -1253,7 +1257,7 @@ p.gll-country {
   font-size: 1.2rem;
   margin: 0;
   position: absolute;
-  bottom: 2.5rem;
+  bottom: 2.2rem;
   text-align: center;
   left: 0;
   width: 100%;
@@ -1262,6 +1266,7 @@ p.gll-country {
 p.gll-sku {
   font-size: 1.2rem;
   margin: 0;
+  line-height: 1rem;
 }
 .bt-close-ptk {position: absolute;right: 1rem;top: 0.5rem;z-index: 999;}
 
@@ -1271,7 +1276,7 @@ h3.ptk-title {
 }
 
 p.gll-phoneCase {
-  font-size: 1.34rem;
+  font-size: 1.2rem;
   position: absolute;
   bottom: 1rem;
   margin: 0;

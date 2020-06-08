@@ -31,7 +31,7 @@ class BigTable extends Component {
             "09": "*",
             "10": "+",
             "11": ",",
-            "12": "–",
+            "12": "-",
             "13": ".",
             "14": "/",
             "15": "0",
@@ -153,7 +153,7 @@ class BigTable extends Component {
         let textToWrite = paramToText // file contents
         let textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
 
-        let fileNameToSaveAs = `day${new Date().getDate()}${this.props.type}${new Date().getHours()}_${(new Date().getMonth() + 1)}.json`
+        let fileNameToSaveAs = `${this.props.type}-${new Date().getHours()}h-${new Date().getDate()}-${(new Date().getMonth() + 1)}.json`;
 
 
 

@@ -27,9 +27,9 @@ class PhoiIn extends Component {
                               am = am + Number(element.amount)
                         });
                         amountAllPhoneCase = [...amountAllPhoneCase, <tr key={i}>
-                              <th scope="row">{amountAllPhoneCase.length + 1}</th>
-                              <td className="cot_row">{phonecaseSheet[i]}</td>
-                              <td className="cot_row">{am}</td>
+                              <th scope="row h-table">{amountAllPhoneCase.length + 1}</th>
+                              <td className="cot_row h-table">{phonecaseSheet[i]}</td>
+                              <td className="cot_row h-table">{am}</td>
                         </tr>];
                   }
 

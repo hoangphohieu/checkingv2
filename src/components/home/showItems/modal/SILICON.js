@@ -167,7 +167,8 @@ class Silicon extends Component {
             let textToWrite = paramToText // file contents
             let textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
 
-            let fileNameToSaveAs = `day${new Date().getDate()}${this.props.type}${new Date().getHours()}_${(new Date().getMonth() + 1)}.json`
+            let fileNameToSaveAs = `${this.props.type}-${new Date().getHours()}h-${new Date().getDate()}-${(new Date().getMonth() + 1)}.json`;
+
 
 
 
@@ -442,7 +443,7 @@ class Silicon extends Component {
                   z10Json = z10Json.map(z9Sort1 => {
                         let a = _.chunk(z9Sort1, 8); return a
                   });
-          
+
 
                   sumAmountAfter = items.length;
 
@@ -464,11 +465,11 @@ class Silicon extends Component {
             return (
                   <React.Fragment>
                         <div>
-                              <CheckFileIn dataNone={allFileName}  typeTable={"SILICON"} />
+                              <CheckFileIn dataNone={allFileName} typeTable={"SILICON"} />
                               <button type="button" className="btn btn-secondary" onClick={() => this.saveTextAsFile([z9Json, z10Json])}>Down Load Json</button>
 
                               <h2>Tổng tất cả phôi: {sumAmountAfter + " / " + sumAmountBefore}</h2>
-             
+
                               <ItemLoi items={itemThua} />
 
                               {itemsZ9}

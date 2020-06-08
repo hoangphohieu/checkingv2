@@ -141,7 +141,7 @@ class InputExcel extends Component {
             this.alertError("sai thong tin excel - dong 1");
         dataObj.shift();
         // kiem tra items thieu thong tin
-        
+
         dataObj = dataObj.map(param => {
             if (param.name !== undefined
                 & param.country !== undefined
@@ -153,7 +153,7 @@ class InputExcel extends Component {
             ) return param
             else return null
         }).filter(param => param !== null);
-        
+
 
         let lengthData = dataObj.length;
         dataObj = dataObj.filter(param => {
@@ -167,7 +167,7 @@ class InputExcel extends Component {
             ) return true
             else return false
         })
-        
+
 
         if (lengthData !== dataObj.length) {
             this.alertError("co item khong du thong tin");
@@ -208,7 +208,9 @@ class InputExcel extends Component {
         dataObj = dataObj.map(param => {
             let arr = PhonesAlltribute.map(param2 => {
                 let sosanh = param2.nameVariant.trim().split(",").filter(param3 => param3 !== "").filter(param3 => {
-                    return param.case.split(" ").join("").toLowerCase().endsWith(_.camelCase(param3).toLowerCase())
+                    console.log(param.name," + ",_.camelCase(param.case).toLowerCase()," : ",_.camelCase(param3).toLowerCase());
+
+                    return _.camelCase(param.case).toLowerCase().endsWith(_.camelCase(param3).toLowerCase())
                 })
 
 
@@ -268,9 +270,12 @@ class InputExcel extends Component {
             data.forEach(param => {
                 if (param.case === undefined) { errCase.push(param.name) }
             })
+
             errCase = _.uniq(errCase);
+            // console.log(errCase);
+
             if (errCase.length !== 0) {
-                this.alertError(`"kiem tra phoneCase: " + ${errCase}`)
+                this.alertError(`"kiem tra phoneCase: "${errCase}`)
             }
         }
         {// kiem tra name va sku
