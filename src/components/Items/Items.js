@@ -117,7 +117,7 @@ class ControlItems extends Component {
             this.props.propsItemsToDefault();
 
             if (items.length === 0 && this.state.clickPrinted) {
-                  this.setState({ fetching: false,clickPrinted: false });
+                  this.setState({ fetching: false, clickPrinted: false });
 
                   let items = JSON.parse(localStorage.itemsPrinted);
                   if (JSON.parse(localStorage.CI_itemsPatchFail).length !== 0) {
@@ -208,11 +208,46 @@ class ControlItems extends Component {
 
 
       }
+      dmm = () => {
+            this.setState({ reRender: Math.random() })
+
+            // console.log(localStorage.itemsPatch);
+
+      }
+      loadJson = (e) => {
+            let _this = this;
+
+            //Validate whether File is valid Excel file.
+            let regex = /^([a-zA-Z0-9\s_\\.\-:])+(.json)$/;
+            if (regex.test(e.target.value.toLowerCase())) {
+                  if (typeof (FileReader) != "undefined") {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                              // _this.ProcessExcel(e.target.result);
+                              let items = JSON.parse(e.target.result).items;
+                              let type = JSON.parse(e.target.result).type;
+                              items = _.flattenDeep(items).map(param => { return { ...param, type: type } });
+
+                              localStorage.itemsPatch = JSON.stringify(items);
+                              _this.dmm();
+
+                              // console.log(JSON.parse(e.target.result));
+
+                        };
+                        reader.readAsBinaryString(e.target.files[0]);
+
+                  } else {
+                        alert("This browser does not support HTML5.");
+                  }
+            } else {
+                  alert("Please upload a valid .Json file.");
+            }
+      }
       render() {
             console.log(this.state.fetching);
 
             let loadding = <ReactLoading type={"spinningBubbles"} color={"#000"} height={100} width={100} className="loading" />;
-            let items = JSON.parse(localStorage.itemsPatch)
+
 
             return (
                   <React.Fragment>
@@ -249,13 +284,13 @@ class ControlItems extends Component {
                                                       onClick={() => this.setStatus({ fetching: true, clickDelete: true })}>xóa tất cả
                                                 </Button>
 
-                                                {/* <input id='file-input-json' type='file' className=" btn btn-info" onChange={this.uploadJson} multiple style={{ display: "none" }} />
-                                                <label htmlFor="file-input-json" className="input_exel btn btn-info">Up Load Json (phòng in)</label> */}
+                                                <input type="file" id="fileinput" className="" onChange={this.loadJson} defaultValue="" />
+
 
 
 
                                           </div>
-                                          <ShowItems {...this.props} items={items} />
+                                          <ShowItems {...this.props} />
 
                                     </div>
                               </div>

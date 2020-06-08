@@ -6,7 +6,7 @@ class ShowItems extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-          
+
             itemCard: {},
             changeCard: false
         }
@@ -27,23 +27,24 @@ class ShowItems extends Component {
     }
 
 
-    
+
     render() {
 
 
-    
+        
+
         return (
             <div>
                 <div className="grid-items-item2">
-                    <ShowGLLM type="glass" items={this.props.items}  />
+                    <ShowGLLM type="glass" />
 
-                    <ShowGLLM type="luminous" items={this.props.items}  />
+                    <ShowGLLM type="luminous" />
 
-                    <ShowGLLM type="led" items={this.props.items}  />
+                    <ShowGLLM type="led" />
 
-                    <ShowGLLM type="silicon" items={this.props.items}  />
+                    <ShowGLLM type="silicon" />
                 </div>
-              
+
             </div>
         );
     }

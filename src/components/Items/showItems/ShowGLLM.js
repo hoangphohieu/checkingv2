@@ -31,7 +31,7 @@ class ShowGLLM extends Component {
         this.tempAlert(param, 200);
     }
     clickItem = (param, idDesign) => {
-     
+
         this.copyVanban(idDesign);
     }
     closeModal = () => {
@@ -39,9 +39,10 @@ class ShowGLLM extends Component {
     }
     render() {
         let type = this.props.type;
-        let items = this.props.items.filter(param => param.type === type);
-        let data = JSON.parse(JSON.stringify(items));
+        let items = JSON.parse(localStorage.itemsPatch).filter(param => param.type === type);
         
+console.log(JSON.parse(localStorage.itemsPatch));
+
 
         items = items.map((param, key) => <button
             type="button"

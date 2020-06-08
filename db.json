@@ -886,7 +886,7 @@
         "nameDefault": "note10plus"
       },
       "note10": {
-        "amount": 1000,
+        "amount": 999,
         "width": 73,
         "hight": 152,
         "nameVariant": "note 10,note10",
@@ -906,7 +906,7 @@
       "date": "1591549200000",
       "type": "silicon",
       "id": "4a7155f0-a954-11ea-af1c-11dea2edb883",
-      "printStatus": "wait",
+      "printStatus": "printed",
       "month": "6",
       "year": "2020",
       "datatype": "item",
