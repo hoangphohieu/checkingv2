@@ -57,7 +57,7 @@ class UserProperties extends Component {
 
 
       }
-      deleteItemChecking = (param) => {
+      deleteItemChecking = () => {
             this.handleDeleteClose();
       }
       setrouter = (e) => {

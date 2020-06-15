@@ -53,10 +53,12 @@ class Item extends Component {
             document.body.appendChild(el);
       }
       convertPCProperties = (payload) => {
+            payload.pop();
+            // console.log(payload);
+            
             payload.forEach(items => {
-                  let C_Items = _.toPairs(items).filter(param => (param[0] !== "id" && param[0] !== "type")).map(param => { return { ...param[1], nameDefault: param[0] } });
-                  localStorage.setItem(items.id, JSON.stringify(C_Items));
-
+                  localStorage.setItem(items.item_post.id, JSON.stringify(items));
+                  return 0;
             });
       }
       getItemsDatePicker = (endPoint, arrDate) => {

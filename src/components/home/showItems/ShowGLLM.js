@@ -44,6 +44,7 @@ class ShowGLLM extends Component {
     }
     render() {
         let type = this.props.type;
+        
         let items = this.props.items.filter(param => param.type === type);
         items = _.orderBy(items, ['note'], ['desc']);
         let data = JSON.parse(JSON.stringify(items));
@@ -52,6 +53,8 @@ class ShowGLLM extends Component {
             itemsLength= itemsLength + Number(element.amount);
             return 0
         });
+        console.log(items);
+
         items = items.map((param, key) => <button
             type="button"
             onClick={() => this.clickItem(param, param.name)}

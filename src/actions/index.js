@@ -36,9 +36,6 @@ export function patchItemsExcelFailAPI(payload) {
     return ({ type: type.PATCH_ITEM_EXCEL_FAIL_REQUEST, payload })
 }
 
-export function changePrintStatusAPI(payload) {
-    return ({ type: type.CHANGE_PRINT_STATUS_REQUEST, payload })
-}
 
 export function patchItemCheckingProperties(payload) {
     console.log(payload);

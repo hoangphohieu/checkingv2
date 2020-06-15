@@ -63,6 +63,14 @@ class CardItem extends Component {
             default:
                 break;
         }
+        let pcname = [];
+        if (localStorage.pc_gllm !== "[]") {
+            // console.log(_.toPairs(JSON.parse(localStorage.pc_gllm.item_post)));
+
+            pcname = _.toPairs(JSON.parse(localStorage.pc_gllm).item_post).filter(param => param[0] !== "id" && param[0] !== "type");
+        }
+
+
         let country = <div className="dropdown">
             <button className="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {this.props.itemCard.country}
@@ -78,7 +86,7 @@ class CardItem extends Component {
                 {this.props.itemCard.case}
             </button>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                {(JSON.parse(localStorage.pc_gllm)).map((param, key) => <a className="dropdown-item" href="#" key={key} onClick={() => this.setPhoneCase(param.nameDefault)}>{param.nameDefault}</a>)}
+                {pcname.map((param, key) => <a className="dropdown-item" href="#" key={key} onClick={() => this.setPhoneCase(param.nameDefault)}>{param.nameDefault}</a>)}
 
             </div>
         </div>

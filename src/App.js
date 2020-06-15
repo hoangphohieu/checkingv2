@@ -37,13 +37,15 @@ class App extends Component {
     localStorage.setItem("PhonesAlltribute", JSON.stringify([]));
     localStorage.setItem("pc_gllm", JSON.stringify([]));
 
-    this.props.getSheetPhone("gllm");
+    this.props.getSheetPhone("type=pc_properties");
   }
   convertPCProperties = (payload) => {
+    console.log(payload);
+    payload.pop();
     payload.forEach(items => {
-      let C_Items = _.toPairs(items).filter(param => (param[0] !== "id" && param[0] !== "type")).map(param => { return { ...param[1], nameDefault: param[0] } });
-      localStorage.setItem(items.id, JSON.stringify(C_Items));
 
+      localStorage.setItem(items.item_post.id, JSON.stringify(items));
+      return 0
     });
   }
   componentDidUpdate() {

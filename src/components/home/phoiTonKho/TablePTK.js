@@ -21,20 +21,36 @@ class TablePTK extends Component {
 
 
       changePC_Properties = (item, type) => {
-            let items = JSON.parse(localStorage.getItem(type));
-            this.props.updatePcProperties(this.convertPcPro(items, type, item))
+            let itemPC = JSON.parse(localStorage.getItem(type));
+            let items = _.toPairs(itemPC.item_post);
+            items = this.convertPcPro(items, type, item);
+            itemPC = { ...itemPC, item_post: items }
+            console.log(itemPC);
+
+
+            this.props.updatePcProperties(itemPC);
       }
       deleteItem = (item, type) => {
-            let items = JSON.parse(localStorage.getItem(type));
-            items = items.filter(param => JSON.stringify(param) !== JSON.stringify(item));
-            this.props.updatePcProperties(this.convertPcPro(items, type))
+
+            let itemPC = JSON.parse(localStorage.getItem(type));
+            let items = _.toPairs(itemPC.item_post);
+
+            items = items.filter(param => {
+                  return param[0] !== item.nameDefault
+            });
+
+            items = this.convertPcPro(items, type);
+
+            itemPC = { ...itemPC, item_post: items }
+            console.log(itemPC);
+
+            this.props.updatePcProperties(itemPC);
 
       }
       convertPcPro = (items, type, item) => {
-            items = items.map(param => [param.nameDefault, param]);
             items = _.fromPairs(items);
+            console.log(items);
             console.log(item);
-
             if (item !== undefined)
                   items[item.nameDefault] = item;
             items = { ...items, id: type, type: "pc_properties" }
@@ -42,7 +58,7 @@ class TablePTK extends Component {
       }
       addPcPro = () => {
             let type = this.props.typePTK;
-            let item = this.state.newPC
+            let item = this.state.newPC;
             if (type !== "pc_silicon") {
                   delete item.numberMica;
                   delete item.zPosition;
@@ -51,17 +67,25 @@ class TablePTK extends Component {
                   alert("nhap thieu truong");
             }
             else {
-                  let pc_pro = JSON.parse(localStorage.getItem(this.props.typePTK));
-                  pc_pro.push(item);
+                  let itemPC = JSON.parse(localStorage.getItem(type));
+                  let items = _.toPairs(itemPC.item_post);
+                  item = [item.nameDefault, item];
 
 
-                  this.props.updatePcProperties(this.convertPcPro(pc_pro, type));
+
+                  items.push(item);
+                  items = this.convertPcPro(items, type);
+                  itemPC = { ...itemPC, item_post: items }
+                  this.props.updatePcProperties(itemPC);
             }
 
 
       }
       render() {
-            let items = _.orderBy(JSON.parse(localStorage.getItem(this.props.typePTK)), ['nameDefault'], ['asc']);
+            let itemsPC = JSON.parse(localStorage.getItem(this.props.typePTK));
+            let items = _.toPairs(itemsPC.item_post).filter(param => param[0] !== "id" && param[0] !== 'type');
+            items = _.orderBy(items, ['nameDefault'], ['asc']);
+
             let si_pro = "";
             if (this.props.typePTK === "pc_silicon") {
                   si_pro = <><div className="ptk-pro-ctn">

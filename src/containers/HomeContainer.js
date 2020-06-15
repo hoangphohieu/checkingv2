@@ -8,11 +8,10 @@ function mapStateToProps(state) {
       };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) { 
       return {
             searchChecking: (param) => dispatch(actions.getCheckingAPI(param)),
             searchCheckingDate: (param) => dispatch(actions.Item_searchCheckingDate(param)),
-            changePrintStatus: (param) => dispatch(actions.changePrintStatusAPI(param)),
             patchItemCheckingProperties: (param) => dispatch(actions.patchItemCheckingProperties(param)),
             deleteItemChecking: (param) => dispatch(actions.deleteItemChecking(param)),
             getSheetPhone: (param) => dispatch(actions.ItemGetSheetPhone(param)),

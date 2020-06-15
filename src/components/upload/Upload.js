@@ -99,7 +99,7 @@ class InputExcel extends Component {
         if (ItemsExcel.length > 0) {
             let itemPost = ItemsExcel[ItemsExcel.length - 1];
             itemPost = _.mapValues(itemPost, function (o) { return String(o) });
-            this.props.postItem(itemPost);
+            this.props.postItem({ item_post: itemPost });
 
         }
     }
@@ -203,12 +203,14 @@ class InputExcel extends Component {
 
         //  xử lý phoneCase i6 i7 ...
 
-        let PhonesAlltribute = JSON.parse(localStorage.pc_gllm);
+        let PhonesAlltribute = JSON.parse(localStorage.pc_gllm).item_post;
+        PhonesAlltribute = _.toPairs(PhonesAlltribute).filter(param => param[0] !== "id" && param[0] !== "type").map(param => param[1]);
+        console.log(PhonesAlltribute);
 
         dataObj = dataObj.map(param => {
             let arr = PhonesAlltribute.map(param2 => {
                 let sosanh = param2.nameVariant.trim().split(",").filter(param3 => param3 !== "").filter(param3 => {
-                    console.log(param.name," + ",_.camelCase(param.case).toLowerCase()," : ",_.camelCase(param3).toLowerCase());
+                    console.log(param.name, " + ", _.camelCase(param.case).toLowerCase(), " : ", _.camelCase(param3).toLowerCase());
 
                     return _.camelCase(param.case).toLowerCase().endsWith(_.camelCase(param3).toLowerCase())
                 })

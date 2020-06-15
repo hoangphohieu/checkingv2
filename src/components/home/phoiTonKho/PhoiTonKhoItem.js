@@ -34,7 +34,7 @@ class PhoiTonKhoItem extends Component {
       }
 
       changeValue = () => {
-            let item = this.props.item;
+            let item = this.props.item[1];
             if (this.state.width !== 0) {
                   item = { ...item, width: this.state.width }
             }
@@ -50,15 +50,17 @@ class PhoiTonKhoItem extends Component {
             if (this.state.nameVariant !== "") {
                   item = { ...item, nameVariant: this.state.nameVariant }
             }
-            if (this.state.amount !== "") {
+            if (this.state.amount !== 0) {
                   item = { ...item, amount: this.state.amount }
             }
+            // console.log(item);
 
             this.props.changePC_Properties(item, this.props.type);
       }
 
       render() {
-            let item = this.props.item;
+            let item = this.props.item[1];
+            // console.log(this.props.item);
 
             let si_pro = "";
             if (this.props.type === "pc_silicon") {

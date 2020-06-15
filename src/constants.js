@@ -1,4 +1,4 @@
-export const FETCH_URL_ITEMS = "http://localhost:3001/items";
+export const FETCH_URL_ITEMS = "https://serversmartphonehieu.herokuapp.com/";
 // export const SHEET_BEST_PC = "https://sheet.best/api/sheets/00588ee3-7498-4b08-983d-2c4cf8e242dd"; // GLLM 
 // export const SHEET_BEST_PC_LED = "https://sheet.best/api/sheets/346450cc-ce04-4d4f-9c8e-1e35777e2141"; // led
 // export const SHEET_BEST_PC_SILICON = "https://sheet.best/api/sheets/a6626440-fdcc-41a2-9779-ae2b35a7767a"; //silicon
@@ -6,8 +6,8 @@ export const FETCH_URL_ITEMS = "http://localhost:3001/items";
 export const SHEET_BEST_PC_GLLM_RETURN = "https://sheet.best/api/sheets/a6f98e3c-1c5a-4a95-a69d-8e866511f3e5"; //Gllm return
 
 
-export const TRACKINGMORE_KEY = "febd481b-51b5-4387-96a2-aa1c865e96d4";
-export const GET_TRACKINGMORE_API = "https://cors-anywhere.herokuapp.com/http://api.trackingmore.com/v2/trackings/get";
+// export const TRACKINGMORE_KEY = "febd481b-51b5-4387-96a2-aa1c865e96d4";
+// export const GET_TRACKINGMORE_API = "https://cors-anywhere.herokuapp.com/http://api.trackingmore.com/v2/trackings/get";
 
 export const STATE_POST_TO_DEFAULT = "STATE_POST_TO_DEFAULT";
 export const SET_STATE_STORE_TO_DEFAULT = "SET_STATE_STORE_TO_DEFAULT";

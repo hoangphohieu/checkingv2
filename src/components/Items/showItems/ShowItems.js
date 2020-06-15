@@ -14,19 +14,6 @@ class ShowItems extends Component {
 
 
 
-    saveItem = () => {
-        let item = _.toPairs(this.state.itemCard);
-        let arrObj = this.state.itemCard;
-        for (let i = 0; i <= item.length - 1; i++) {
-            if (this.refs[item[i][0]] !== undefined && this.refs[item[i][0]].value !== "") {
-                arrObj[item[i][0]] = this.refs[item[i][0]].value;
-            }
-        }
-        this.props.patchItemCheckingProperties(arrObj);
-
-    }
-
-
 
     render() {
 

@@ -69,11 +69,7 @@ class UserProperties extends Component {
 
 
       }
-      deleteItemChecking = (item) => {
-            this.handleDeleteClose();
-            item = { ...this.props.userProperties, item_post: item };
-            this.props.deleteUser(item);
-      }
+
       setrouter = (e) => {
             this.setState({ router: e.target.value });
       }

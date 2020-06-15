@@ -31,7 +31,10 @@ class ShowItems extends Component {
 
     }
     getCheckingSucsess = () => {
-        this.setState({ items: this.props.ItemPayload.listItem });
+        let items = this.props.ItemPayload.listItem;
+        items.pop();
+        items = items.map(param => param.item_post);
+        this.setState({ items: items });
         this.props.propsItemsToDefault();
 
     }
