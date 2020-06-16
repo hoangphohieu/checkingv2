@@ -294,7 +294,7 @@ class ControlItems extends Component {
                                                       onClick={() => this.setStatus({ fetching: true, clickDelete: true })}>xóa tất cả
                                                 </Button>
 
-                                                <input type="file" id="fileinput" className="" onChange={this.loadJson} defaultValue="" />
+                                                {/* <input type="file" id="fileinput" className="" onChange={this.loadJson} defaultValue="" /> */}
 
 
 
