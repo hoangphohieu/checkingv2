@@ -169,10 +169,14 @@ class BigTable extends Component {
         let items = this.props.itemsLocal;
         let itemSheet = [];
         if (this.props.type === "glass" || this.props.type === "luminous") {
-            itemSheet = JSON.parse(localStorage.pc_gllm);
+            itemSheet = JSON.parse(localStorage.pc_gllm).item_post;
+            itemSheet = _.toPairs(itemSheet).filter(param => param[0] !== "id" && param[0] !== 'type').map(param => param[1]);
+
         }
         else if (this.props.type === "led") {
-            itemSheet = JSON.parse(localStorage.pc_led);
+            itemSheet = JSON.parse(localStorage.pc_led).item_post;
+            itemSheet = _.toPairs(itemSheet).filter(param => param[0] !== "id" && param[0] !== 'type').map(param => param[1]);
+
 
         }
         let itemFail = JSON.parse(localStorage.PCSheetReturn);
@@ -350,7 +354,7 @@ class BigTable extends Component {
                 return { w: dataToPixel1[0][1], h: dataToPixel1[0][2] }
             }
             sumAmountAfter = items.length;
-console.log(items);
+            console.log(items);
 
             // chia khay
             let hAll = this.state.hkhay;
@@ -459,7 +463,7 @@ console.log(items);
         return (
             <React.Fragment>
                 <div>
-                    <CheckFileIn dataNone={allFileName}  itemNoPrint={itemNotPrint} typeTable={"GL_LM_LED"} /> 
+                    <CheckFileIn dataNone={allFileName} itemNoPrint={itemNotPrint} typeTable={"GL_LM_LED"} />
                     <button type="button" className="btn btn-secondary" onClick={() => this.saveTextAsFile(items)}>Down Load Json</button>
 
                     <h2>Tổng tất cả phôi: {sumAmountAfter + " / " + sumAmountBefore}</h2>

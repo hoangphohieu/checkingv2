@@ -42,7 +42,8 @@ class ShowItems extends Component {
 
 
         let items = this.props.ItemPayload.listItem;
-        console.log(items);
+        items.pop();
+        items = items.map(param => param.item_post);
 
 
         let arrDate = this.props.arrDate;
@@ -95,7 +96,7 @@ class ShowItems extends Component {
 
     render() {
 
-        console.log(this.state.changeCard);
+        // console.log(this.state.changeCard);
 
 
         return (

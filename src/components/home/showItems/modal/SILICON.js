@@ -180,7 +180,8 @@ class Silicon extends Component {
       }
       render() {
             let items = this.props.itemsLocal;
-            let itemSheet = JSON.parse(localStorage.pc_silicon);
+            let itemSheet = JSON.parse(localStorage.pc_silicon).item_post;
+            itemSheet = _.toPairs(itemSheet).filter(param => param[0] !== "id" && param[0] !== 'type').map(param => param[1]);
 
 
             let sumAmountBefore, sumAmountAfter, itemsFilter, itemThua;

@@ -30,7 +30,9 @@ class CardItem extends Component {
         }
         else {
             arrObj.amount = Number(arrObj.amount);
-            this.props.patchItemCheckingProperties(arrObj);
+            console.log(arrObj);
+
+            this.props.patchItemCheckingProperties({ item_post: arrObj });
 
         }
 
@@ -39,7 +41,9 @@ class CardItem extends Component {
     deleteItem = () => {
         let cf = window.confirm("nhấn oke để xóa.");
         if (cf === true)
-            this.props.deleteItemChecking(this.props.itemCard);
+            // console.log(this.props.itemCard);
+
+            this.props.deleteItemChecking({ item_post: this.props.itemCard });
     }
     render() {
         // console.log(this.props.itemCard);
@@ -65,10 +69,10 @@ class CardItem extends Component {
         }
         let pcname = [];
         if (localStorage.pc_gllm !== "[]") {
-            // console.log(_.toPairs(JSON.parse(localStorage.pc_gllm.item_post)));
 
             pcname = _.toPairs(JSON.parse(localStorage.pc_gllm).item_post).filter(param => param[0] !== "id" && param[0] !== "type");
         }
+        // console.log(_.toPairs(JSON.parse(localStorage.pc_gllm).item_post));
 
 
         let country = <div className="dropdown">
@@ -86,7 +90,7 @@ class CardItem extends Component {
                 {this.props.itemCard.case}
             </button>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                {pcname.map((param, key) => <a className="dropdown-item" href="#" key={key} onClick={() => this.setPhoneCase(param.nameDefault)}>{param.nameDefault}</a>)}
+                {pcname.map((param, key) => <a className="dropdown-item" href="#" key={key} onClick={() => this.setPhoneCase(param[1].nameDefault)}>{param[1].nameDefault}</a>)}
 
             </div>
         </div>

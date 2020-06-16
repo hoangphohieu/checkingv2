@@ -16,11 +16,12 @@ class UseControl extends Component {
     }
     getUserInfoSucsess = () => {
         let user = this.props.itemsPayload.listItem;
-console.log(user);
+        user.pop();
+        // console.log(user);
 
         if (user.length === 1) {
             let properties = [];
-            user = user[0];
+            user = user[0].item_post;
             properties.push(user.router);
             properties.push(user.partner);
             properties.push(user.name);
@@ -40,7 +41,7 @@ console.log(user);
 
 
         let UserProperties = JSON.parse(localStorage.UserProperties);
-        
+
 
 
 

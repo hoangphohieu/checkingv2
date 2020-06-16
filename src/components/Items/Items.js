@@ -55,7 +55,8 @@ class ControlItems extends Component {
             else if (this.props.ItemReducer.type === "POST_ITEM_EXCEL_RFAILURE") { this.doingWhenPostItemFail() }
       }
       updatePCProDone = () => {
-            let pcPro = this.props.ItemReducer.listItem;
+            let pcPro = this.props.ItemReducer.listItem.item_post;
+
             if (pcPro.id = "pc_gllm") localStorage.items_gllm = "[]";
             if (pcPro.id = "pc_led") localStorage.items_led = "[]";
             if (pcPro.id = "pc_silicon") localStorage.items_silicon = "[]";
@@ -107,7 +108,7 @@ class ControlItems extends Component {
             }
       }
       patchItem = (item) => {
-            this.props.patchItem(item);
+            this.props.patchItem({ item_post: item });
 
       }
       patchItemsSucsess = () => {
@@ -145,7 +146,12 @@ class ControlItems extends Component {
       }
 
       change_pc_pro = (items, type) => {
-            let pc_pro = JSON.parse(localStorage.getItem(type));
+            let pc_pro = JSON.parse(localStorage.getItem(type)).item_post;
+            delete pc_pro.id;
+            delete pc_pro.type;
+
+            pc_pro = _.toPairs(pc_pro).map(param => param[1]);
+
             let amountAllPhoneCase = [];
             let phonecaseSheet = pc_pro.map(param => param.nameDefault);
 
@@ -164,6 +170,8 @@ class ControlItems extends Component {
 
 
             amountAllPhoneCase.forEach(param => { pc_pro[param[0]].amount = pc_pro[param[0]].amount - param[1] });
+            pc_pro = { item_post: { ...pc_pro, id: type, type: "pc_properties" } }
+
             return pc_pro;
 
 
@@ -190,6 +198,8 @@ class ControlItems extends Component {
       }
       getCheckingSucsess = () => {
             let itemsAPI = this.props.ItemReducer.listItem;
+            itemsAPI.pop();
+            itemsAPI = itemsAPI.map(param => param.item_post)
             let itemsState = JSON.parse(localStorage.itemsPatch);
             itemsAPI = itemsAPI.map(param => {
 
