@@ -187,7 +187,7 @@ class Silicon extends Component {
             let sumAmountBefore, sumAmountAfter, itemsFilter, itemThua;
             let amountAllcase = [];
             let allFileName = [];
-            let arr ;
+            // let arr ;
             // let danhsach2 = [];
             let z9 = [], z10 = [];
             let z9Screen = [], z10Screen = [];
@@ -448,9 +448,9 @@ class Silicon extends Component {
 
                   sumAmountAfter = items.length;
 
-                  arr = _.chunk(items, 24);
-                  arr = arr.filter(item => { return item.length > 0 });
-                  arr = arr.map(param5 => { let a = _.chunk(param5, 8); return a });
+                  // arr = _.chunk(items, 24);
+                  // arr = arr.filter(item => { return item.length > 0 });
+                  // arr = arr.map(param5 => { let a = _.chunk(param5, 8); return a });
 
 
                   // itemCheck = JSON.parse(JSON.stringify(items));

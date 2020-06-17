@@ -205,14 +205,14 @@ class InputExcel extends Component {
 
         let PhonesAlltribute = JSON.parse(localStorage.pc_gllm).item_post;
         PhonesAlltribute = _.toPairs(PhonesAlltribute).filter(param => param[0] !== "id" && param[0] !== "type").map(param => param[1]);
-     
+
 
         dataObj = dataObj.map(param => {
             let arr = PhonesAlltribute.map(param2 => {
                 let sosanh = param2.nameVariant.trim().split(",").filter(param3 => param3 !== "").filter(param3 => {
-               
 
-                    return _.camelCase(param.case).toLowerCase().endsWith(_.camelCase(param3).toLowerCase())
+                    let item = _.camelCase(param.case).toLowerCase().endsWith(_.camelCase(param3).toLowerCase());
+                    return item;
                 })
 
 

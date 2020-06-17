@@ -188,12 +188,12 @@ class BigTable extends Component {
         let allFileName = [];
         let itemThua = [];
         let arr = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
-        let danhSach = [], danhsach2 = [];
+        // let danhSach = [];
 
 
         if (items.length !== 0 && itemSheet.length !== 0) {
 
-            danhSach = itemSheet.map(itemSheet1 => itemSheet1.nameDefault);
+            // danhSach = itemSheet.map(itemSheet1 => itemSheet1.nameDefault);
 
 
 
@@ -323,10 +323,10 @@ class BigTable extends Component {
                     </tr>)
             }
 
-            danhsach2 = danhSach.map(param => {
-                if (bodem[param] !== undefined) return [param, bodem[param]]
-                else return [param, 0]
-            })
+            // danhsach2 = danhSach.map(param => {
+            //     if (bodem[param] !== undefined) return [param, bodem[param]]
+            //     else return [param, 0]
+            // })
 
 
 

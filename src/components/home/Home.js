@@ -11,22 +11,28 @@ class Item extends Component {
             super(props, context);
             this.state = ({
                   ShowQLP: false,
-                  arrDate: [Date.parse(new Date().toDateString())]
+                  arrDate: [Date.parse(new Date().toDateString())],
+                  fetchAPI: false
             })
       }
 
       searchChecking = (param) => {
+
             this.props.searchChecking(param);
+            this.setState({ fetchAPI: true })
       }
 
       componentDidUpdate() {
             this.CDU_checkRequest();
+
+
       }
 
       CDU_checkRequest() {
 
             if (this.props.ItemPayload.type === "ITEM_UPDATE_PC_PRO_RFAILURE" || this.props.ItemPayload.type === "ITEM_GET_PC_PRO_RFAILURE") { this.getPcProFail() }
             else if (this.props.ItemPayload.type === "ITEM_GET_PC_PRO_SUCSESS") { this.getPcProDone() }
+            else if (this.props.ItemPayload.type === "GET_CHECKING_SUCSESS" || this.props.ItemPayload.type === "GET_CHECKING_RFAILURE") this.setState({ fetchAPI: false })
 
       }
       showAlert = (param) => {
@@ -42,7 +48,7 @@ class Item extends Component {
             this.props.propsItemsToDefault();
       }
       tempAlert = (msg, duration) => {
-   
+
 
             var el = document.createElement("div");
             el.setAttribute("style", "position:fixed;z-index:99999;top:10px;left:46%;background-color:#80ced6;padding:10px;font-size:2rem;color:white");
@@ -54,8 +60,8 @@ class Item extends Component {
       }
       convertPCProperties = (payload) => {
             payload.pop();
-     
-            
+
+
             payload.forEach(items => {
                   localStorage.setItem(items.item_post.id, JSON.stringify(items));
                   return 0;
@@ -65,6 +71,7 @@ class Item extends Component {
             this.setState({ arrDate: arrDate });
             this.props.searchCheckingDate(endPoint);
       }
+
       render() {
 
 
@@ -115,10 +122,9 @@ class Item extends Component {
                         </div>
 
 
-                        {/* <div className="row ">
-                              <UtilitiesChecking {...this.props} newItems={newItems} /> // download excel
-                        </div> */}
-
+                        {(this.state.fetchAPI === true) ? <div className="pro-get-upload">
+                              <h1>Đang tải...</h1>
+                        </div> : ""}
                   </React.Fragment>
             );
       }

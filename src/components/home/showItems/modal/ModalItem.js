@@ -15,17 +15,18 @@ class ModalItem extends Component {
     }
 
     render() {
-        let data = this.props.dataitem;
+        let data = this.props.dataitem.map(param => { return { ...param, date: new Date(Number(param.date)) } });
 
 
         if (this.state.downClickExcel === true) {
 
             try {
-         
+                let fileNameToSaveAs = `${this.props.type}-${new Date().getHours()}h-${new Date().getDate()}-${(new Date().getMonth() + 1)}`;
+
 
                 json2excel({
                     data,
-                    name: 'Hieudz',
+                    name: fileNameToSaveAs,
                     formateDate: 'yyyy/mm/dd'
                 });
             } catch (e) {
@@ -33,7 +34,7 @@ class ModalItem extends Component {
             }
             this.setState({ downClickExcel: false })
         }
-    
+
 
         return (
             <div className={(this.props.showModal === false) ? "d-none" : " d-modal"}>
@@ -45,11 +46,11 @@ class ModalItem extends Component {
 
                     <div className="modal-body">
                         <div className="d-flex justify-content-center">
-                            <button type="button" className="btn btn-warning down-excel" onClick={() => this.setState({ downClickExcel: true })}>Down Load Excel</button>
+                            <button type="button" className="btn btn-warning down-excel" onClick={() => this.setState({ downClickExcel: true })}>Download Excel</button>
                         </div>
 
                         {/* <h2 style={{ textAlign: 'center', marginTop: 50 }}>Tổng tất cả: {sumAmountAfter + "/" + sumAmountBefore}</h2> */}
-                        {(this.props.type === "silicon") ? <SILICON   {...this.props} itemsLocal={data}/> : <GL_LM_LED {...this.props} itemsLocal={data} />}
+                        {(this.props.type === "silicon") ? <SILICON   {...this.props} itemsLocal={data} /> : <GL_LM_LED {...this.props} itemsLocal={data} />}
 
                         <div className="row">
                             <div className="col-5">

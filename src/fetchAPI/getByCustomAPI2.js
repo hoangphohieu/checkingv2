@@ -1,4 +1,4 @@
-import * as type from "../constants";
+
 export default function callAPi(param) {
 
 
