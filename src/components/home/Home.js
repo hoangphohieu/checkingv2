@@ -4,7 +4,7 @@ import _ from "lodash";
 import ShowItems from './showItems/ShowItems';
 import PhoiTonKho from './phoiTonKho/PhoiTonKho';
 import DatePicker from './DatePicker';
-import 'react-day-picker/lib/style.css';
+
 import Button from '@material-ui/core/Button';
 class Item extends Component {
       constructor(props, context) {

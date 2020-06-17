@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import CheckingInput from './CheckingInput';
 import _ from "lodash";
 import ShowItems from './showItems/ShowItems';
-import DayPicker from 'react-day-picker';
 import ReactLoading from 'react-loading';
-import 'react-day-picker/lib/style.css';
+
 import Button from '@material-ui/core/Button';
 
 class ControlItems extends Component {
