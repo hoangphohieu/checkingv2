@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ShowGLLM from "./ShowGLLM";
 import _ from "lodash";
-import Select from 'react-select';
 import CardItem from '../CardItem';
 class ShowItems extends Component {
     constructor(props, context) {
