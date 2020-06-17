@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import UserCRUDProperties from './UserCRUDProperties';
-import PartnersPagination from './PartnersPagination';
+
 
 import AddUser from './AddUser';
 import _ from "lodash"
@@ -189,7 +189,7 @@ class UserCRUD extends Component {
                     <div className="col-2 left-tracking-properties p-0">
                         <AddUser {...this.props} />
                         <div className="tracking-count mt-3 border-list" >List Partner</div>
-                        <PartnersPagination partnersPaginations={this.state.listPartner} getBaseCostByList={this.getBaseCostByList} />
+                       
 
 
 

@@ -124,7 +124,7 @@ class Silicon extends Component {
 
 
             };
-            // console.log(barcode);
+       
 
             if (barcode.split("").length !== 14) this.alertError("co loi upload.js - barcode");
             barcode = barcode.split("");
@@ -159,7 +159,7 @@ class Silicon extends Component {
                   else return []
 
             });
-            console.log(itemsConvert);
+          
 
 
             let items = { items: itemsConvert, type: this.props.type, day: new Date().getDate(), mounth: new Date().getMonth() + 1, hour: new Date().getHours() }
@@ -187,7 +187,7 @@ class Silicon extends Component {
             let sumAmountBefore, sumAmountAfter, itemsFilter, itemThua;
             let amountAllcase = [];
             let allFileName = [];
-            let arr = [];
+            let arr ;
             // let danhsach2 = [];
             let z9 = [], z10 = [];
             let z9Screen = [], z10Screen = [];
@@ -257,7 +257,7 @@ class Silicon extends Component {
                         return 0;
                   });
 
-                  // console.log(items);
+           
                   { // cái này để thông báo số lượng items trùng, nhưng đọc lại éo biết là đã code cái gì :)))
                         let obj = {}
                         for (let k = 0; k < items.length; k++) {
@@ -336,7 +336,7 @@ class Silicon extends Component {
 
                   items = items.map((item, key) => { return { ...item, stt: key + 1 } });
                   items = items.map(item => { return { barcode: item.barcode, name: item.name, case: item.case, sku: item.sku.trim(), stt: item.stt, pixel: toPixel(item.case), country: item.country, amount: item.amount, date: item.date } })
-                  console.log(items);
+                
 
 
                   function toPixel(toPixel1) {// toPixel1 là nameDefault
@@ -456,7 +456,6 @@ class Silicon extends Component {
                   // itemCheck = JSON.parse(JSON.stringify(items));
             } // het if param!==undefi param.namened
 
-            console.log(arr);
             let itemsZ9, itemsZ10;
             if (z9Screen !== undefined) {
                   itemsZ9 = z9Screen.map((item, key) => <BangItems key={key} Item24={item} typeTable={this.props.type} type="z9" numberTable={key} />)

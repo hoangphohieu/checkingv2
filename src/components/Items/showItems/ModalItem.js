@@ -48,8 +48,7 @@ class ModalItem extends Component {
         if (this.state.downClickExcel === true) {
 
             try {
-                console.log(data);
-
+            
                 json2excel({
                     data,
                     name: 'Hieudz',

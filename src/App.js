@@ -7,7 +7,7 @@ import UploadContainer from './containers/UploadContainer';
 import UseControlContainer from './containers/UseControlContainer';
 import * as actions from './actions';
 import { connect } from 'react-redux';
-import _ from "lodash";
+
 function mapStateToProps(state) {
   return {
     itemReducer: state.itemsApp
@@ -40,7 +40,7 @@ class App extends Component {
     this.props.getSheetPhone("type=pc_properties");
   }
   convertPCProperties = (payload) => {
-    console.log(payload);
+    
     payload.pop();
     payload.forEach(items => {
 
@@ -80,7 +80,7 @@ class App extends Component {
               <div className="col-2 border-right-gray">
                 <div className="row">
                   <div className="nav-top">
-                    <img className="logo" src="/printway.png" />
+                    <img className="logo" src="/printway.png" alt="" />
                   </div>
                 </div>
                 <div className="row flex-column ">

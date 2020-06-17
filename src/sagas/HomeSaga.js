@@ -77,14 +77,15 @@ function* getSheetPC(param) {
 
 
 function* deleteItemChecking(param) {     // lấy total page
-    console.log(param);
+
 
     try {
         let res1 = yield DeleteItemAPI(param.payload); //gọi API
 
+
         yield put({
             type: type.GET_CHECKING_REQUEST, // trigger valueToGetAPIReducer , tính lại total Page
-            payload: "?datatype=item&name=" + _.replace(param.payload.name, '#', '%23')
+            payload: "?datatype=item&name=" + _.replace(res1.item_post.name, '#', '%23')
         })
     } catch (error) {
         yield put({
@@ -119,11 +120,11 @@ function* getSheetPCReturn(param) {
     }
 }
 function* patchItem(param) {     // lấy total page
-    console.log(param);
+
 
     try {
         let res1 = yield PutItemAPI(param.payload); //gọi API
-        console.log(res1);
+
 
         yield put({
             type: type.GET_CHECKING_REQUEST, // trigger valueToGetAPIReducer , tính lại total Page

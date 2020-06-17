@@ -53,14 +53,14 @@ class PhoiTonKhoItem extends Component {
             if (this.state.amount !== 0) {
                   item = { ...item, amount: this.state.amount }
             }
-            // console.log(item);
+           
 
             this.props.changePC_Properties(item, this.props.type);
       }
 
       render() {
             let item = this.props.item[1];
-            // console.log(this.props.item);
+        
 
             let si_pro = "";
             if (this.props.type === "pc_silicon") {

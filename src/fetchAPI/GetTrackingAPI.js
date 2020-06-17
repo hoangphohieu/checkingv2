@@ -4,7 +4,7 @@ export default function callAPi(param) {
 
       return new Promise((resolve, reject) => {
             let url = type.GET_TRACKINGMORE_API + param;
-            console.log("GetTacking",url);
+        
 
 
             fetch(url, {

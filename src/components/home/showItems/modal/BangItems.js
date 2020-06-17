@@ -30,7 +30,7 @@ class Bangitems extends Component {
         let items = this.props.Item24;
         let _this = this;
 
-        console.log(items);
+  
 
         let danhSachItem;
         if (items !== undefined) {

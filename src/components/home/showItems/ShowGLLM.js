@@ -53,7 +53,7 @@ class ShowGLLM extends Component {
             itemsLength= itemsLength + Number(element.amount);
             return 0
         });
-        // console.log(items);
+ 
 
         items = items.map((param, key) => <button
             type="button"

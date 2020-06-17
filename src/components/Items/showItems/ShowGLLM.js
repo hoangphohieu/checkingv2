@@ -41,7 +41,7 @@ class ShowGLLM extends Component {
         let type = this.props.type;
         let items = JSON.parse(localStorage.itemsPatch).filter(param => param.type === type);
         
-console.log(JSON.parse(localStorage.itemsPatch));
+
 
 
         items = items.map((param, key) => <button

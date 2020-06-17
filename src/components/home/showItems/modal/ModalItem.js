@@ -21,7 +21,7 @@ class ModalItem extends Component {
         if (this.state.downClickExcel === true) {
 
             try {
-                console.log(data);
+         
 
                 json2excel({
                     data,
@@ -33,7 +33,7 @@ class ModalItem extends Component {
             }
             this.setState({ downClickExcel: false })
         }
-        // console.log(data);
+    
 
         return (
             <div className={(this.props.showModal === false) ? "d-none" : " d-modal"}>

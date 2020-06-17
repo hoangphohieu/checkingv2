@@ -1,4 +1,4 @@
-export const FETCH_URL_ITEMS = "https://serversmartphonehieu.herokuapp.com/";
+export const FETCH_URL_ITEMS = "http://157.230.244.57:7000/";
 // export const SHEET_BEST_PC = "https://sheet.best/api/sheets/00588ee3-7498-4b08-983d-2c4cf8e242dd"; // GLLM 
 // export const SHEET_BEST_PC_LED = "https://sheet.best/api/sheets/346450cc-ce04-4d4f-9c8e-1e35777e2141"; // led
 // export const SHEET_BEST_PC_SILICON = "https://sheet.best/api/sheets/a6626440-fdcc-41a2-9779-ae2b35a7767a"; //silicon

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import { Modal, Button } from 'react-bootstrap';
 
-import MultiSelect from "@khanacademy/react-multi-select";
 class UserProperties extends Component {
       constructor(props, context) {
             super(props, context);
@@ -93,7 +92,7 @@ class UserProperties extends Component {
             })
 
 
-            console.log(this.props.listDayBaseCost);
+
 
 
             return (

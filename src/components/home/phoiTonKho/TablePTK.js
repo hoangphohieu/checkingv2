@@ -25,7 +25,7 @@ class TablePTK extends Component {
             let items = _.toPairs(itemPC.item_post);
             items = this.convertPcPro(items, type, item);
             itemPC = { ...itemPC, item_post: items }
-            console.log(itemPC);
+        
 
 
             this.props.updatePcProperties(itemPC);
@@ -42,15 +42,14 @@ class TablePTK extends Component {
             items = this.convertPcPro(items, type);
 
             itemPC = { ...itemPC, item_post: items }
-            console.log(itemPC);
+           
 
             this.props.updatePcProperties(itemPC);
 
       }
       convertPcPro = (items, type, item) => {
             items = _.fromPairs(items);
-            console.log(items);
-            console.log(item);
+
             if (item !== undefined)
                   items[item.nameDefault] = item;
             items = { ...items, id: type, type: "pc_properties" }

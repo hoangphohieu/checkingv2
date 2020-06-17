@@ -38,7 +38,7 @@ export function patchItemsExcelFailAPI(payload) {
 
 
 export function patchItemCheckingProperties(payload) {
-    console.log(payload);
+    
 
     return ({ type: type.PATCH_ITEM_CHECKING_PROPERTIES_REQUEST, payload })
 }
@@ -173,7 +173,7 @@ export function putUser(payload) {
 
 
 export function getSumItem(payload) {
-    // console.log(payload);
+    
 
     return ({ type: type.GET_SUM_ITEM_REQUEST, payload })
 }

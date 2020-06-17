@@ -124,7 +124,7 @@ class BigTable extends Component {
 
 
         };
-        // console.log(barcode);
+ 
 
         if (barcode.split("").length !== 14) this.alertError("co loi upload.js - barcode");
         barcode = barcode.split("");
@@ -137,7 +137,7 @@ class BigTable extends Component {
     }
 
     saveTextAsFile = (param) => {
-        console.log(param);
+      
 
 
         let itemsConvert = param.map(param2 => {
@@ -190,8 +190,6 @@ class BigTable extends Component {
         let arr = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
         let danhSach = [], danhsach2 = [];
 
-        // console.log(items);
-        // console.log(itemSheet);
 
         if (items.length !== 0 && itemSheet.length !== 0) {
 
@@ -296,7 +294,7 @@ class BigTable extends Component {
             itemThua = _.difference(items, itemsFilter);
             items = itemsFilter;
 
-            // console.log(items);
+        
 
             // lấy sku để xem file nào chưa có
             allFileName = items.map(item => { return item.sku })
@@ -315,7 +313,7 @@ class BigTable extends Component {
                 let onecase = items.filter(item => { return item.case === allcase[j] });
                 let tenaaa = allcase[j];
                 bodem[tenaaa] = onecase.length;
-                // console.log(bodem);
+              
 
                 amountAllcase.push(
                     <tr key={j}>
@@ -354,7 +352,7 @@ class BigTable extends Component {
                 return { w: dataToPixel1[0][1], h: dataToPixel1[0][2] }
             }
             sumAmountAfter = items.length;
-            console.log(items);
+        
 
             // chia khay
             let hAll = this.state.hkhay;
@@ -366,7 +364,7 @@ class BigTable extends Component {
             for (let i = 0; i <= items.length - 1; i++) {
                 let hI = items[i].pixel.h;
                 let wI = items[i].pixel.w;
-                // console.log(items[i].name);
+               
                 if (((hNow - hI) >= 0) && ((wNow - wI) >= 0)) {
                     if ((wLastCase !== wI)) {
                         if (wNow - wI - wLastCase >= 0) {
@@ -458,7 +456,7 @@ class BigTable extends Component {
         items = arr;
         let renderTable = [];
         if (items.length !== 0) renderTable = items.map((item, key) => <OneTable key={key} items={item} numberTable={key} typeTable={this.props.type} />)
-        // console.log(items);
+      
 
         return (
             <React.Fragment>

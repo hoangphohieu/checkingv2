@@ -7,7 +7,7 @@ class UseControl extends Component {
 
     componentDidUpdate() {
         this.CDU_checkRequest();
-        console.log(this.props.itemsPayload.type);
+    
 
     }
     CDU_checkRequest = () => {

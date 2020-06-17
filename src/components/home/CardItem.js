@@ -23,14 +23,14 @@ class CardItem extends Component {
                 arrObj[item[i][0]] = this.refs[item[i][0]].value;
             }
         }
-        console.log(arrObj);
+        
         let amuntCV = Number(arrObj.amount);
         if (isNaN(amuntCV)) {
             alert("vui long nhap so");
         }
         else {
             arrObj.amount = Number(arrObj.amount);
-            console.log(arrObj);
+            
 
             this.props.patchItemCheckingProperties({ item_post: arrObj });
 
@@ -41,12 +41,12 @@ class CardItem extends Component {
     deleteItem = () => {
         let cf = window.confirm("nhấn oke để xóa.");
         if (cf === true)
-            // console.log(this.props.itemCard);
+           
 
             this.props.deleteItemChecking({ item_post: this.props.itemCard });
     }
     render() {
-        // console.log(this.props.itemCard);
+     
         let printStt = "";
         switch (this.props.itemCard.printStatus) {
             case "wait":
@@ -72,7 +72,7 @@ class CardItem extends Component {
 
             pcname = _.toPairs(JSON.parse(localStorage.pc_gllm).item_post).filter(param => param[0] !== "id" && param[0] !== "type");
         }
-        // console.log(_.toPairs(JSON.parse(localStorage.pc_gllm).item_post));
+      
 
 
         let country = <div className="dropdown">

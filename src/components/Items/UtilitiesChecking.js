@@ -32,15 +32,15 @@ class UtilitiesChecking extends Component {
 
     render() {
         let itemsPrintFalse = this.props.newItems;
-        console.log( itemsPrintFalse);
+       
         
         if (this.state.downClick === true && itemsPrintFalse.length !== 0) {
             let data = itemsPrintFalse;
             data = data.map(param => {return { ...param, day: new Date(param.day) } });
-            console.log(data);
+         
             
             try {
-                console.log(data);
+           
 
                 json2excel({
                     data,

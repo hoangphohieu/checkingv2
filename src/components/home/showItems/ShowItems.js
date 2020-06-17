@@ -96,7 +96,6 @@ class ShowItems extends Component {
 
     render() {
 
-        // console.log(this.state.changeCard);
 
 
         return (

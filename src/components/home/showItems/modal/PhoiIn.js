@@ -19,7 +19,7 @@ class PhoiIn extends Component {
                   itemSheet = _.toPairs(itemSheet).filter(param=>param[0]!=="id"&&param[0]!=='type').map(param => param[1])
 
             }
-            console.log(itemSheet);
+     
 
             let amountAllPhoneCase = [];
             let phonecaseSheet = itemSheet.map(param => param.nameDefault);

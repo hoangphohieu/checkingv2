@@ -7,7 +7,7 @@ import * as type from '../constants';
 import _ from "lodash";
 
 function* getChecking(param) {     // lấy total page
-    console.log(param);
+   
     try {
         let res1 = yield getByCustomAPI(param.payload); //gọi API
         yield put({
@@ -25,11 +25,11 @@ function* getChecking(param) {     // lấy total page
 
 }
 function* patchItem(param) {     // lấy total page
-    console.log(param);
+    // console.log(param);
 
     try {
         let res1 = yield PutItemAPI(param.payload); //gọi API
-        console.log(res1);
+        // console.log(res1);
 
         yield put({
             type: type.CI_PATCH_ITEMS_SUCSESS, // trigger valueToGetAPIReducer , tính lại total Page
@@ -49,7 +49,7 @@ function* patchItem(param) {     // lấy total page
 
 
 function* deleteItemChecking(param) {     // lấy total page
-    console.log(param);
+
 
     try {
         let res1 = yield DeleteItemAPI(param.payload); //gọi API
@@ -71,7 +71,7 @@ function* deleteItemChecking(param) {     // lấy total page
 
 
 function* postItem(param) {     // lấy total page
-    console.log(param);
+
 
     try {
         let res1 = yield PostItemAPI(param.payload); //gọi API
@@ -96,7 +96,7 @@ function* updatePCPro(param) {     // lấy total page
 
     try {
         let res1 = yield PutItemAPI(param.payload); //gọi API
-        console.log(res1);
+
 
         yield put({
             type: type.CI_UPDATE_PC_PRO_SUCSESS, // trigger valueToGetAPIReducer , tính lại total Page

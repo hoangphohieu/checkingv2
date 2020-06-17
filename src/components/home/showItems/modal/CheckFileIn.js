@@ -38,7 +38,7 @@ class CheckFileIn extends Component {
 
         let itemsNone = _.difference(allNameItems, this.state.arrNameFile);
         itemsNone = [...new Set(itemsNone)]
-        // console.log(itemNoPrint);
+       
 
 
 

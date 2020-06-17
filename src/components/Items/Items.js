@@ -65,6 +65,8 @@ class ControlItems extends Component {
             let items = JSON.parse(localStorage.itemsPatch);
             if (this.state.clickPrinted === true && items.length !== 0) {
                   let item = items[items.length - 1];
+           
+                  
                   this.patchItem({ ...item, printStatus: "printed" })
             }
             else if (this.state.clickReturn === true && items.length !== 0) {
@@ -115,7 +117,7 @@ class ControlItems extends Component {
             let items = JSON.parse(localStorage.itemsPatch);
             items.pop();
             localStorage.itemsPatch = JSON.stringify(items);
-            this.props.propsItemsToDefault();
+            // this.props.propsItemsToDefault();
 
             if (items.length === 0 && this.state.clickPrinted) {
                   this.setState({ fetching: false, clickPrinted: false });
@@ -254,7 +256,7 @@ class ControlItems extends Component {
             }
       }
       render() {
-            console.log(this.state.fetching);
+
 
             let loadding = <ReactLoading type={"spinningBubbles"} color={"#000"} height={100} width={100} className="loading" />;
 

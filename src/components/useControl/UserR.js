@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import UserRProperties from './UserRProperties';
-import PartnersPagination from './PartnersPagination';
+
 import _ from "lodash"
 class UserCRUD extends Component {
     constructor(props, context) {
@@ -38,7 +38,7 @@ class UserCRUD extends Component {
                 this.setState({ activePage: 1 })
             }
         }
-        console.log(this.props.itemsPayload);
+       
 
     }
     CDU_checkRequest = () => {
@@ -151,7 +151,6 @@ class UserCRUD extends Component {
         // tính cái khác
         // tính tổng base cose
 
-        console.log(listUser);
 
 
         // đưa danh sách 10 ngày gần nhất

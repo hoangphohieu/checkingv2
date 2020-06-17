@@ -28,7 +28,7 @@ class OneTable extends Component {
       render() {
             let items = this.props.items;
             let _this = this;
-            console.log(items);
+        
             let danhSachItem = "";
             
             danhSachItem = items.map((item, key) => <div key={key} className={"col-2  gll-ctn1 "}>

@@ -42,7 +42,7 @@ class Item extends Component {
             this.props.propsItemsToDefault();
       }
       tempAlert = (msg, duration) => {
-            console.log(msg);
+   
 
             var el = document.createElement("div");
             el.setAttribute("style", "position:fixed;z-index:99999;top:10px;left:46%;background-color:#80ced6;padding:10px;font-size:2rem;color:white");
@@ -54,7 +54,7 @@ class Item extends Component {
       }
       convertPCProperties = (payload) => {
             payload.pop();
-            // console.log(payload);
+     
             
             payload.forEach(items => {
                   localStorage.setItem(items.item_post.id, JSON.stringify(items));
