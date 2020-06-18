@@ -190,7 +190,9 @@ class InputExcel extends Component {
             param["datatype"] = "item";
             param["note"] = "";
             param["barcode"] = Date.parse(new Date()) * 10 + key;
-            param.name = param.name.trim();
+         
+            
+            param.name = param.name.toString().trim();
             return param;
         });
         dataObj = _.orderBy(dataObj, ['name'], ['asc']);
@@ -283,14 +285,14 @@ class InputExcel extends Component {
         {// kiem tra name va sku
             name.forEach(param => {
                 if (param.match(/[!@$%^&*(),.?":{}|<>]/g)) {
-                    this.alertError(" 'name' chứa ký tực đặc biệt   " + param.match(/[!@$%^&*(),.?":{}|<>]/g));
+                    this.alertError(" 'name' chứa ký tực đặc biệt:   " + param.match(/[!@$%^&*(),.?":{}|<>]/g));
                     errST.push(1);
                 }
             });
             sku.forEach(param => {
                 if (param.match(/[!@$%#^&*(),.?":{}|<>]/g)) {
                     errST.push(1);
-                    this.alertError(" 'sku' chứa ký tực đặc biệt   " + param.match(/[!#@$%^&*(),.?":{}|<>]/g));
+                    this.alertError(" 'sku' chứa ký tực đặc biệt:   " + param.match(/[!#@$%^&*(),.?":{}|<>]/g));
                 }
             })
         }

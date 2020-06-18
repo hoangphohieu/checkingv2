@@ -23,16 +23,15 @@ class CardItem extends Component {
                 arrObj[item[i][0]] = this.refs[item[i][0]].value;
             }
         }
-        
+
         let amuntCV = Number(arrObj.amount);
         if (isNaN(amuntCV)) {
             alert("vui long nhap so");
         }
         else {
             arrObj.amount = Number(arrObj.amount);
-            
-
             this.props.patchItemCheckingProperties({ item_post: arrObj });
+            this.props.changeFetchAPITrue();
 
         }
 
@@ -40,13 +39,13 @@ class CardItem extends Component {
     }
     deleteItem = () => {
         let cf = window.confirm("nhấn oke để xóa.");
-        if (cf === true)
-           
-
+        if (cf === true) {
             this.props.deleteItemChecking({ item_post: this.props.itemCard });
+            this.props.changeFetchAPITrue();
+        }
     }
     render() {
-     
+
         let printStt = "";
         switch (this.props.itemCard.printStatus) {
             case "wait":
@@ -56,7 +55,10 @@ class CardItem extends Component {
                 printStt = "Đã in"
                 break;
             case "failded":
-                printStt = "Hỏng"
+                printStt = "Lỗi"
+                break;
+            case "send":
+                printStt = "Gửi đi in"
                 break;
             case "done":
                 printStt = "Đã xong!"
@@ -72,7 +74,7 @@ class CardItem extends Component {
 
             pcname = _.toPairs(JSON.parse(localStorage.pc_gllm).item_post).filter(param => param[0] !== "id" && param[0] !== "type");
         }
-      
+
 
 
         let country = <div className="dropdown">
@@ -101,7 +103,8 @@ class CardItem extends Component {
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a className="dropdown-item" href="#" onClick={() => this.setPrintStatus("wait")}>Chưa in</a>
                 <a className="dropdown-item" href="#" onClick={() => this.setPrintStatus("printed")}>Đã in</a>
-                <a className="dropdown-item" href="#" onClick={() => this.setPrintStatus("failded")}>Hỏng</a>
+                <a className="dropdown-item" href="#" onClick={() => this.setPrintStatus("failded")}>Lỗi</a>
+                <a className="dropdown-item" href="#" onClick={() => this.setPrintStatus("send")}>Gửi đi in</a>
                 <a className="dropdown-item" href="#" onClick={() => this.setPrintStatus("done")}>Đã xong!</a>
                 <a className="dropdown-item" href="#" onClick={() => this.setPrintStatus("return")}>Hàng hoàn</a>
 
@@ -126,7 +129,7 @@ class CardItem extends Component {
                     <span className="tt-card-pro">{param[0]}</span>
                         :
                     <span >{(param[0] === "date") ? (new Date(Number(param[1])).toDateString()) :
-                    ((param[0] === "printStatus")?printStt:param[1] )
+                        ((param[0] === "printStatus") ? printStt : param[1])
                     }</span>
                 </div>)
         }

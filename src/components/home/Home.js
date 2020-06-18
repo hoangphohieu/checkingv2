@@ -32,7 +32,8 @@ class Item extends Component {
 
             if (this.props.ItemPayload.type === "ITEM_UPDATE_PC_PRO_RFAILURE" || this.props.ItemPayload.type === "ITEM_GET_PC_PRO_RFAILURE") { this.getPcProFail() }
             else if (this.props.ItemPayload.type === "ITEM_GET_PC_PRO_SUCSESS") { this.getPcProDone() }
-            else if (this.props.ItemPayload.type === "GET_CHECKING_SUCSESS" || this.props.ItemPayload.type === "GET_CHECKING_RFAILURE") this.setState({ fetchAPI: false })
+            else if (this.props.ItemPayload.type === "GET_CHECKING_SUCSESS"
+                  || this.props.ItemPayload.type === "GET_CHECKING_RFAILURE") this.setState({ fetchAPI: false })
 
       }
       showAlert = (param) => {
@@ -71,7 +72,9 @@ class Item extends Component {
             this.setState({ arrDate: arrDate });
             this.props.searchCheckingDate(endPoint);
       }
-
+      changeFetchAPITrue = () => {
+            this.setState({ fetchAPI: true })
+      }
       render() {
 
 
@@ -98,7 +101,10 @@ class Item extends Component {
                                                       onClick={() => this.searchChecking("?datatype=item&printStatus=printed")}>Hàng in xong chưa gửi
                                                 </Button>
                                                 <Button variant="outlined" className="mb-1 w-100  bt-show"
-                                                      onClick={() => this.searchChecking("?datatype=item&printStatus=failded")}>Hàng lỗi
+                                                      onClick={() => this.searchChecking("?datatype=item&printStatus=failded")}>Hàng lỗi (chờ xử lý)
+                                                </Button>
+                                                <Button variant="outlined" className="mb-1 w-100  bt-show"
+                                                      onClick={() => this.searchChecking("?datatype=item&printStatus=send")}>Hàng gửi đi in
                                                 </Button>
                                                 <Button variant="outlined" className="mb-1 w-100  bt-show"
                                                       onClick={() => this.searchChecking("?datatype=item&printStatus=return")}>Hàng hoàn
@@ -115,7 +121,7 @@ class Item extends Component {
                                                 </div>
 
                                           </div>
-                                          <ShowItems {...this.props} arrDate={this.state.arrDate} />
+                                          <ShowItems {...this.props} arrDate={this.state.arrDate} changeFetchAPITrue={this.changeFetchAPITrue} />
 
                                     </div>
                               </div>

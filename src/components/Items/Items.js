@@ -17,6 +17,7 @@ class ControlItems extends Component {
                   clickWait: false,
                   clickDone: false,
                   clickDelete: false,
+                  clickSend: false,
                   items: [],
                   reRender: 0,
                   fetching: false
@@ -64,8 +65,8 @@ class ControlItems extends Component {
             let items = JSON.parse(localStorage.itemsPatch);
             if (this.state.clickPrinted === true && items.length !== 0) {
                   let item = items[items.length - 1];
-           
-                  
+
+
                   this.patchItem({ ...item, printStatus: "printed" })
             }
             else if (this.state.clickReturn === true && items.length !== 0) {
@@ -87,6 +88,10 @@ class ControlItems extends Component {
             else if (this.state.clickDelete === true && items.length !== 0) {
                   let item = items[items.length - 1];
                   this.props.deleteItem(item);
+            }
+            else if (this.state.clickSend === true && items.length !== 0) {
+                  let item = items[items.length - 1];
+                  this.patchItem({ ...item, printStatus: "send" })
             }
 
 
@@ -141,6 +146,7 @@ class ControlItems extends Component {
             else if (items.length === 0 && this.state.clickWait) { this.setState({ fetching: false, clickWait: false }) }
             else if (items.length === 0 && this.state.clickDone) { this.setState({ fetching: false, clickDone: false }) }
             else if (items.length === 0 && this.state.clickDelete) { this.setState({ fetching: false, clickDelete: false }) }
+            else if (items.length === 0 && this.state.clickSend) { this.setState({ fetching: false, clickSend: false }) }
 
 
 
@@ -191,6 +197,8 @@ class ControlItems extends Component {
             else if (items.length === 0 && this.state.clickWait) { this.setState({ fetching: false, clickWait: false }) }
             else if (items.length === 0 && this.state.clickDone) { this.setState({ fetching: false, clickDone: false }) }
             else if (items.length === 0 && this.state.clickDelete) { this.setState({ fetching: false, clickDelete: false }) }
+            else if (items.length === 0 && this.state.clickSend) { this.setState({ fetching: false, clickSend: false }) }
+
 
 
 
@@ -290,6 +298,9 @@ class ControlItems extends Component {
 
                                                 <Button variant="outlined" className="mb-1 w-100  bt-show"
                                                       onClick={() => this.setStatus({ fetching: true, clickFailded: true })}>đánh dấu hàng lỗi
+                                                </Button>
+                                                <Button variant="outlined" className="mb-1 w-100  bt-show"
+                                                      onClick={() => this.setStatus({ fetching: true, clickSend: true })}>đánh dấu hàng gửi đi in
                                                 </Button>
                                                 <Button variant="outlined" className="mb-1 w-100  bt-show"
                                                       onClick={() => this.setStatus({ fetching: true, clickDelete: true })}>xóa tất cả
