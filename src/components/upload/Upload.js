@@ -190,6 +190,7 @@ class InputExcel extends Component {
             param["datatype"] = "item";
             param["note"] = "";
             param["barcode"] = Date.parse(new Date()) * 10 + key;
+            param.type = param.type.toLowerCase();
          
             
             param.name = param.name.toString().trim();
@@ -309,7 +310,7 @@ class InputExcel extends Component {
                     break;
 
                 default:
-                    this.alertError(" 'type' chứa ký tực đặc biệt");
+                    this.alertError(" 'type' chứa ký tực đặc biệt"); 
                     break;
             }
 

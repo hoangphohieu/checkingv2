@@ -382,6 +382,8 @@ class Silicon extends Component {
                               let j = 0;
                               while (z9L2 === zx.length) {
                                     let z9End = z9Sort[z9Sort.length - 1];
+                                    console.log(zx[j].numberMica );
+                                    
                                     if (zx[j].numberMica > z9End.filter(z9End1 => z9End1.name === zx[j].name).length) {
                                           z9Sort[z9Sort.length - 1].push(zx[j]);
                                           zx[j] = null;
@@ -399,7 +401,7 @@ class Silicon extends Component {
                         }
 
 
-                        // console.log(z9Sort);
+                        console.log(z9Sort);
 
                         return z9Sort
                   }
