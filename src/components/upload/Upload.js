@@ -76,7 +76,7 @@ class InputExcel extends Component {
             localStorage.setItem("ItemsExcel", JSON.stringify(ItemsExcel));
             setTimeout(() => {
                 this.postToServer(JSON.parse(localStorage.ItemsExcel));
-            }, 100);
+            }, 10);
 
 
             localStorage.numberSucsess = JSON.stringify(JSON.parse(localStorage.numberSucsess) + 1);
@@ -92,7 +92,7 @@ class InputExcel extends Component {
             localStorage.setItem("ItemsExcel", JSON.stringify(ItemsExcel));
             setTimeout(() => {
                 this.postToServer(JSON.parse(localStorage.ItemsExcel));
-            }, 100);
+            }, 10);
         }
     }
     postToServer = (ItemsExcel) => {
@@ -107,7 +107,7 @@ class InputExcel extends Component {
         this.setState({ fetchAPI: true })
         setTimeout(() => {
             this.postToServer(JSON.parse(localStorage.ItemsExcel));
-        }, 100);
+        }, 10);
         localStorage.numberSucsess = JSON.stringify(0);
 
     }
@@ -121,7 +121,7 @@ class InputExcel extends Component {
         setTimeout(() => {
             this.postToServer(ItemsExcel);
 
-        }, 100);
+        }, 10);
     }
     deleteItemsExcelFail = (id) => {
         let ItemsExcelFail = JSON.parse(localStorage.getItem("ItemsExcelFail"));
@@ -190,9 +190,12 @@ class InputExcel extends Component {
             param["datatype"] = "item";
             param["note"] = "";
             param["barcode"] = Date.parse(new Date()) * 10 + key;
+            param["lasttime"] = Date.parse(new Date());
+            // console.log(param.barcode);
+
             param.type = param.type.toLowerCase();
-         
-            
+
+
             param.name = param.name.toString().trim();
             return param;
         });
@@ -285,16 +288,17 @@ class InputExcel extends Component {
         }
         {// kiem tra name va sku
             name.forEach(param => {
-                if (param.match(/[!@$%^&*(),.?":{}|<>]/g)) {
-                    this.alertError(" 'name' chứa ký tực đặc biệt:   " + param.match(/[!@$%^&*(),.?":{}|<>]/g));
+                if (param.match(/[!@$%^&*(),.?":{}|<>\\\/]/g)) {
+                    this.alertError(" 'name' chứa ký tực đặc biệt:   " + param);
                     errST.push(1);
                 }
             });
             sku.forEach(param => {
-                if (param.match(/[!@$%#^&*(),.?":{}|<>]/g)) {
-                    errST.push(1);
-                    this.alertError(" 'sku' chứa ký tực đặc biệt:   " + param.match(/[!#@$%^&*(),.?":{}|<>]/g));
-                }
+                if (param.toLowerCase().slice(0, 4) !== "http")
+                    if (param.match(/[^a-zA-Z-_]/g)) {
+                        errST.push(1);
+                        this.alertError(" 'sku' chứa ký tực đặc biệt:   " + param);
+                    }
             })
         }
 
@@ -310,7 +314,7 @@ class InputExcel extends Component {
                     break;
 
                 default:
-                    this.alertError(" 'type' chứa ký tực đặc biệt"); 
+                    this.alertError(" 'type' chứa ký tực đặc biệt");
                     break;
             }
 

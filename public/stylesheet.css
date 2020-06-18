@@ -1300,6 +1300,7 @@ p.gll-phoneCase {
   top: 0;
   left: 0;
   background: #ffffffb5;
+  z-index: 9999;
 }
 
 .pro-get-upload>h1 {

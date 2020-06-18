@@ -30,6 +30,7 @@ class CardItem extends Component {
         }
         else {
             arrObj.amount = Number(arrObj.amount);
+            arrObj["lasttime"] = Date.parse(new Date());
             this.props.patchItemCheckingProperties({ item_post: arrObj });
             this.props.changeFetchAPITrue();
 
@@ -128,8 +129,10 @@ class CardItem extends Component {
                 .map((param, key) => <div key={key} className="ct-card-pro" >
                     <span className="tt-card-pro">{param[0]}</span>
                         :
-                    <span >{(param[0] === "date") ? (new Date(Number(param[1])).toDateString()) :
-                        ((param[0] === "printStatus") ? printStt : param[1])
+                    <span >{(param[0] === "date") ? (new Date(Number(param[1])).toLocaleString())
+                        :
+                        ((param[0] === "printStatus") ? printStt
+                            : ((param[0] === "lasttime") ? (new Date(param[1]).toLocaleString()) : param[1]))
                     }</span>
                 </div>)
         }

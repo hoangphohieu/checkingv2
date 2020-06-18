@@ -114,7 +114,8 @@ class ControlItems extends Component {
             }
       }
       patchItem = (item) => {
-            this.props.patchItem({ item_post: item });
+            let itemConvert = { ...item, lasttime: Date.parse(new Date()) }
+            this.props.patchItem({ item_post: itemConvert });
 
       }
       patchItemsSucsess = () => {
