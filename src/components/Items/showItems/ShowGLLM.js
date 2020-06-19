@@ -40,35 +40,28 @@ class ShowGLLM extends Component {
     render() {
         let type = this.props.type;
         let items = JSON.parse(localStorage.itemsPatch).filter(param => param.type === type);
-        
 
 
+        let items2 = [];// lặp lại những item có amount >1
+        for (let i = 0; i <= items.length - 1; i++) {
+            if (items[i].amount > 1) {
+                for (let j = 0; j < items[i].amount; j++) {
+                    items2.push(items[i])
+                }
+            }
+            else items2.push(items[i])
+        }
+        items = items2;
 
         items = items.map((param, key) => <button
             type="button"
             onClick={() => this.clickItem(param, param.name)}
             className="btn btn-outline-primary ItemProperties"
             key={key}>{param.name}</button>);
-
-
-
         return (
             <div className="items-con-items ">
-
-
-
                 <div>
-                    {/* Button trigger modal */}
                     <h3 className="GLLM-info text-left">{this.props.type} : {items.length} </h3>
-                    {/* <button type="button" className="btn btn-primary" onClick={() => this.setState({ showModal: !this.state.showModal })}>
-                        Launch static backdrop modal
-                    </button> */}
-
-                    {/* Modal */}
-                    {/* <Modalitem {...this.props} dataitem={data} showModal={this.state.showModal} closeModal={this.closeModal} /> */}
-
-                    {/* end modal */}
-
                 </div>
                 <div className="col-12">
                     {items}

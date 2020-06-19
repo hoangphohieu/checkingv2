@@ -374,6 +374,8 @@ class Silicon extends Component {
 
                   function chiaban(zx) {
                         zx = JSON.parse(JSON.stringify(zx));
+                        console.log(zx);
+                        
                         let z9Sort = [[]];
                         while (zx.length > 0) {
                               if (z9Sort[z9Sort.length - 1].length === 24) { z9Sort.push([]) };// nếu đã đủ 24 thì thêm arr mới để lưu
@@ -405,6 +407,8 @@ class Silicon extends Component {
 
                         return z9Sort
                   }
+
+                  
                   z9Screen = chiaban(z9);
                   z10Screen = chiaban(z10);
                   { // chunk 8 

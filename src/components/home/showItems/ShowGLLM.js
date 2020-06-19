@@ -44,17 +44,25 @@ class ShowGLLM extends Component {
     }
     render() {
         let type = this.props.type;
-        
+
         let items = this.props.items.filter(param => param.type === type);
         items = _.orderBy(items, ['note'], ['desc']);
         let data = JSON.parse(JSON.stringify(items));
         let itemsLength = 0;
         items.forEach(element => {
-            itemsLength= itemsLength + Number(element.amount);
+            itemsLength = itemsLength + Number(element.amount);
             return 0
         });
- 
-
+        let items2 = [];// lặp lại những item có amount >1
+        for (let i = 0; i <= items.length - 1; i++) {
+            if (items[i].amount > 1) {
+                for (let j = 0; j < items[i].amount; j++) {
+                    items2.push(items[i])
+                }
+            }
+            else items2.push(items[i])
+        }
+        items = items2;
         items = items.map((param, key) => <button
             type="button"
             onClick={() => this.clickItem(param, param.name)}
