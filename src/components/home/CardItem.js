@@ -123,7 +123,7 @@ class CardItem extends Component {
             </div>
         </div>
         let properties = "";
-        console.log(_.toPairs(this.props.itemCard));
+        // console.log(_.toPairs(this.props.itemCard));
 
         if (this.props.changeCard === false) {
             properties = _.toPairs(this.props.itemCard).filter(param => param[0] !== "datatype" & param[0] !== "id" & param[0] !== "month" & param[0] !== "year")
