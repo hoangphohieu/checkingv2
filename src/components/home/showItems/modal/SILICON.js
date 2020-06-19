@@ -374,18 +374,15 @@ class Silicon extends Component {
 
                   function chiaban(zx) {
                         zx = JSON.parse(JSON.stringify(zx));
-                        console.log(zx);
+                        // console.log(zx);
                         
                         let z9Sort = [[]];
                         while (zx.length > 0) {
                               if (z9Sort[z9Sort.length - 1].length === 24) { z9Sort.push([]) };// nếu đã đủ 24 thì thêm arr mới để lưu
-
                               let z9L2 = zx.length;
                               let j = 0;
                               while (z9L2 === zx.length) {
                                     let z9End = z9Sort[z9Sort.length - 1];
-                                    console.log(zx[j].numberMica );
-                                    
                                     if (zx[j].numberMica > z9End.filter(z9End1 => z9End1.name === zx[j].name).length) {
                                           z9Sort[z9Sort.length - 1].push(zx[j]);
                                           zx[j] = null;
