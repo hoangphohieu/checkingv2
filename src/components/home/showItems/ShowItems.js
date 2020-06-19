@@ -34,6 +34,7 @@ class ShowItems extends Component {
         items.pop();
         items = items.map(param => param.item_post);
         this.setState({ items: items });
+
         this.props.propsItemsToDefault();
 
     }
@@ -43,12 +44,12 @@ class ShowItems extends Component {
         let items = this.props.ItemPayload.listItem;
         items.pop();
         items = items.map(param => param.item_post);
-
-
         let arrDate = this.props.arrDate;
-        items = items.filter(param => {
-            arrDate = arrDate.filter(param2 => param2 === Number(param.date));
-            if (arrDate.length !== 0) return true
+        items = items.filter(param => { 
+            let arrDate2 = arrDate.filter(param2 => {
+                return param2 === Number(param.date)
+            });
+            if (arrDate2.length !== 0) return true
             else return false
         })
 
