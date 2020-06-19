@@ -123,6 +123,7 @@ class CardItem extends Component {
             </div>
         </div>
         let properties = "";
+        console.log(_.toPairs(this.props.itemCard));
 
         if (this.props.changeCard === false) {
             properties = _.toPairs(this.props.itemCard).filter(param => param[0] !== "datatype" & param[0] !== "id" & param[0] !== "month" & param[0] !== "year")
@@ -132,7 +133,7 @@ class CardItem extends Component {
                     <span >{(param[0] === "date") ? (new Date(Number(param[1])).toLocaleString())
                         :
                         ((param[0] === "printStatus") ? printStt
-                            : ((param[0] === "lasttime") ? (new Date(param[1]).toLocaleString()) : param[1]))
+                            : ((param[0] === "lasttime") ? (new Date(Number(param[1])).toLocaleString()) : param[1]))
                     }</span>
                 </div>)
         }
