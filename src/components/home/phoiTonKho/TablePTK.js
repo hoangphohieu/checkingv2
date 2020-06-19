@@ -16,6 +16,7 @@ class TablePTK extends Component {
                         zPosition: null
 
                   }
+                  , fetchAPI: false
             }
       }
 
@@ -25,10 +26,8 @@ class TablePTK extends Component {
             let items = _.toPairs(itemPC.item_post);
             items = this.convertPcPro(items, type, item);
             itemPC = { ...itemPC, item_post: items }
-        
-
-
             this.props.updatePcProperties(itemPC);
+            this.setState({ fetchAPI: true })
       }
       deleteItem = (item, type) => {
 
@@ -42,7 +41,7 @@ class TablePTK extends Component {
             items = this.convertPcPro(items, type);
 
             itemPC = { ...itemPC, item_post: items }
-           
+
 
             this.props.updatePcProperties(itemPC);
 
@@ -79,6 +78,11 @@ class TablePTK extends Component {
             }
 
 
+      }
+      componentDidUpdate() {
+            if (this.props.ItemPayload.type === "ITEM_GET_PC_PRO_SUCSESS") { this.setState({ fetchAPI: false }) }
+            // console.log(this.props.ItemPayload);
+            
       }
       render() {
             let itemsPC = JSON.parse(localStorage.getItem(this.props.typePTK));
@@ -128,7 +132,7 @@ class TablePTK extends Component {
 
                   </div>
             }
-            return (
+            return (<React.Fragment>
                   <div className="col-4">
                         {(this.props.typePTK === "pc_gllm") ? <h3 className="ptk-title"> Glass-Luminous</h3> : ((this.props.typePTK === "pc_led") ? <h3 className="ptk-title"> Led</h3> : <h3 className="ptk-title">Silicon</h3>)}
 
@@ -157,7 +161,10 @@ class TablePTK extends Component {
 
                         </div>
                   </div>
-
+                  {(this.state.fetchAPI === true) ? <div className="pro-get-upload">
+                        <h1>Đang tải...</h1>
+                  </div> : ""}
+            </React.Fragment>
             );
       }
 }

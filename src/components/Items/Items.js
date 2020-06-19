@@ -217,7 +217,7 @@ class ControlItems extends Component {
                         return param
                   }
             }).filter(param2 => param2 !== undefined);
-            console.log(itemsAPI);
+            // console.log(itemsAPI);
             
             localStorage.itemsPatch = JSON.stringify([...JSON.parse(localStorage.itemsPatch), ...itemsAPI]);
             this.props.propsItemsToDefault();

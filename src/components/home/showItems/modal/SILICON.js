@@ -151,7 +151,7 @@ class Silicon extends Component {
                                     return param4.map(param5 => {
 
 
-                                          return { ...param5, barcode: this.convertBarcode(param5.barcode) }
+                                          return { ...param5, barcode: this.convertBarcode(param5.barcode),date: Date.parse(param5.date) }
                                     })
                               })
 
@@ -381,9 +381,11 @@ class Silicon extends Component {
                               if (z9Sort[z9Sort.length - 1].length === 24) { z9Sort.push([]) };// nếu đã đủ 24 thì thêm arr mới để lưu
                               let z9L2 = zx.length;
                               let j = 0;
+                              // console.log(zx[j]);
+                              
                               while (z9L2 === zx.length) {
                                     let z9End = z9Sort[z9Sort.length - 1];
-                                    if (zx[j].numberMica > z9End.filter(z9End1 => z9End1.name === zx[j].name).length) {
+                                    if (zx[j].numberMica > z9End.filter(z9End1 => z9End1.case === zx[j].case).length) {
                                           z9Sort[z9Sort.length - 1].push(zx[j]);
                                           zx[j] = null;
                                           zx = zx.filter(z91 => { return z91 !== null });
@@ -400,7 +402,7 @@ class Silicon extends Component {
                         }
 
 
-                        console.log(z9Sort);
+                        // console.log(z9Sort);
 
                         return z9Sort
                   }

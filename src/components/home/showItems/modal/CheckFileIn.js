@@ -30,15 +30,18 @@ class CheckFileIn extends Component {
     render() {
         let allNameItems = this.props.dataNone;
         let itemNoPrint = this.props.itemNoPrint;
+        // console.log(this.props.dataNone);
 
-        allNameItems = allNameItems.map(item => { return item.toLowerCase().trim() })
+        allNameItems = allNameItems.map(item => { return item   .trim() })
 
 
 
 
-        let itemsNone = _.difference(allNameItems, this.state.arrNameFile);
+        let itemsNone = _.differenceBy(allNameItems, this.state.arrNameFile,(param)=>param.toLowerCase());
+        
+
         itemsNone = [...new Set(itemsNone)]
-       
+
 
 
 

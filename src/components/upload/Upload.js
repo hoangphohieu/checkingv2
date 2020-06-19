@@ -229,6 +229,8 @@ class InputExcel extends Component {
 
         })
 
+        console.log(dataObj);
+        
         return dataObj;
     }
     ProcessExcel = (param) => {
@@ -295,7 +297,7 @@ class InputExcel extends Component {
             });
             sku.forEach(param => {
                 if (param.toLowerCase().slice(0, 4) !== "http")
-                    if (param.match(/[^a-zA-Z0-9-_]/g)) {
+                    if (param.match(/[^a-zA-Z0-9-_\s]/g)) {
                         errST.push(1);
                         this.alertError(" 'sku' chứa ký tực đặc biệt:   " + param);
                     }
