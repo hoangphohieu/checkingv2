@@ -114,7 +114,7 @@ class ControlItems extends Component {
             }
       }
       patchItem = (item) => {
-            let itemConvert = { ...item, lasttime: Date.parse(new Date()) }
+            let itemConvert = { ...item, lasttime: [Date.parse(new Date()),localStorage.myIp] }
             this.props.patchItem({ item_post: itemConvert });
 
       }
