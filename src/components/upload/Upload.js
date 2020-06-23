@@ -190,7 +190,7 @@ class InputExcel extends Component {
             param["datatype"] = "item";
             param["note"] = "";
             param["barcode"] = Date.parse(new Date()) * 10 + key;
-            param["lasttime"] = Date.parse(new Date());
+            param["lasttime"] = [Date.parse(new Date()),localStorage.myIp];
             // console.log(param.barcode);
 
             param.type = param.type.toLowerCase();

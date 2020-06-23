@@ -36,11 +36,18 @@ class App extends Component {
     localStorage.setItem("SumOrderHome", JSON.stringify([]));
     localStorage.setItem("PhonesAlltribute", JSON.stringify([]));
     localStorage.setItem("pc_gllm", JSON.stringify([]));
-
+    localStorage.myIp="[]";
     this.props.getSheetPhone("type=pc_properties");
+    {
+      fetch('http://www.geoplugin.net/json.gp')
+      .then(response => response.json())
+      .then(data =>localStorage.myIp=data.geoplugin_request);
+
+
+    }
   }
   convertPCProperties = (payload) => {
-    
+
     payload.pop();
     payload.forEach(items => {
 
