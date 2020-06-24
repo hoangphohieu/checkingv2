@@ -114,7 +114,7 @@ class ControlItems extends Component {
             }
       }
       patchItem = (item) => {
-            let itemConvert = { ...item, lasttime: [Date.parse(new Date()),localStorage.myIp] }
+            let itemConvert = { ...item, handlechange: item["handlechange"].concat(`,${Date.parse(new Date())}:PUT`) }
             this.props.patchItem({ item_post: itemConvert });
 
       }
@@ -214,11 +214,11 @@ class ControlItems extends Component {
             itemsAPI = itemsAPI.map(param => {
 
                   if (itemsState.filter(param2 => param2.barcode === param.barcode).length === 0) {
-                        return param
+                        return { ...param, handlechange: param["handlechange"].concat(`,${Date.parse(new Date())}:GET`) }
                   }
             }).filter(param2 => param2 !== undefined);
             // console.log(itemsAPI);
-            
+
             localStorage.itemsPatch = JSON.stringify([...JSON.parse(localStorage.itemsPatch), ...itemsAPI]);
             this.props.propsItemsToDefault();
 

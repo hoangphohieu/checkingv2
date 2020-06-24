@@ -30,7 +30,9 @@ class CardItem extends Component {
         }
         else {
             arrObj.amount = Number(arrObj.amount);
-            arrObj["lasttime"] =[ Date.parse(new Date()),localStorage.myIp];
+            arrObj["lasttime"] = Date.parse(new Date());
+            arrObj["handlechange"] = arrObj["handlechange"].concat(`,${Date.parse(new Date())}:PUT`);
+
             this.props.patchItemCheckingProperties({ item_post: arrObj });
             this.props.changeFetchAPITrue();
 
@@ -126,14 +128,14 @@ class CardItem extends Component {
         // console.log(_.toPairs(this.props.itemCard));
 
         if (this.props.changeCard === false) {
-            properties = _.toPairs(this.props.itemCard).filter(param => param[0] !== "datatype" & param[0] !== "id" & param[0] !== "month" & param[0] !== "year")
+            properties = _.toPairs(this.props.itemCard).filter(param => param[0] !== "datatype" & param[0] !== "id" & param[0] !== "month" & param[0] !== "year" & param[0] !== "handlechange")
                 .map((param, key) => <div key={key} className="ct-card-pro" >
                     <span className="tt-card-pro">{param[0]}</span>
                         :
                     <span >{(param[0] === "date") ? (new Date(Number(param[1])).toLocaleString())
                         :
                         ((param[0] === "printStatus") ? printStt
-                            : ((param[0] === "lasttime") ? (new Date(Number(param[1][0])).toLocaleString()) : param[1]))
+                            : ((param[0] === "lasttime") ? (new Date(Number(param[1])).toLocaleString()) : param[1]))
                     }</span>
                 </div>)
         }

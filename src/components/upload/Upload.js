@@ -110,6 +110,7 @@ class InputExcel extends Component {
         }, 10);
         localStorage.numberSucsess = JSON.stringify(0);
 
+
     }
 
 
@@ -190,13 +191,15 @@ class InputExcel extends Component {
             param["datatype"] = "item";
             param["note"] = "";
             param["barcode"] = Date.parse(new Date()) * 10 + key;
-            param["lasttime"] = [Date.parse(new Date()),localStorage.myIp];
-            // console.log(param.barcode);
+            param["lasttime"] = Date.parse(new Date());
+            param["handlechange"] = Date.parse(new Date()) + ":" + "POST";
 
             param.type = param.type.toLowerCase();
 
 
             param.name = param.name.toString().trim();
+            // console.log(param);
+
             return param;
         });
         dataObj = _.orderBy(dataObj, ['name'], ['asc']);
@@ -230,7 +233,7 @@ class InputExcel extends Component {
         })
 
         console.log(dataObj);
-        
+
         return dataObj;
     }
     ProcessExcel = (param) => {
@@ -244,7 +247,10 @@ class InputExcel extends Component {
 
 
         let dataObj = this.convertData(data);
+
         dataObj = this.checkDataFailImport([...dataObj]);
+        console.log(dataObj);
+
         localStorage.setItem("ItemsExcel", JSON.stringify(dataObj));
         this.setState({
             itemsLength: dataObj.length
