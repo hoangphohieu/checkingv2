@@ -114,7 +114,7 @@ class ControlItems extends Component {
             }
       }
       patchItem = (item) => {
-            let itemConvert = { ...item, handlechange: item["handlechange"].concat(`,${Date.parse(new Date())}:PUT`) }
+            let itemConvert = { ...item, handlechange: (item["handlechange"] === undefined) ? `${Date.parse(new Date())}:PUT` : item["handlechange"].concat(`,${Date.parse(new Date())}:PUT`) }
             this.props.patchItem({ item_post: itemConvert });
 
       }
