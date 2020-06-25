@@ -28,7 +28,8 @@ class CPN extends Component {
             let arrMonth = arr.map(param => ((new Date(param)).getMonth() + 1));
             arrMonth = _.uniq(arrMonth).map(param => `month=${param}`).join("&");
             let endPoint = "?datatype=item&" + arrMonth;
-            this.props.getItemsDatePicker(endPoint, arr)
+            this.props.getItemsDatePicker(endPoint, arr);
+            this.props.changeFetchAPITrue();
 
 
 

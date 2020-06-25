@@ -53,7 +53,7 @@ class ModalItem extends Component {
                         {(this.props.type === "silicon") ? <SILICON   {...this.props} itemsLocal={data} /> : <GL_LM_LED {...this.props} itemsLocal={data} />}
 
                         <div className="row">
-                            <div className="col-5">
+                            <div className="col-4">
                                 <PhoiIn dataitem={this.props.dataitem} type={this.props.type} />
                             </div>
                             <div className="col-5">

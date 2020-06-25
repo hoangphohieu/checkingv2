@@ -31,7 +31,7 @@ class CardItem extends Component {
         else {
             arrObj.amount = Number(arrObj.amount);
             arrObj["lasttime"] = Date.parse(new Date());
-            arrObj["handlechange"] = arrObj["handlechange"].concat(`,${Date.parse(new Date())}:PUT`);
+            arrObj["handlechange"] =  (arrObj["handlechange"] === undefined) ? `${Date.parse(new Date())}:PUT` :arrObj["handlechange"].concat(`,${Date.parse(new Date())}:PUT`); 
 
             this.props.patchItemCheckingProperties({ item_post: arrObj });
             this.props.changeFetchAPITrue();

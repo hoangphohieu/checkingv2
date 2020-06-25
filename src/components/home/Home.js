@@ -33,7 +33,8 @@ class Item extends Component {
             if (this.props.ItemPayload.type === "ITEM_UPDATE_PC_PRO_RFAILURE" || this.props.ItemPayload.type === "ITEM_GET_PC_PRO_RFAILURE") { this.getPcProFail() }
             else if (this.props.ItemPayload.type === "ITEM_GET_PC_PRO_SUCSESS") { this.getPcProDone() }
             else if (this.props.ItemPayload.type === "GET_CHECKING_SUCSESS"
-                  || this.props.ItemPayload.type === "GET_CHECKING_RFAILURE") this.setState({ fetchAPI: false })
+                  || this.props.ItemPayload.type === "GET_CHECKING_DATE_SUCSESS"
+            ) this.setState({ fetchAPI: false })
 
       }
       showAlert = (param) => {
@@ -117,7 +118,7 @@ class Item extends Component {
 
 
                                                 <div className="mt-4">
-                                                      <DatePicker getItemsDatePicker={this.getItemsDatePicker} />
+                                                      <DatePicker getItemsDatePicker={this.getItemsDatePicker} changeFetchAPITrue={this.changeFetchAPITrue} />
                                                 </div>
 
                                           </div>
