@@ -22,9 +22,9 @@ class ShowItems extends Component {
 
         if (this.props.ItemPayload.type === "GET_CHECKING_SUCSESS") { this.getCheckingSucsess() }
         else if (this.props.ItemPayload.type === "GET_CHECKING_DATE_SUCSESS") { this.getCheckingDateSucsess() }
-        else if (this.props.ItemPayload.type === "ITEMS_GET_PC_RETURN_SUCSESS") { this.getSheetPCReturnDone() }
-        else if (this.props.ItemPayload.type === "ITEMS_GET_PC_RETURN_RFAILURE") { this.getSheetPCFail() }
-        else if (this.props.ItemPayload.type === "GET_CHECKING_RFAILURE") { this.getCheckingFail() }
+        // else if (this.props.ItemPayload.type === "ITEMS_GET_PC_RETURN_SUCSESS") { this.getSheetPCReturnDone() }
+        // else if (this.props.ItemPayload.type === "ITEMS_GET_PC_RETURN_RFAILURE") { this.getSheetPCFail() }
+        else if (this.props.ItemPayload.type === "GET_CHECKING_RFAILURE") { this.getCheckingFail() } 
 
 
 

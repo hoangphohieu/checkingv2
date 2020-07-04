@@ -39,7 +39,7 @@ class ShowGLLM extends Component {
     }
     clickMore = () => {
         this.setState({ showModal: !this.state.showModal });
-        if (this.props.type === "glass" || this.props.type === "luminous") this.props.getPCReturn();
+        // if (this.props.type === "glass" || this.props.type === "luminous") this.props.getPCReturn();
 
     }
     render() {

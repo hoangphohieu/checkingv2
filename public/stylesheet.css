@@ -1308,3 +1308,13 @@ p.gll-phoneCase {
   margin-top: 40vh;
   font-size: 2rem;
 }
+a.author {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  left: 0;
+  color: #919eabe0;
+  font-size: 0.9rem;
+  font-style: italic;
+  letter-spacing: 2px;
+}
