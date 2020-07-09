@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import Items from '../components/Items/Items'; 
+import Items from '../components/Items/Items2'; 
 function mapStateToProps(state) {
       return {
             ItemReducer: state.ItemsReducer

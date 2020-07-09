@@ -17,18 +17,19 @@ class ShowItems extends Component {
     render() {
 
 
+        // console.log(this.props.ItemsGET);
         
 
         return (
             <div>
                 <div className="grid-items-item2">
-                    <ShowGLLM type="glass" />
+                    <ShowGLLM type="glass" items={this.props.ItemsGET} />
 
-                    <ShowGLLM type="luminous" />
+                    <ShowGLLM type="luminous" items={this.props.ItemsGET} />
 
-                    <ShowGLLM type="led" />
+                    <ShowGLLM type="led"  items={this.props.ItemsGET}/>
 
-                    <ShowGLLM type="silicon" />
+                    <ShowGLLM type="silicon"  items={this.props.ItemsGET}/>
                 </div>
 
             </div>

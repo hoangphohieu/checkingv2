@@ -39,8 +39,11 @@ class ShowGLLM extends Component {
     }
     render() {
         let type = this.props.type;
-        let items = JSON.parse(localStorage.itemsPatch).filter(param => param.type === type);
+        // console.log( this.props.items);
 
+        let items = this.props.items.filter(param => param.type === type);
+
+        // console.log(items);
 
         let items2 = [];// lặp lại những item có amount >1
         for (let i = 0; i <= items.length - 1; i++) {
