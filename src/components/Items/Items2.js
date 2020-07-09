@@ -9,7 +9,11 @@ function Items2(props) {
       const [Method, setMethod] = useState({ type: null, fetching: false });
       const [ItemsGET, setItemsGET] = useState([]);
       const [ItemsCount, setItemsCount] = useState([]);
-
+      useEffect(() => {
+            localStorage.items_gllm = "[]";
+            localStorage.items_led = "[]";
+            localStorage.items_silicon = "[]";
+      }, []);
       useEffect(() => {
             if (props.ItemReducer.type === "GET_CI_CHECKING_SUCSESS") { getCheckingSucsess() }
             else if (props.ItemReducer.type === "CI_PATCH_ITEMS_RFAILURE") { patchItemsFaild() }
