@@ -463,8 +463,8 @@ class Silicon extends Component {
 
             let itemsZ9, itemsZ10;
             if (z9Screen !== undefined) {
-                  itemsZ9 = z9Screen.map((item, key) => <BangItems key={key} Item24={item} typeTable={this.props.type} type="z9" numberTable={key} />)
-                  itemsZ10 = z10Screen.map((item, key) => <BangItems key={key} Item24={item} typeTable={this.props.type} type="z10" numberTable={key} />)
+                  itemsZ9 = z9Screen.map((item, key) => <BangItems key={key} Item24={item} typeTable={this.props.type} type="z14" numberTable={key} />)
+                  itemsZ10 = z10Screen.map((item, key) => <BangItems key={key} Item24={item} typeTable={this.props.type} type="z15" numberTable={key} />)
             }
 
             return (

@@ -12,14 +12,15 @@ class Item extends Component {
             this.state = ({
                   ShowQLP: false,
                   arrDate: [Date.parse(new Date().toDateString())],
-                  fetchAPI: false
+                  fetchAPI: false,
+                  btn_handle: null
             })
       }
 
       searchChecking = (param) => {
 
-            this.props.searchChecking(param);
-            this.setState({ fetchAPI: true })
+            this.props.searchChecking(`?datatype=item&printStatus=${param}`);
+            this.setState({ fetchAPI: true, btn_handle: param })
       }
 
       componentDidUpdate() {
@@ -70,7 +71,7 @@ class Item extends Component {
             });
       }
       getItemsDatePicker = (endPoint, arrDate) => {
-            this.setState({ arrDate: arrDate });
+            this.setState({ arrDate: arrDate, btn_handle: null });
             this.props.searchCheckingDate(endPoint);
       }
       changeFetchAPITrue = () => {
@@ -78,8 +79,10 @@ class Item extends Component {
       }
       render() {
 
-
-
+            let arr_handle = [["wait", "Hàng chưa in"], ["printed", "Hàng in xong, chưa gửi"], ["failded", "Hàng Lỗi, chờ xử lý"], ["send", "Hàng gửi đi in"], ["return", "Hàng hoàn"]]
+            arr_handle = arr_handle.map((param, key) => <Button variant="outlined" key={key} className={"mb-1 w-100  bt-show" + ((this.state.btn_handle === param[0] ? " bt-show-select" : ""))}
+                  onClick={() => this.searchChecking(param[0])}>{param[1]}
+            </Button>)
 
 
             return (
@@ -95,21 +98,7 @@ class Item extends Component {
                               <div className="col-12 checking-right mt-3">
                                     <div className="grid-container-item">
                                           <div className="grid-items-item1">
-                                                <Button variant="outlined" className="mb-1 w-100  bt-show"
-                                                      onClick={() => this.searchChecking("?datatype=item&printStatus=wait")}>Hàng chưa in
-                                                </Button>
-                                                <Button variant="outlined" className="mb-1 w-100  bt-show"
-                                                      onClick={() => this.searchChecking("?datatype=item&printStatus=printed")}>Hàng in xong chưa gửi
-                                                </Button>
-                                                <Button variant="outlined" className="mb-1 w-100  bt-show"
-                                                      onClick={() => this.searchChecking("?datatype=item&printStatus=failded")}>Hàng lỗi (chờ xử lý)
-                                                </Button>
-                                                <Button variant="outlined" className="mb-1 w-100  bt-show"
-                                                      onClick={() => this.searchChecking("?datatype=item&printStatus=send")}>Hàng gửi đi in
-                                                </Button>
-                                                <Button variant="outlined" className="mb-1 w-100  bt-show"
-                                                      onClick={() => this.searchChecking("?datatype=item&printStatus=return")}>Hàng hoàn
-                                                </Button>
+                                                {arr_handle}
                                                 <Button variant="outlined" className="mb-1 w-100 bt-show"
                                                       onClick={() => this.setState({ ShowQLP: true })}>Quản lý phôi
                                                 </Button>

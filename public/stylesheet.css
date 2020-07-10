@@ -105,6 +105,17 @@ body{
 .bt-show {
   font-size: 1rem !important;
 }
+
+.bt-show:hover {
+    border: 1px solid #ff7526 !important;
+    /* box-sizing: border-box !important; */
+}
+
+.bt-show-select {
+    background: #ff7526 !important;
+    color: #fff !important;
+    border: 1px solid #fff !important;
+}
 .bt-thongtin {
   background: #ff7526  !important;
   border: 0;
@@ -1257,7 +1268,7 @@ p.gll-country {
   font-size: 1.2rem;
   margin: 0;
   position: absolute;
-  bottom: 2.2rem;
+  bottom: 2rem;
   text-align: center;
   left: 0;
   width: 100%;
