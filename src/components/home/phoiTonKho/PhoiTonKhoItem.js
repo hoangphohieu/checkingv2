@@ -55,7 +55,7 @@ class PhoiTonKhoItem extends Component {
             }
            
 
-            this.props.changePC_Properties(item, this.props.type);
+            this.props.changePC_Properties(item);
       }
 
       render() {

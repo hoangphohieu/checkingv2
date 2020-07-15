@@ -20,15 +20,21 @@ function Items2(props) {
             else if (props.ItemReducer.type === "CI_DELETE_ITEMS_RFAILURE") { patchItemsFaild() }
             else if (props.ItemReducer.type === "CI_UPDATE_PC_PRO_SUCSESS") { updatePCProDone() }
             else if (props.ItemReducer.type === "CI_UPDATE_PC_PRO_RFAILURE") { updatePCProfail() }
+
             if (ItemsGET.length === 0) {
                   if (localStorage.items_gllm !== "[]") {
+                      
 
                         props.updatePcPro(JSON.parse(localStorage.items_gllm));
                   }
                   else if (localStorage.items_led !== "[]") {
+                      
+
                         props.updatePcPro(JSON.parse(localStorage.items_led));
                   }
                   else if (localStorage.items_silicon !== "[]") {
+                    
+
                         props.updatePcPro(JSON.parse(localStorage.items_silicon));
                   } else {
                         if (Method.fetching !== false || Method.type !== null) {
@@ -91,20 +97,19 @@ function Items2(props) {
             props.propsItemsToDefault();
       }
       let updatePCProDone = () => {
-            let pcPro = props.ItemReducer.listItem.item_post;
-            if (pcPro.id = "pc_gllm") {
+            let pcPro = JSON.parse(JSON.stringify(props.ItemReducer.listItem));
+
+            if (pcPro.item_post.id === "pc_gllm") {
                   localStorage.items_gllm = "[]";
-                  localStorage.pc_gllm = JSON.stringify(props.ItemReducer.listItem);
+                  localStorage.pc_gllm = JSON.stringify(pcPro);
             }
-            if (pcPro.id = "pc_led") {
+            if (pcPro.item_post.id === "pc_led") {
                   localStorage.items_led = "[]";
-                  localStorage.pc_led = JSON.stringify(props.ItemReducer.listItem);
-
+                  localStorage.pc_led = JSON.stringify(pcPro);
             }
-            if (pcPro.id = "pc_silicon") {
+            if (pcPro.item_post.id ==="pc_silicon") {
                   localStorage.items_silicon = "[]";
-                  localStorage.pc_silicon = JSON.stringify(props.ItemReducer.listItem);
-
+                  localStorage.pc_silicon = JSON.stringify(pcPro);
             }
       }
       let updatePCProfail = () => {
@@ -127,7 +132,7 @@ function Items2(props) {
             }
             pc_pro = pc_pro.map(param => [param.nameDefault, param]);
             pc_pro = _.fromPairs(pc_pro);
-            pc_pro = { ...pc_pro, id: type, type: "pc_properties" }
+            // pc_pro = { ...pc_pro, id: type, type: "pc_properties" };
             amountAllPhoneCase.forEach(param => { pc_pro[param[0]].amount = pc_pro[param[0]].amount - param[1] });
             pc_pro = { item_post: { ...pc_pro, id: type, type: "pc_properties" } }
             return pc_pro;
@@ -135,7 +140,7 @@ function Items2(props) {
       let handleSetMethod = (param) => {
             if (param === "printed") setItemsCount([...ItemsGET]);
             let item = ItemsGET[ItemsGET.length - 1];
-            console.log(item);
+            
             if (item !== undefined) {
                   let itemConvert = {
                         ...item,
@@ -143,7 +148,7 @@ function Items2(props) {
                         lasttime: Date.parse(new Date()),
                         handlechange: (item["handlechange"] === undefined) ? `${Date.parse(new Date())}:PUT` : item["handlechange"].concat(`,${Date.parse(new Date())}:PUT`)
                   }
-                 
+
                   props.patchItem({ item_post: itemConvert });
                   setMethod({ type: param, fetching: true });
             }

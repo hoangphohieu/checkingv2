@@ -21,7 +21,8 @@ class TablePTK extends Component {
       }
 
 
-      changePC_Properties = (item, type) => {
+      changePC_Properties = (item) => {
+            let type = this.props.typePTK;
             let itemPC = JSON.parse(localStorage.getItem(type));
             let items = _.toPairs(itemPC.item_post);
             items = this.convertPcPro(items, type, item);
@@ -82,7 +83,7 @@ class TablePTK extends Component {
       componentDidUpdate() {
             if (this.props.ItemPayload.type === "ITEM_GET_PC_PRO_SUCSESS") { this.setState({ fetchAPI: false }) }
             // console.log(this.props.ItemPayload);
-            
+
       }
       render() {
             let itemsPC = JSON.parse(localStorage.getItem(this.props.typePTK));

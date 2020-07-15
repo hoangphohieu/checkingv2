@@ -35,29 +35,30 @@ export default (state = DEFAULT_STATE, action) => {
 
             }
 
-            case type.CI_UPDATE_PC_PRO_SUCSESS:
+        case type.CI_UPDATE_PC_PRO_SUCSESS:
+         
 
-                return {
-                    ...state,
-                    isFetching: false,
-                    dataFetched: true,
-                    error: false,
-                    errorMessesage: null,
-                    listItem: action.payload,
-                    type: "CI_UPDATE_PC_PRO_SUCSESS"
-                }
-    
-            case type.CI_UPDATE_PC_PRO_RFAILURE:
-                return {
-                    ...state,
-                    isFetching: false,
-                    error: true,
-                    errorMessesage: action.payload.errorMessesage,
-                    type: "CI_UPDATE_PC_PRO_RFAILURE"
-    
-                }
+            return {
+                ...state,
+                isFetching: false,
+                dataFetched: true,
+                error: false,
+                errorMessesage: null,
+                listItem: action.payload,
+                type: "CI_UPDATE_PC_PRO_SUCSESS"
+            }
 
-                
+        case type.CI_UPDATE_PC_PRO_RFAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                error: true,
+                errorMessesage: action.payload.errorMessesage,
+                type: "CI_UPDATE_PC_PRO_RFAILURE"
+
+            }
+
+
 
         case type.CI_PATCH_ITEMS_SUCSESS:
 

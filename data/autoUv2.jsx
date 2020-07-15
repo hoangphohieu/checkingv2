@@ -139,9 +139,9 @@ function createTableGlass(data) {
         { // lưu file khung
             app.activeDocument.layerSets.getByName("SPOT").visible = false;
             app.activeDocument.layerSets.getByName("CMYK").visible = false;
-            var folder1 = Folder("~/Desktop/in an/Glass " +"b-"+ (i + 1) + "-" + hour + "h-" + day + "-" + mounth);
+            var folder1 = Folder("~/Desktop/in an/Glass " + "b-" + (i + 1) + "-" + hour + "h-" + day + "-" + mounth);
             if (!folder1.exists) { folder1.create(); }
-            app.activeDocument.saveAs(Folder("~/Desktop/in an/Glass " +"b-"+ (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/khung.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
+            app.activeDocument.saveAs(Folder("~/Desktop/in an/Glass " + "b-" + (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/khung.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
 
         }// lưu file in
         {
@@ -152,7 +152,7 @@ function createTableGlass(data) {
             app.doAction("createSmarkOBJ", "autoUv");
             app.doAction("selectArea", "autoUv");
             app.doAction("createSPOTWithArea", "autoUv");
-            app.activeDocument.saveAs(Folder("~/Desktop/in an/Glass " +"b-"+ (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/in.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
+            app.activeDocument.saveAs(Folder("~/Desktop/in an/Glass " + "b-" + (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/in.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
 
         }
         app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
@@ -163,9 +163,9 @@ function createTableGlass(data) {
         for (var i = 0; i <= arr.length - 1; i++) {
             for (var j = 0; j <= arr[i].length - 1; j++) {
                 moveTem(arr[i][j], type);
-                var folder1 = Folder("~/Desktop/in an/Glass " +"b-"+ (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/tem");
+                var folder1 = Folder("~/Desktop/in an/Glass " + "b-" + (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/tem");
                 if (!folder1.exists) { folder1.create(); }
-                app.activeDocument.saveAs(Folder("~/Desktop/in an/Glass " +"b-"+ (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/tem/" + arr[i][j].stt + ".jpg"), JPEGSaveOptions, true, Extension.LOWERCASE);
+                app.activeDocument.saveAs(Folder("~/Desktop/in an/Glass " + "b-" + (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/tem/" + arr[i][j].stt + ".jpg"), JPEGSaveOptions, true, Extension.LOWERCASE);
 
 
             }
@@ -210,15 +210,15 @@ function createTableLuminous(data) {
         { // lưu file khung
             app.activeDocument.layerSets.getByName("SPOT").visible = false;
             app.activeDocument.layerSets.getByName("CMYK").visible = false;
-            var folder1 = Folder("~/Desktop/in an/Luminous " +"b-"+ (i + 1) + "-" + hour + "h-" + day + "-" + mounth);
+            var folder1 = Folder("~/Desktop/in an/Luminous " + "b-" + (i + 1) + "-" + hour + "h-" + day + "-" + mounth);
             if (!folder1.exists) { folder1.create(); }
-            app.activeDocument.saveAs(Folder("~/Desktop/in an/Luminous " +"b-"+ (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/khung.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
+            app.activeDocument.saveAs(Folder("~/Desktop/in an/Luminous " + "b-" + (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/khung.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
         }
         {// lưu file in
             app.activeDocument.channels.getByName("Spot Color 1").remove();
             app.activeDocument.layerSets.getByName("CMYK").visible = true;
 
-            app.activeDocument.saveAs(Folder("~/Desktop/in an/Luminous " +"b-"+ (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/in.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
+            app.activeDocument.saveAs(Folder("~/Desktop/in an/Luminous " + "b-" + (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/in.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
 
         }
         {
@@ -227,7 +227,7 @@ function createTableLuminous(data) {
             app.doAction("selectArea", "autoUv");
             app.doAction("createSPOTWithArea", "autoUv");
             app.activeDocument.artLayers.getByName("CMYK").visible = false;
-            app.activeDocument.saveAs(Folder("~/Desktop/in an/Luminous " +"b-"+ (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/white.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
+            app.activeDocument.saveAs(Folder("~/Desktop/in an/Luminous " + "b-" + (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/white.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
         }
         app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
     } // hết làm file
@@ -236,9 +236,9 @@ function createTableLuminous(data) {
         for (var i = 0; i <= arr.length - 1; i++) {
             for (var j = 0; j <= arr[i].length - 1; j++) {
                 moveTem(arr[i][j], type);
-                var folder1 = Folder("~/Desktop/in an/Luminous " +"b-"+ (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/tem");
+                var folder1 = Folder("~/Desktop/in an/Luminous " + "b-" + (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/tem");
                 if (!folder1.exists) { folder1.create(); }
-                app.activeDocument.saveAs(Folder("~/Desktop/in an/Luminous " +"b-"+ (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/tem/" + arr[i][j].stt + ".jpg"), JPEGSaveOptions, true, Extension.LOWERCASE);
+                app.activeDocument.saveAs(Folder("~/Desktop/in an/Luminous " + "b-" + (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/tem/" + arr[i][j].stt + ".jpg"), JPEGSaveOptions, true, Extension.LOWERCASE);
             }
         }
         app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
@@ -283,18 +283,17 @@ function createTableSilicon(data) {
                         wphone = Math.round((wphone - paddingPrintLR) / 0.084667);
                         hphone = Math.round((hphone - paddingPrintTB) / 0.084667);
 
+                        // xu ly file binh thuong
+                        {
+                            try {
+                                app.open(File("D:/DATA/file design/" + typePosition[arr][ban][i][j].sku + ".tif"));
+                                app.activeDocument.flipCanvas(Direction.HORIZONTAL);
+                            } catch (error) {
+                                app.documents.add(1200, 2400, 300, "aaaa");
 
-                        try {
-                            app.open(File("D:/DATA/file design/" + typePosition[arr][ban][i][j].sku + ".tif"));
-                            app.activeDocument.flipCanvas(Direction.HORIZONTAL);
-                        } catch (error) {
-                            app.documents.add(1200, 2400, 300, "aaaa");
+                            }
 
-                        }
 
-                        var checksku = typePosition[arr][ban][i][j].sku.split("-");
-                        checksku = checksku[checksku.length - 1];
-                        if (checksku != "spot") {
                             if (app.activeDocument.artLayers.length === 1) { // nhân đôi layer, kiểm tra nếu có 2 layer là phải làm lại từ đầu
                                 app.activeDocument.rotateCanvas(180);
                                 app.activeDocument.activeLayer.name = "1";
@@ -324,135 +323,135 @@ function createTableSilicon(data) {
                                     app.doAction("duplicateSelection", "autoUv"); // tạo layer mới từ vùng chọn
                                     app.activeDocument.activeLayer.name = typePosition[arr][ban][i][j].stt; // đặt tên cho layer voi stt
                                     app.activeDocument.activeLayer.duplicate(app.documents["silicon"].layerSets["CMYK"], ElementPlacement.PLACEATBEGINNING);// đưa file in sang bên bàn in
-                                    app.activeDocument.activeLayer.name = "2";
-                                    app.doAction("createSpot", "autoUv");
-                                    app.doAction("strokeWhite1px", "autoUv");
-                                    app.activeDocument.artLayers["1"].name = typePosition[arr][ban][i][j].stt; // đặt tên cho layer voi stt
-                                    app.activeDocument.activeLayer.duplicate(app.documents["silicon"].layerSets["SPOT"], ElementPlacement.PLACEATBEGINNING);// đưa file in sang bên bàn in
+                                    // app.activeDocument.activeLayer.name = "2";
+                                    // app.doAction("createSpot", "autoUv");
+                                    // app.doAction("strokeWhite1px", "autoUv");
+                                    // app.activeDocument.artLayers["1"].name = typePosition[arr][ban][i][j].stt; // đặt tên cho layer voi stt
+                                    // app.activeDocument.activeLayer.duplicate(app.documents["silicon"].layerSets["SPOT"], ElementPlacement.PLACEATBEGINNING);
                                     app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
                                 }
 
-                                { // translate layer đến vị trí cần in
-                                    app.activeDocument.activeLayer = app.activeDocument.layerSets["CMYK"].artLayers.getByName(typePosition[arr][ban][i][j].stt);
-                                    app.doAction("moveZero", "autoUv");
-                                    app.activeDocument.activeLayer.translate(paddingLeft + j * wk + Math.round(paddingPrintLR / (2 * 0.084667)), (paddingBottom + i * hk + Math.round(paddingPrintTB / (2 * 0.084667))) * (-1));
-                                    app.activeDocument.activeLayer = app.activeDocument.layerSets["SPOT"].artLayers.getByName(typePosition[arr][ban][i][j].stt);
-                                    app.doAction("moveZero", "autoUv");
-                                    app.activeDocument.activeLayer.translate(paddingLeft + j * wk + Math.round(paddingPrintLR / (2 * 0.084667)), (paddingBottom + i * hk + Math.round(paddingPrintTB / (2 * 0.084667))) * (-1));
-                                }
+
                             }
                             else { alert("file design khong > 1 layer") };
 
+                        } // het xu ly file binh thuong
+
+                        // xu ly file spot
+                        {
+                            try {
+                                app.open(File("D:/DATA/file design/" + typePosition[arr][ban][i][j].sku + "_spot.tif"));
+                                app.activeDocument.flipCanvas(Direction.HORIZONTAL);
+
+                            } catch (error) {
+                                app.documents.add(1200, 2400, 300, "aaaa");
+
+                            }
+                            app.doAction("selectWhite", "autoUv")
+                            var spotColor = new SolidColor;
+                            spotColor.cmyk.cyan = 0;
+                            spotColor.cmyk.magenta = 0;
+                            spotColor.cmyk.yellow = 0;
+                            spotColor.cmyk.black = 25;
+                            app.activeDocument.selection.fill(spotColor);
+
+                            app.activeDocument.rotateCanvas(180);
+                            app.activeDocument.activeLayer.name = "1";
+                            app.activeDocument.activeLayer.duplicate(app.activeDocument.activeLayer, ElementPlacement.PLACEBEFORE); // nhân đôi layer
+                            app.activeDocument.resizeCanvas(wphone, hphone); // resize canvas về cỡ cần in với loại điện thoại
+
+                            { // resize layer về cỡ cần in
+                                if ((hphone / wphone) < 2) { var newSize = (wphone * 100 / 1200) }
+                                else { var newSize = (hphone * 100 / 2400) }
+                                app.activeDocument.artLayers["1 copy"].resize(newSize, newSize, AnchorPosition.MIDDLECENTER);
+                            }
+
+                            { // xử lý và đưa ảnh sang bàn silicon
+
+                                if (typePosition[arr][ban][i][j].case.slice(0, 6) == "note10")
+                                    app.doAction("createRectangle20", "autoUv");
+                                else if (typePosition[arr][ban][i][j].case.slice(0, 1) == "i")
+                                    app.doAction("createRectangle120", "autoUv");
+                                else
+                                    app.doAction("createRectangle80", "autoUv");
+                                var cropw = wphone * 100 / 1000;
+                                var croph = hphone * 100 / 1500;
+                                app.activeDocument.activeLayer.resize(cropw, croph, AnchorPosition.MIDDLECENTER);
+                                app.doAction("selectAreaLayer", "autoUv");
+                                app.activeDocument.artLayers.getByName("Rounded Rectangle 1").remove();
+                                activeDocument.activeLayer = activeDocument.artLayers[0];
+                                app.doAction("duplicateSelection", "autoUv"); // tạo layer mới từ vùng chọn
+                                app.activeDocument.activeLayer.name = typePosition[arr][ban][i][j].stt; // đặt tên cho layer voi stt
+                                app.activeDocument.activeLayer.duplicate(app.documents["silicon"].layerSets["SPOT"], ElementPlacement.PLACEATBEGINNING);
+                                app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
+
+
+
+
+
+
+
+                            }// het xu ly file spot
+
+                            { // translate layer đến vị trí cần in
+                                app.activeDocument.activeLayer = app.activeDocument.layerSets["CMYK"].artLayers.getByName(typePosition[arr][ban][i][j].stt);
+                                app.doAction("moveZero", "autoUv");
+                                app.activeDocument.activeLayer.translate(paddingLeft + j * wk + Math.round(paddingPrintLR / (2 * 0.084667)), (paddingBottom + i * hk + Math.round(paddingPrintTB / (2 * 0.084667))) * (-1));
+                                app.activeDocument.activeLayer = app.activeDocument.layerSets["SPOT"].artLayers.getByName(typePosition[arr][ban][i][j].stt);
+                                app.doAction("moveZero", "autoUv");
+                                app.activeDocument.activeLayer.translate(paddingLeft + j * wk + Math.round(paddingPrintLR / (2 * 0.084667)), (paddingBottom + i * hk + Math.round(paddingPrintTB / (2 * 0.084667))) * (-1));
+                            }
+
+
+
                         }
-                        else {
-                            if (app.activeDocument.artLayers.length === 1) { // nhân đôi layer, kiểm tra nếu có 2 layer là phải làm lại từ đầu
-                                app.activeDocument.rotateCanvas(180);
-                                app.activeDocument.activeLayer.name = "1";
-                                app.activeDocument.artLayers.add();
-                                app.doAction("strokeWhite1px", "autoUv");
-                                app.activeDocument.mergeVisibleLayers();
+                    }
+                    app.doAction("createSpotChannel", "autoUv"); //đã xếp xong, tạo kênh spot
+                    app.activeDocument.layerSets.getByName("SPOT").visible = false;
 
-                                // app.activeDocument.activeLayer.duplicate(app.activeDocument.activeLayer, ElementPlacement.PLACEBEFORE); // nhân đôi layer
-                                app.activeDocument.resizeCanvas(wphone, hphone); // resize canvas về cỡ cần in với loại điện thoại
+                    app.activeDocument.rotateCanvas(180);
+                    app.doAction("createStroke3", "autoUv");
+                    if (arr == 0)
+                        var folder1 = Folder("~/Desktop/in an/z9-silicon " + (ban + 1) + " ngay " + day);
+                    else
+                        var folder1 = Folder("~/Desktop/in an/z10-silicon " + (ban + 1) + " ngay " + day);
 
-                                { // resize layer về cỡ cần in
-                                    if ((hphone / wphone) < 2) { var newSize = (wphone * 100 / 1200) }
-                                    else { var newSize = (hphone * 100 / 2400) }
-                                    app.activeDocument.artLayers[0].resize(newSize, newSize, AnchorPosition.MIDDLECENTER);
-                                }
+                    if (!folder1.exists) { folder1.create(); }
+                    app.activeDocument.saveAs(folder1, TiffSaveOptions, false, Extension.LOWERCASE);
+                    app.activeDocument.close();
+                }
+                {// chạy nhãn dán
 
-                                { // xử lý và đưa ảnh sang bàn silicon
-                                    // app.activeDocument.mergeVisibleLayers(); // gộp all layer 
-                                    app.activeDocument.selection.selectAll(); // chọn tất cả ctrl + A
-                                    if (typePosition[arr][ban][i][j].case.slice(0, 6) == "note10")
-                                        app.doAction("createRectangle20", "autoUv");
-                                    else if (typePosition[arr][ban][i][j].case.slice(0, 1) == "i")
-                                        app.doAction("createRectangle120", "autoUv");
+                    createTem(); // hàm tạo tem và nhãn
+                    { // chaạy nhãn
+                        for (var ban = 0; ban <= typePosition[arr].length - 1; ban++) { // loop  1 bàn
+                            for (var i = 0; i <= typePosition[arr][ban].length - 1; i++) { // loop 1 hàng
+                                for (var j = 0; j <= typePosition[arr][ban][i].length - 1; j++) { // lop 1 cái
+                                    moveTem(typePosition[arr][ban][i][j], type);
+                                    if (arr == 0)
+                                        var folder1 = Folder("~/Desktop/in an/z9-silicon " + (ban + 1) + " ngay " + day + "/tem");
                                     else
-                                        app.doAction("createRectangle80", "autoUv");
+                                        var folder1 = Folder("~/Desktop/in an/z10-silicon " + (ban + 1) + " ngay " + day + "/tem");
+                                    if (!folder1.exists) { folder1.create(); }
+                                    if (arr == 0)
+                                        app.activeDocument.saveAs(Folder("~/Desktop/in an/z9-silicon " + (ban + 1) + " ngay " + day + "/tem/ " + typePosition[arr][ban][i][j].stt + ".jpg"), JPEGSaveOptions, true, Extension.LOWERCASE);
+                                    else
+                                        app.activeDocument.saveAs(Folder("~/Desktop/in an/z10-silicon " + (ban + 1) + " ngay " + day + "/tem/ " + typePosition[arr][ban][i][j].stt + ".jpg"), JPEGSaveOptions, true, Extension.LOWERCASE);
 
-                                    var cropw = wphone * 100 / 1000;
-                                    var croph = hphone * 100 / 1500;
-                                    app.activeDocument.activeLayer.resize(cropw, croph, AnchorPosition.MIDDLECENTER);
-                                    app.doAction("selectAreaLayer", "autoUv");
-                                    app.activeDocument.artLayers.getByName("Rounded Rectangle 1").remove();
-                                    app.doAction("duplicateSelection", "autoUv"); // tạo layer mới từ vùng chọn
-                                    app.doAction("strokeWhite1px", "autoUv");
-                                    app.activeDocument.activeLayer.name = typePosition[arr][ban][i][j].stt; // đặt tên cho layer voi stt
-                                    app.activeDocument.activeLayer.duplicate(app.documents["silicon"].layerSets["CMYK"], ElementPlacement.PLACEATBEGINNING);// đưa file in sang bên bàn in
-                                    app.activeDocument.activeLayer.name = "2";
-                                    app.doAction("createSpot-spot", "autoUv");
-                                    app.doAction("strokeWhite1px", "autoUv");
-                                    app.activeDocument.artLayers[0].name = typePosition[arr][ban][i][j].stt; // đặt tên cho layer voi stt
-                                    app.activeDocument.activeLayer.duplicate(app.documents["silicon"].layerSets["SPOT"], ElementPlacement.PLACEATBEGINNING);// đưa file in sang bên bàn in
-                                    app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
+
                                 }
-
-                                { // translate layer đến vị trí cần in
-                                    app.activeDocument.activeLayer = app.activeDocument.layerSets["CMYK"].artLayers.getByName(typePosition[arr][ban][i][j].stt);
-                                    app.doAction("moveZero", "autoUv");
-                                    app.activeDocument.activeLayer.translate(paddingLeft + j * wk + Math.round(paddingPrintLR / (2 * 0.084667)), (paddingBottom + i * hk + Math.round(paddingPrintTB / (2 * 0.084667))) * (-1));
-                                    app.activeDocument.activeLayer = app.activeDocument.layerSets["SPOT"].artLayers.getByName(typePosition[arr][ban][i][j].stt);
-                                    app.doAction("moveZero", "autoUv");
-                                    app.activeDocument.activeLayer.translate(paddingLeft + j * wk + Math.round(paddingPrintLR / (2 * 0.084667)), (paddingBottom + i * hk + Math.round(paddingPrintTB / (2 * 0.084667))) * (-1));
-                                }
-
-                            }
-                            else { alert("file design khong > 1 layer") };
-                        }
-
-
-
-
-
-                    }
-                }
-                app.doAction("createSpotChannel", "autoUv"); //đã xếp xong, tạo kênh spot
-                app.activeDocument.layerSets.getByName("SPOT").visible = false;
-
-                app.activeDocument.rotateCanvas(180);
-                app.doAction("createStroke3", "autoUv");
-                if (arr == 0)
-                    var folder1 = Folder("~/Desktop/in an/z9-silicon " + (ban + 1) + " ngay " + day);
-                else
-                    var folder1 = Folder("~/Desktop/in an/z10-silicon " + (ban + 1) + " ngay " + day);
-
-                if (!folder1.exists) { folder1.create(); }
-                app.activeDocument.saveAs(folder1, TiffSaveOptions, false, Extension.LOWERCASE);
-                app.activeDocument.close();
-            }
-            {// chạy nhãn dán
-
-                createTem(); // hàm tạo tem và nhãn
-                { // chaạy nhãn
-                    for (var ban = 0; ban <= typePosition[arr].length - 1; ban++) { // loop  1 bàn
-                        for (var i = 0; i <= typePosition[arr][ban].length - 1; i++) { // loop 1 hàng
-                            for (var j = 0; j <= typePosition[arr][ban][i].length - 1; j++) { // lop 1 cái
-                                moveTem(typePosition[arr][ban][i][j], type);
-                                if (arr == 0)
-                                    var folder1 = Folder("~/Desktop/in an/z9-silicon " + (ban + 1) + " ngay " + day + "/tem");
-                                else
-                                    var folder1 = Folder("~/Desktop/in an/z10-silicon " + (ban + 1) + " ngay " + day + "/tem");
-                                if (!folder1.exists) { folder1.create(); }
-                                if (arr == 0)
-                                    app.activeDocument.saveAs(Folder("~/Desktop/in an/z9-silicon " + (ban + 1) + " ngay " + day + "/tem/ " + typePosition[arr][ban][i][j].stt + ".jpg"), JPEGSaveOptions, true, Extension.LOWERCASE);
-                                else
-                                    app.activeDocument.saveAs(Folder("~/Desktop/in an/z10-silicon " + (ban + 1) + " ngay " + day + "/tem/ " + typePosition[arr][ban][i][j].stt + ".jpg"), JPEGSaveOptions, true, Extension.LOWERCASE);
-
-
                             }
                         }
                     }
-                }
-                app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
+                    app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
 
+                }
             }
         }
 
-
     }
-
-};
+}
+;
 function createTableLed(data) {
     var arr = data.items;
     var day = data.day; var type = data.type;
@@ -497,9 +496,9 @@ function createTableLed(data) {
             app.activeDocument.layerSets.getByName("SPOT").visible = false;
             app.activeDocument.layerSets.getByName("SPOT2").visible = false;
             app.activeDocument.layerSets.getByName("CMYK").visible = false;
-            var folder1 = Folder("~/Desktop/in an/Led " +"b-"+ (i + 1) + "-" + hour + "h-" + day + "-" + mounth);
+            var folder1 = Folder("~/Desktop/in an/Led " + "b-" + (i + 1) + "-" + hour + "h-" + day + "-" + mounth);
             if (!folder1.exists) { folder1.create(); }
-            app.activeDocument.saveAs(Folder("~/Desktop/in an/Led " +"b-"+ (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/khung.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
+            app.activeDocument.saveAs(Folder("~/Desktop/in an/Led " + "b-" + (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/khung.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
 
         }
         {// lưu file in 1
@@ -515,7 +514,7 @@ function createTableLed(data) {
             app.doAction("fillChannelsLED0", "autoUv");
             showRGBChannel();
             app.activeDocument.channels.getByName("Spot Color 1").visible = true;
-            app.activeDocument.saveAs(Folder("~/Desktop/in an/Led " +"b-"+ (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/in 1.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
+            app.activeDocument.saveAs(Folder("~/Desktop/in an/Led " + "b-" + (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/in 1.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
 
         }
         { // lưu file in 2
@@ -550,7 +549,7 @@ function createTableLed(data) {
             app.activeDocument.activeChannels = [app.activeDocument.channels.getByName("Spot Color 1")];
             app.doAction("fillChannelsLED20", "autoUv");
             showRGBChannel();
-            app.activeDocument.saveAs(Folder("~/Desktop/in an/Led " +"b-"+ (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/in 2.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
+            app.activeDocument.saveAs(Folder("~/Desktop/in an/Led " + "b-" + (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/in 2.tif"), TiffSaveOptions, false, Extension.LOWERCASE);
 
 
 
@@ -563,9 +562,9 @@ function createTableLed(data) {
         for (var i = 0; i <= arr.length - 1; i++) {
             for (var j = 0; j <= arr[i].length - 1; j++) {
                 moveTem(arr[i][j], type);
-                var folder1 = Folder("~/Desktop/in an/Led " +"b-"+ (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/tem");
+                var folder1 = Folder("~/Desktop/in an/Led " + "b-" + (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/tem");
                 if (!folder1.exists) { folder1.create(); }
-                app.activeDocument.saveAs(Folder("~/Desktop/in an/Led " +"b-"+ (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/tem/" + arr[i][j].stt + ".jpg"), JPEGSaveOptions, true, Extension.LOWERCASE);
+                app.activeDocument.saveAs(Folder("~/Desktop/in an/Led " + "b-" + (i + 1) + "-" + hour + "h-" + day + "-" + mounth + "/tem/" + arr[i][j].stt + ".jpg"), JPEGSaveOptions, true, Extension.LOWERCASE);
 
 
             }
@@ -665,7 +664,7 @@ function createTem() {
     }
 
 }
-function convertDate(date, type, country) {
+function convertDate(date, type, country, phonecase) {
     var _type = type;
     switch (type) {
         case "luminous":
@@ -683,13 +682,14 @@ function convertDate(date, type, country) {
         default:
             break;
     }
-    var nameDate = new Date(date).getDate() + "-" + (new Date(date).getMonth() + 1) + " " + _type + " / " + country;
+
+    var nameDate = new Date(date).getDate() + "-" + (new Date(date).getMonth() + 1) + " " + _type + "/" + country + "-" + phonecase;
     return nameDate
 }
 function moveTem(item, type) {
     // alert(type)
     var PRectangleTem = app.activeDocument.artLayers.getByName("Rectangle 1").bounds;
-    app.activeDocument.artLayers.getByName("date").textItem.contents = convertDate(item.date, type, item.country);
+    app.activeDocument.artLayers.getByName("date").textItem.contents = convertDate(item.date, type, item.country, item.case);
     app.activeDocument.artLayers.getByName("name").textItem.contents = item.name;
     app.activeDocument.artLayers.getByName("barcode").textItem.contents = item.barcode;
     app.activeDocument.activeLayer = app.activeDocument.artLayers.getByName("barcode");

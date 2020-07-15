@@ -7,7 +7,7 @@ import * as type from '../constants';
 import _ from "lodash";
 
 function* getChecking(param) {     // lấy total page
-   
+
     try {
         let res1 = yield getByCustomAPI(param.payload); //gọi API
         yield put({
@@ -92,11 +92,11 @@ function* postItem(param) {     // lấy total page
 }
 
 function* updatePCPro(param) {     // lấy total page
-    
+
 
     try {
         let res1 = yield PutItemAPI(param.payload); //gọi API
-
+        // console.log(JSON.parse(JSON.stringify(res1)));
 
         yield put({
             type: type.CI_UPDATE_PC_PRO_SUCSESS, // trigger valueToGetAPIReducer , tính lại total Page
