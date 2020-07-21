@@ -218,15 +218,17 @@ class InputExcel extends Component {
         // console.log(dataObj);
         dataObj = dataObj.map(param => {
 
-            console.log(param);
+            // console.log(param);
 
 
 
-            if (param.case.match(/[^a-zA-Z0-9-_\s]/g))
+            if (param.case.match(/[^a-zA-Z0-9-_\s]/g)) {
                 this.alertError(" case chứa ký tực đặc biệt:");
 
+                return []
+                // localStorage.setItem("ItemsExcel", JSON.stringify([]));
 
-
+            }
             let arr = PhonesAlltribute.map(param2 => {
 
                 let sosanh = param2.nameVariant.trim().split(",").filter(param3 => param3 !== "").filter(param3 => {
@@ -236,7 +238,7 @@ class InputExcel extends Component {
 
 
                 if (sosanh.length !== 0) {
-                    console.log(param2.nameDefault);
+                    // console.log(param2.nameDefault);
                     return param2.nameDefault
                 }
             }).filter(param4 => param4 !== undefined);
@@ -259,9 +261,9 @@ class InputExcel extends Component {
 
 
         let dataObj = this.convertData(data);
+        console.log(dataObj);
 
         dataObj = this.checkDataFailImport([...dataObj]);
-        console.log(dataObj);
 
         localStorage.setItem("ItemsExcel", JSON.stringify(dataObj));
         this.setState({
