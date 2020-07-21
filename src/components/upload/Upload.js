@@ -222,7 +222,7 @@ class InputExcel extends Component {
 
 
 
-            if (param.case.match(/[^a-zA-Z0-9-_\s]/g)) {
+            if (param.case.match(/[^a-zA-Z0-9/\s]/g)) {
                 this.alertError(" case chứa ký tực đặc biệt:");
 
                 return []
