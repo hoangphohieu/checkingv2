@@ -215,24 +215,36 @@ class InputExcel extends Component {
         let PhonesAlltribute = JSON.parse(localStorage.pc_gllm).item_post;
         PhonesAlltribute = _.toPairs(PhonesAlltribute).filter(param => param[0] !== "id" && param[0] !== "type").map(param => param[1]);
 
-
+        // console.log(dataObj);
         dataObj = dataObj.map(param => {
-            let arr = PhonesAlltribute.map(param2 => {
-                let sosanh = param2.nameVariant.trim().split(",").filter(param3 => param3 !== "").filter(param3 => {
 
+            console.log(param);
+
+
+
+            if (param.case.match(/[^a-zA-Z0-9-_\s]/g))
+                this.alertError(" case chứa ký tực đặc biệt:");
+
+
+
+            let arr = PhonesAlltribute.map(param2 => {
+
+                let sosanh = param2.nameVariant.trim().split(",").filter(param3 => param3 !== "").filter(param3 => {
                     let item = _.camelCase(param.case).toLowerCase().endsWith(_.camelCase(param3).toLowerCase());
                     return item;
                 })
 
 
-                if (sosanh.length !== 0)
+                if (sosanh.length !== 0) {
+                    console.log(param2.nameDefault);
                     return param2.nameDefault
+                }
             }).filter(param4 => param4 !== undefined);
             return { ...param, case: arr[0] }
 
         })
 
-        console.log(dataObj);
+        // console.log(dataObj);
 
         return dataObj;
     }
@@ -291,7 +303,8 @@ class InputExcel extends Component {
             // console.log(errCase);
 
             if (errCase.length !== 0) {
-                this.alertError(`"kiem tra phoneCase: "${errCase}`)
+                console.log(errCase);
+                // this.alertError(`"kiem tra phoneCase: "${errCase}`)
             }
         }
         {// kiem tra name va sku
