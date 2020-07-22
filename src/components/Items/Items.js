@@ -23,17 +23,17 @@ function Items2(props) {
 
             if (ItemsGET.length === 0) {
                   if (localStorage.items_gllm !== "[]") {
-                      
+
 
                         props.updatePcPro(JSON.parse(localStorage.items_gllm));
                   }
                   else if (localStorage.items_led !== "[]") {
-                      
+
 
                         props.updatePcPro(JSON.parse(localStorage.items_led));
                   }
                   else if (localStorage.items_silicon !== "[]") {
-                    
+
 
                         props.updatePcPro(JSON.parse(localStorage.items_silicon));
                   } else {
@@ -54,6 +54,7 @@ function Items2(props) {
 
       let getCheckingSucsess = () => {
             let itemsAPI = props.ItemReducer.listItem;
+            console.log(itemsAPI);
             itemsAPI.pop();
             itemsAPI = itemsAPI.map(param => param.item_post);
             itemsAPI = itemsAPI.map(param => {
@@ -107,7 +108,7 @@ function Items2(props) {
                   localStorage.items_led = "[]";
                   localStorage.pc_led = JSON.stringify(pcPro);
             }
-            if (pcPro.item_post.id ==="pc_silicon") {
+            if (pcPro.item_post.id === "pc_silicon") {
                   localStorage.items_silicon = "[]";
                   localStorage.pc_silicon = JSON.stringify(pcPro);
             }
@@ -116,7 +117,9 @@ function Items2(props) {
             props.propsItemsToDefault();
       }
       let patchItem = (item) => {
-            let itemConvert = { ...item, lasttime: Date.parse(new Date()), handlechange: (item["handlechange"] === undefined) ? `${Date.parse(new Date())}:PUT` : item["handlechange"].concat(`,${Date.parse(new Date())}:PUT`) }
+            console.log(item);
+
+            let itemConvert = { ...item, lasttime: Date.parse(new Date()), handlechange: (item["handlechange"] === undefined) ? `${Date.parse(new Date())}:PUT-${Method.type}` : item["handlechange"].concat(`,${Date.parse(new Date())}:PUT-${Method.type}`) }
             props.patchItem({ item_post: itemConvert });
       }
       let change_pc_pro = (items, type) => {
@@ -140,13 +143,14 @@ function Items2(props) {
       let handleSetMethod = (param) => {
             if (param === "printed") setItemsCount([...ItemsGET]);
             let item = ItemsGET[ItemsGET.length - 1];
-            
+            console.log(item);
+
             if (item !== undefined) {
                   let itemConvert = {
                         ...item,
                         printStatus: param,
                         lasttime: Date.parse(new Date()),
-                        handlechange: (item["handlechange"] === undefined) ? `${Date.parse(new Date())}:PUT` : item["handlechange"].concat(`,${Date.parse(new Date())}:PUT`)
+                        handlechange: (item["handlechange"] === undefined) ? `${Date.parse(new Date())}:PUT-${param}` : item["handlechange"].concat(`,${Date.parse(new Date())}:PUT-${param}`)
                   }
 
                   props.patchItem({ item_post: itemConvert });
