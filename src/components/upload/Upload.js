@@ -306,7 +306,7 @@ class InputExcel extends Component {
 
             if (errCase.length !== 0) {
                 console.log(errCase);
-                // this.alertError(`"kiem tra phoneCase: "${errCase}`)
+                this.alertError(`"kiem tra phoneCase: "${errCase}`);
             }
         }
         {// kiem tra name va sku
