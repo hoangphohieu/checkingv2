@@ -35,6 +35,7 @@ class PhoiTonKhoItem extends Component {
 
       changeValue = () => {
             let item = this.props.item[1];
+            // console.log(item);
             if (this.state.width !== 0) {
                   item = { ...item, width: this.state.width }
             }
@@ -50,9 +51,9 @@ class PhoiTonKhoItem extends Component {
             if (this.state.nameVariant !== "") {
                   item = { ...item, nameVariant: this.state.nameVariant }
             }
-            if (this.state.amount !== 0) {
-                  item = { ...item, amount: this.state.amount }
-            }
+            // if (this.state.amount !== 0) {
+            //       item = { ...item, amount: this.state.amount }
+            // }
            
 
             this.props.changePC_Properties(item);
@@ -75,15 +76,15 @@ class PhoiTonKhoItem extends Component {
             }
             return (<React.Fragment>
                   <div className="row ptl-ctn" onClick={() => this.setState({ showInfo: !this.state.showInfo })}>
-                        <div className="col-3 ptk-item">
+                        <div className="col-6 ptk-item">
                               {this.props.stt}
                         </div>
                         <div className="col-6 ptk-item">
                               {item.nameDefault}
                         </div>
-                        <div className="col-3 ptk-item d-relative">
+                        {/* <div className="col-3 ptk-item d-relative">
                               {item.amount}
-                        </div>
+                        </div> */}
                   </div>
                   {(this.state.showInfo === true) ? <div className="row">
                         <div className="col-12">
@@ -98,10 +99,10 @@ class PhoiTonKhoItem extends Component {
                                     <span className="ptk-pro-name">Hight</span>
                                     <input type="text" className="form-control" defaultValue={item.hight} onChange={this.changeHight} />
                               </div>
-                              <div className="ptk-pro-ctn">
+                              {/* <div className="ptk-pro-ctn">
                                     <span className="ptk-pro-name">SL</span>
                                     <input type="text" className="form-control" defaultValue={item.amount} onChange={this.changeAmount} />
-                              </div>
+                              </div> */}
                               {si_pro}
                               <div className="ptk-pro-ctn">
                                     <span className="ptk-pro-name">Variant</span>

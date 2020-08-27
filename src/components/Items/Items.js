@@ -18,30 +18,30 @@ function Items2(props) {
             if (props.ItemReducer.type === "GET_CI_CHECKING_SUCSESS") { getCheckingSucsess() }
             else if (props.ItemReducer.type === "CI_PATCH_ITEMS_RFAILURE") { patchItemsFaild() }
             else if (props.ItemReducer.type === "CI_DELETE_ITEMS_RFAILURE") { patchItemsFaild() }
-            else if (props.ItemReducer.type === "CI_UPDATE_PC_PRO_SUCSESS") { updatePCProDone() }
-            else if (props.ItemReducer.type === "CI_UPDATE_PC_PRO_RFAILURE") { updatePCProfail() }
+            // else if (props.ItemReducer.type === "CI_UPDATE_PC_PRO_SUCSESS") { updatePCProDone() }
+            // else if (props.ItemReducer.type === "CI_UPDATE_PC_PRO_RFAILURE") { updatePCProfail() }
 
             if (ItemsGET.length === 0) {
-                  if (localStorage.items_gllm !== "[]") {
+                  // if (localStorage.items_gllm !== "[]") {
 
 
-                        props.updatePcPro(JSON.parse(localStorage.items_gllm));
+                  //       props.updatePcPro(JSON.parse(localStorage.items_gllm));
+                  // }
+                  // else if (localStorage.items_led !== "[]") {
+
+
+                  //       props.updatePcPro(JSON.parse(localStorage.items_led));
+                  // }
+                  // else if (localStorage.items_silicon !== "[]") {
+
+
+                  //       props.updatePcPro(JSON.parse(localStorage.items_silicon));
+                  // } else {
+                  if (Method.fetching !== false || Method.type !== null) {
+                        setMethod({ type: null, fetching: false });
+                        props.propsItemsToDefault();
                   }
-                  else if (localStorage.items_led !== "[]") {
-
-
-                        props.updatePcPro(JSON.parse(localStorage.items_led));
-                  }
-                  else if (localStorage.items_silicon !== "[]") {
-
-
-                        props.updatePcPro(JSON.parse(localStorage.items_silicon));
-                  } else {
-                        if (Method.fetching !== false || Method.type !== null) {
-                              setMethod({ type: null, fetching: false });
-                              props.propsItemsToDefault();
-                        }
-                  }
+                  // }
             }
 
 
@@ -75,21 +75,21 @@ function Items2(props) {
                   let item = items[items.length - 1];
                   patchItem({ ...item, printStatus: Method.type })
             }
-            else if (items.length === 0) {
-                  if (Method.type === "printed") {
-                        let items = ItemsCount;
-                        localStorage.items_gllm = JSON.stringify(items.filter(param => (param.type === "glass" || param.type === "luminous")));
-                        localStorage.items_led = JSON.stringify(items.filter(param => param.type === "led"));
-                        localStorage.items_silicon = JSON.stringify(items.filter(param => param.type === "silicon"));
-                        // dem 
-                        if (localStorage.items_gllm !== "[]") localStorage.items_gllm = JSON.stringify(change_pc_pro(JSON.parse(localStorage.items_gllm), "pc_gllm"));
-                        if (localStorage.items_led !== "[]") localStorage.items_led = JSON.stringify(change_pc_pro(JSON.parse(localStorage.items_led), "pc_led"));
-                        if (localStorage.items_silicon !== "[]") localStorage.items_silicon = JSON.stringify(change_pc_pro(JSON.parse(localStorage.items_silicon), "pc_silicon"));
-                  }
-                  // console.log(localStorage.items_gllm);
+            // else if (items.length === 0) {
+            //       if (Method.type === "printed") {
+            //             let items = ItemsCount;
+            //             localStorage.items_gllm = JSON.stringify(items.filter(param => (param.type === "glass" || param.type === "luminous")));
+            //             localStorage.items_led = JSON.stringify(items.filter(param => param.type === "led"));
+            //             localStorage.items_silicon = JSON.stringify(items.filter(param => param.type === "silicon"));
+            //             // dem 
+            //             if (localStorage.items_gllm !== "[]") localStorage.items_gllm = JSON.stringify(change_pc_pro(JSON.parse(localStorage.items_gllm), "pc_gllm"));
+            //             if (localStorage.items_led !== "[]") localStorage.items_led = JSON.stringify(change_pc_pro(JSON.parse(localStorage.items_led), "pc_led"));
+            //             if (localStorage.items_silicon !== "[]") localStorage.items_silicon = JSON.stringify(change_pc_pro(JSON.parse(localStorage.items_silicon), "pc_silicon"));
+            //       }
+            //       // console.log(localStorage.items_gllm);
 
-                  props.propsItemsToDefault();
-            }
+            //       props.propsItemsToDefault();
+            // }
       }
       let patchItemsFaild = () => { // dang xu ly cai nay
             let items = ItemsGET;
@@ -97,49 +97,49 @@ function Items2(props) {
             patchItem({ ...item, printStatus: Method.type });
             props.propsItemsToDefault();
       }
-      let updatePCProDone = () => {
-            let pcPro = JSON.parse(JSON.stringify(props.ItemReducer.listItem));
+      // let updatePCProDone = () => {
+      //       let pcPro = JSON.parse(JSON.stringify(props.ItemReducer.listItem));
 
-            if (pcPro.item_post.id === "pc_gllm") {
-                  localStorage.items_gllm = "[]";
-                  localStorage.pc_gllm = JSON.stringify(pcPro);
-            }
-            if (pcPro.item_post.id === "pc_led") {
-                  localStorage.items_led = "[]";
-                  localStorage.pc_led = JSON.stringify(pcPro);
-            }
-            if (pcPro.item_post.id === "pc_silicon") {
-                  localStorage.items_silicon = "[]";
-                  localStorage.pc_silicon = JSON.stringify(pcPro);
-            }
-      }
-      let updatePCProfail = () => {
-            props.propsItemsToDefault();
-      }
+      //       if (pcPro.item_post.id === "pc_gllm") {
+      //             localStorage.items_gllm = "[]";
+      //             localStorage.pc_gllm = JSON.stringify(pcPro);
+      //       }
+      //       if (pcPro.item_post.id === "pc_led") {
+      //             localStorage.items_led = "[]";
+      //             localStorage.pc_led = JSON.stringify(pcPro);
+      //       }
+      //       if (pcPro.item_post.id === "pc_silicon") {
+      //             localStorage.items_silicon = "[]";
+      //             localStorage.pc_silicon = JSON.stringify(pcPro);
+      //       }
+      // }
+      // let updatePCProfail = () => {
+      //       props.propsItemsToDefault();
+      // }
       let patchItem = (item) => {
             console.log(item);
 
             let itemConvert = { ...item, lasttime: Date.parse(new Date()), handlechange: (item["handlechange"] === undefined) ? `${Date.parse(new Date())}:PUT-${Method.type}` : item["handlechange"].concat(`,${Date.parse(new Date())}:PUT-${Method.type}`) }
             props.patchItem({ item_post: itemConvert });
       }
-      let change_pc_pro = (items, type) => {
-            let pc_pro = JSON.parse(localStorage.getItem(type)).item_post;
-            delete pc_pro.id;
-            delete pc_pro.type;
-            pc_pro = _.toPairs(pc_pro).map(param => param[1]);
-            let amountAllPhoneCase = [];
-            let phonecaseSheet = pc_pro.map(param => param.nameDefault);
-            for (let i = 0; i < phonecaseSheet.length; i++) {
-                  let data2 = items.filter(param => param.case === phonecaseSheet[i]);
-                  amountAllPhoneCase = [...amountAllPhoneCase, [phonecaseSheet[i], data2.length]];
-            }
-            pc_pro = pc_pro.map(param => [param.nameDefault, param]);
-            pc_pro = _.fromPairs(pc_pro);
-            // pc_pro = { ...pc_pro, id: type, type: "pc_properties" };
-            amountAllPhoneCase.forEach(param => { pc_pro[param[0]].amount = pc_pro[param[0]].amount - param[1] });
-            pc_pro = { item_post: { ...pc_pro, id: type, type: "pc_properties" } }
-            return pc_pro;
-      }
+      // let change_pc_pro = (items, type) => {
+      //       let pc_pro = JSON.parse(localStorage.getItem(type)).item_post;
+      //       delete pc_pro.id;
+      //       delete pc_pro.type;
+      //       pc_pro = _.toPairs(pc_pro).map(param => param[1]);
+      //       let amountAllPhoneCase = [];
+      //       let phonecaseSheet = pc_pro.map(param => param.nameDefault);
+      //       for (let i = 0; i < phonecaseSheet.length; i++) {
+      //             let data2 = items.filter(param => param.case === phonecaseSheet[i]);
+      //             amountAllPhoneCase = [...amountAllPhoneCase, [phonecaseSheet[i], data2.length]];
+      //       }
+      //       pc_pro = pc_pro.map(param => [param.nameDefault, param]);
+      //       pc_pro = _.fromPairs(pc_pro);
+      //       // pc_pro = { ...pc_pro, id: type, type: "pc_properties" };
+      //       amountAllPhoneCase.forEach(param => { pc_pro[param[0]].amount = pc_pro[param[0]].amount - param[1] });
+      //       pc_pro = { item_post: { ...pc_pro, id: type, type: "pc_properties" } }
+      //       return pc_pro;
+      // }
       let handleSetMethod = (param) => {
             if (param === "printed") setItemsCount([...ItemsGET]);
             let item = ItemsGET[ItemsGET.length - 1];

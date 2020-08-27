@@ -24,6 +24,7 @@ class TablePTK extends Component {
       changePC_Properties = (item) => {
             let type = this.props.typePTK;
             let itemPC = JSON.parse(localStorage.getItem(type));
+            console.log(itemPC);
             let items = _.toPairs(itemPC.item_post);
             items = this.convertPcPro(items, type, item);
             itemPC = { ...itemPC, item_post: items }
@@ -89,7 +90,7 @@ class TablePTK extends Component {
             let itemsPC = JSON.parse(localStorage.getItem(this.props.typePTK));
             let items = _.toPairs(itemsPC.item_post).filter(param => param[0] !== "id" && param[0] !== 'type');
             items = _.orderBy(items, ['nameDefault'], ['asc']);
-
+ 
             let si_pro = "";
             if (this.props.typePTK === "pc_silicon") {
                   si_pro = <><div className="ptk-pro-ctn">
@@ -119,10 +120,10 @@ class TablePTK extends Component {
                                     <span className="ptk-pro-name">Hight</span>
                                     <input type="text" className="form-control" placeholder={"160"} onChange={(e) => this.setState({ newPC: { ...this.state.newPC, hight: Number(e.target.value) } })} />
                               </div>
-                              <div className="ptk-pro-ctn">
+                              {/* <div className="ptk-pro-ctn">
                                     <span className="ptk-pro-name">SL</span>
                                     <input type="text" className="form-control" placeholder={"1000"} onChange={(e) => this.setState({ newPC: { ...this.state.newPC, amount: Number(e.target.value) } })} />
-                              </div>
+                              </div> */}
                               {si_pro}
                               <div className="ptk-pro-ctn">
                                     <span className="ptk-pro-name">Variant</span>
@@ -132,22 +133,24 @@ class TablePTK extends Component {
                         </div>
 
                   </div>
-            }
+            } 
+            // console.log(items);
+
             return (<React.Fragment>
                   <div className="col-4">
                         {(this.props.typePTK === "pc_gllm") ? <h3 className="ptk-title"> Glass-Luminous</h3> : ((this.props.typePTK === "pc_led") ? <h3 className="ptk-title"> Led</h3> : <h3 className="ptk-title">Silicon</h3>)}
 
                         <div className="row ptl-ctn">
-                              <div className="col-3 ptk-item">
+                              <div className="col-6 ptk-item">
                                     STT
                                </div>
                               <div className="col-6 ptk-item">
                                     Phôi
                               </div>
-                              <div className="col-3 ptk-item d-relative">
+                              {/* <div className="col-3 ptk-item d-relative">
                                     Số lượng
 
-                              </div>
+                              </div> */}
                         </div>
                         {items.map((param, key) => <PhoiTonKhoItem item={param} key={key} stt={key + 1} changePC_Properties={this.changePC_Properties} deleteItem={this.deleteItem} type={this.props.typePTK} />)}
 
