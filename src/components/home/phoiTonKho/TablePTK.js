@@ -63,7 +63,7 @@ class TablePTK extends Component {
                   delete item.numberMica;
                   delete item.zPosition;
             }
-            if (item.width === null | item.hight === null | item.amount === null | item.nameVariant === null | item.nameDefault === null | item.numberMica === null | item.zPosition === null) {
+            if (item.width === null | item.hight === null  | item.nameVariant === null | item.nameDefault === null | item.numberMica === null | item.zPosition === null) {
                   alert("nhap thieu truong");
             }
             else {
